@@ -12,7 +12,7 @@
 	
 	<table class="table">
 	<tr>
-		<th>ID</th>
+		
 		<th>Date d'arrivée</th>
 		<th>Date de départ</th>
 		<th>Prix total</th>
@@ -21,7 +21,7 @@
 	</tr>
 	<c:forEach var="v" items="${allVoyages}">
 	<tr>
-		<td>${v.id}</td>
+		
 		<td><fmt:formatDate value="${v.dateArrivee}" pattern="dd/MM/yyyy" /></td>
 		<td><fmt:formatDate value="${v.dateDepart}" pattern="dd/MM/yyyy" /></td>
 		<td>${v.prixTotal}</td>
