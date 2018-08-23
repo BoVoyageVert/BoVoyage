@@ -20,15 +20,15 @@
 		<th>Image</th>
 	</tr>
 	<c:forEach var="v" items="${allVoyages}">
-	<tr>
-		
-		<td><fmt:formatDate value="${v.dateArrivee}" pattern="dd/MM/yyyy" /></td>
-		<td><fmt:formatDate value="${v.dateDepart}" pattern="dd/MM/yyyy" /></td>
-		<td>${v.prixTotal}</td>
-		<td>${v.nombrePlaces}</td>
-		<td>${v.image}</td>
-		
-	</tr>
+		<tr>
+			
+			<td><fmt:formatDate value="${v.dateArrivee}" pattern="dd/MM/yyyy" /></td>
+			<td><fmt:formatDate value="${v.dateDepart}" pattern="dd/MM/yyyy" /></td>
+			<td>${v.prixTotal}</td>
+			<td>${v.nombrePlaces}</td>
+			<td>${v.image}</td>
+			
+		</tr>
 	
 	</c:forEach>
 	

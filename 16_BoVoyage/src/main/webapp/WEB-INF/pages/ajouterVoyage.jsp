@@ -10,7 +10,7 @@
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 </head>
 <body>
-	<form:form cssClass="form-horizontal" method="POST" action="soumettreAjouterVoyage" modelAttribute="vAjout">
+	<form:form enctype="multipart/form-data" cssClass="form-horizontal" method="POST" action="soumettreAjouterVoyage" modelAttribute="vAjout">
 		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="dateArrivee">Date d'arrivée</form:label>
 			<div class="col-sm-10">
