@@ -48,7 +48,7 @@ public class Loisir {
 	public Loisir(String categorie, String nom, String description, double prix, double reduction, byte[] photo,
 			String image) {
 		super();
-		categorie = categorie;
+		this.categorie = categorie;
 		this.nom = nom;
 		this.description = description;
 		this.prix = prix;
@@ -62,7 +62,7 @@ public class Loisir {
 			byte[] photo, String image) {
 		super();
 		this.idLoisir = idLoisir;
-		categorie = categorie;
+		this.categorie = categorie;
 		this.nom = nom;
 		this.description = description;
 		this.prix = prix;
@@ -121,14 +121,6 @@ public class Loisir {
 		this.image = image;
 	}
 
-	public Voyage getVoyage() {
-		return voyage;
-	}
-
-	public void setVoyage(Voyage voyage) {
-		this.voyage = voyage;
-	}
-
 	public String getNom() {
 		return nom;
 	}
@@ -144,7 +136,16 @@ public class Loisir {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
+	public Voyage getVoyage() {
+		return voyage;
+	}
+
+	public void setVoyage(Voyage voyage) {
+		this.voyage = voyage;
+	}
+
+
 	
 	
 	

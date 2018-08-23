@@ -49,10 +49,17 @@
     </div>
   </div>
   
+   <div class="form-group">
+    <form:label cssClass="col-sm-2 control-label" path="voyage.id">id voyage:</form:label>
+    <div class="col-sm-5">
+      <form:input cssClass="form-control" placeholder="id voyage" path="voyage.id"/>
+    </div>
+  </div>
+    
   <div class="form-group">
     <form:label cssClass="col-sm-2 control-label" path="image">Image:</form:label>
     <div class="col-sm-5">
-      <form:input cssClass="form-control" placeholder="Image" path="image"/>
+      <form:input type="file" cssClass="form-control" placeholder="Image" path="image"/>
     </div>
   </div>
    

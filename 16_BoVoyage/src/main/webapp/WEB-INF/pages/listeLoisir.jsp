@@ -22,7 +22,7 @@
 			<th>Image</th>						
 		</tr>
 
-		<c:forEach var="l" items="${addLoisir}">
+		<c:forEach var="l" items="${allLoisirs}">
 			<tr>
 				<td>${l.categorie}</td>
 				<td>${l.nom}</td>

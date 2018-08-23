@@ -3,6 +3,7 @@ package fr.adaming.service;
 import java.util.List;
 
 import fr.adaming.model.Loisir;
+import fr.adaming.model.Voyage;
 
 public interface ILoisirService {
 	
@@ -10,7 +11,7 @@ public interface ILoisirService {
 	public List<Loisir> getAllLoisir();	
 	
 	/**claire: Methode pour rechercher des loisirs par cat*/
-	public List<Loisir> getLoisirByCat(Loisir l);
+	public Loisir getLoisirByCat(Loisir l);
 	
 	/**claire: Methode pour rechercher des loisirs par id*/
 	public Loisir getLoisirById(Loisir l);

@@ -43,16 +43,39 @@ public class LoisirDaoImpl implements ILoisirDao{
 		return listeLoisir;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<Loisir> getLoisirByCat(Loisir l) {
-		// TODO Auto-generated method stub
-		return null;
+	public Loisir getLoisirByCat(Loisir l) {
+		/** claire: Recuperer la session*/
+		Session s = sf.getCurrentSession();
+		
+		/** claire: Req */
+		String req = "FROM Loisir l WHERE l.categorie=:pCategorie ";
+		
+		/**claire: Query */
+		Query query = s.createQuery(req);
+		
+		/**Passage des params*/
+		query.setParameter("pCategorie", l.getCategorie());
+		
+		return (Loisir) query.uniqueResult();
 	}
 
 	@Override
 	public Loisir getLoisirById(Loisir l) {
-		// TODO Auto-generated method stub
-		return null;
+		/** claire: Recuperer la session*/
+		Session s = sf.getCurrentSession();
+		
+		/** claire: Req */
+		String req = "FROM Loisir l WHERE l.idLoisir=:pIdLoisir ";
+		
+		/**claire: Query */
+		Query query = s.createQuery(req);
+		
+		/**Passage des params*/
+		query.setParameter("pIdLoisir", l.getIdLoisir());
+		
+		return (Loisir) query.uniqueResult();
 	}
 
 	@Override
