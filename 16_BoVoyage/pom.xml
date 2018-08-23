@@ -194,6 +194,20 @@
 			<artifactId>commons-codec</artifactId>
 			<version>1.9</version>
 		</dependency>
+		
+		<!-- ####### Les librairies pour la validation  -->
+	<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-validator</artifactId>
+	    <version>5.1.3.Final</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+	<dependency>
+	    <groupId>javax.validation</groupId>
+	    <artifactId>validation-api</artifactId>
+	    <version>1.1.0.Final</version>
+	</dependency>
 
 	</dependencies>
 
