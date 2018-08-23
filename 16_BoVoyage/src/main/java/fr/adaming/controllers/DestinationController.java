@@ -78,13 +78,16 @@ public class DestinationController {
 
 	}
 
-	/** >>>>>>>>>>>>>>>>>>>> FONCTIONNALITE DE RECHERCHE D'UNE DESTINATION */
-	@RequestMapping(value = "/rechercherDestination", method = RequestMethod.GET)
+	/**
+	 * >>>>>>>>>>>>>>>>>>>> FONCTIONNALITE DE RECHERCHE D'UNE DESTINATION PAR
+	 * SON ID
+	 */
+	@RequestMapping(value = "/rechercherDestinationId", method = RequestMethod.GET)
 	public ModelAndView afficherGetDestinationById() {
 		return new ModelAndView("rechercherDestinationId", "dRech", new Destination());
 	}
 
-	@RequestMapping(value = "/soumettreRechercherDestination", method = RequestMethod.POST)
+	@RequestMapping(value = "/soumettreRechercherDestinationId", method = RequestMethod.POST)
 	public String soumettreGetDestinationById(ModelMap modele, @ModelAttribute(value = "dRech") Destination dRech,
 			RedirectAttributes rda) {
 
@@ -100,4 +103,88 @@ public class DestinationController {
 
 	}
 
+	/**
+	 * >>>>>>>>>>>>>>>>>>>> FONCTIONNALITE DE RECHERCHE D'UNE DESTINATION PAR
+	 * SON NOM
+	 */
+	@RequestMapping(value = "/rechercherDestinationNom", method = RequestMethod.GET)
+	public ModelAndView afficherGetDestinationByNom() {
+		return new ModelAndView("rechercherDestinationNom", "dRech", new Destination());
+	}
+
+	@RequestMapping(value = "/soumettreRechercherDestination", method = RequestMethod.POST)
+	public String soumettreGetDestinationByNom(ModelMap modele, @ModelAttribute(value = "dRech") Destination dRech,
+			RedirectAttributes rda) {
+
+		Destination destiOut = destinationService.getDestinationByNom(dRech);
+
+		if (destiOut != null) {
+			modele.addAttribute("dFind", destiOut);
+			return "rechercherDestinationNom";
+		} else {
+			rda.addAttribute("msg", "La destination recherchée n'existe pas encore !");
+			return "rechercherDestinationNom";
+		}
+
+	}
+
+	/**
+	 * >>>>>>>>>>>>>>>>>>>> FONCTIONNALITE DE MODIFICATION D'UNE DESTINATION
+	 */
+	/**
+	 * 1. Méthode permettant d'afficher le formulaire de modification de la
+	 * destination
+	 */
+	@RequestMapping(value = "/modifierDestination", method = RequestMethod.GET)
+	public String afficherFormUpdateDestination(Model modele) {
+		modele.addAttribute("dUpdate", new Destination());
+		return "modifierDestination";
+	}
+
+	/**
+	 * 2. Méthode permettant de soumettre le formulaire de modification de la
+	 * destination
+	 */
+	@RequestMapping(value = "/soumettreModifierDestination", method = RequestMethod.POST)
+	public String soumettreUpdateDestination(@ModelAttribute("dUpdate") Destination destModif, RedirectAttributes rda) {
+
+		/** Appel de la méthode service pour ajouter une destination */
+		Destination destiModif = destinationService.updateDestination(destModif);
+
+		if (destiModif != null) {
+			return "redirect:listeDestination";
+		} else {
+			rda.addAttribute("msg", "Cette destination n'a pas pu être modifiée, veuillez réessayer !");
+			return "redirect:modifierDestination";
+		}
+
+	}
+
+	/**
+	 * >>>>>>>>>>>>>>>>>>>> FONCTIONNALITE DE SUPPRESSION D'UNE DESTINATION
+	 */
+	@RequestMapping(value = "/supprimerDestination", method = RequestMethod.GET)
+	public String afficherFormDeleteDestination(Model modele) {
+		modele.addAttribute("dDelete", new Destination());
+		return "supprimerDestination";
+	}
+
+	/**
+	 * 2. Méthode permettant de soumettre le formulaire de suppression de la
+	 * destination
+	 */
+	@RequestMapping(value = "/soumettreDeleteDestination", method = RequestMethod.POST)
+	public String soumettreDeleteDestination(@ModelAttribute("dDelete") Destination destSuppr, RedirectAttributes rda) {
+
+		/** Appel de la méthode service pour ajouter une destination */
+		Destination destiSuppr = destinationService.deleteDestination(destSuppr);
+
+		if (destiSuppr != null) {
+			return "redirect:listeDestination";
+		} else {
+			rda.addAttribute("msg", "Cette destination n'a pas pu être supprimée, veuillez réessayer !");
+			return "redirect:supprimerDestination";
+		}
+
+	}
 }

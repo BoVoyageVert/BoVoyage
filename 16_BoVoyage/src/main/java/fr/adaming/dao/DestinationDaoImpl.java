@@ -40,15 +40,27 @@ public class DestinationDaoImpl implements IDestinationDao {
 	}
 
 	@Override
-	public int updateDestination(Destination d) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Destination updateDestination(Destination d) {
+
+		/** Récupération de la session */
+		Session s = sf.getCurrentSession();
+
+		/** Effectuer les modifications */
+		s.saveOrUpdate(d);
+
+		return d;
 	}
 
 	@Override
-	public int deleteDestination(Destination d) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Destination deleteDestination(Destination d) {
+
+		/** Récupération de la session */
+		Session s = sf.getCurrentSession();
+
+		/** Supprimer la destination */
+		s.delete(d);
+
+		return d;
 	}
 
 	@Override
@@ -74,14 +86,19 @@ public class DestinationDaoImpl implements IDestinationDao {
 	public Destination getDestinationByNom(Destination d) {
 
 		/** Récupération de la session */
-		Session s=sf.getCurrentSession();
-		
+		Session s = sf.getCurrentSession();
+
 		/** Création de la requête HQL */
-		String req="FROM Destination d WHERE d.";
-		
-		
-		
-		return null;
+		String req = "FROM Destination d WHERE d.nomDestination=:pNom";
+
+		/** Création du query */
+		Query query = s.createQuery(req);
+
+		/** Passage des paramètres */
+		query.setParameter("pNom", d.getNomDestination());
+
+		/** Récupération de la destination */
+		return (Destination) query.uniqueResult();
 	}
 
 	@SuppressWarnings("unchecked")

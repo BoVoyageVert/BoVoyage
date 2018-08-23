@@ -33,15 +33,13 @@ public class DestinationServiceImpl implements IDestinationService {
 	}
 
 	@Override
-	public int updateDestination(Destination d) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Destination updateDestination(Destination d) {
+		return destinationDao.updateDestination(d);
 	}
 
 	@Override
-	public int deleteDestination(Destination d) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Destination deleteDestination(Destination d) {
+		return destinationDao.deleteDestination(d);
 	}
 
 	@Override
@@ -51,8 +49,7 @@ public class DestinationServiceImpl implements IDestinationService {
 
 	@Override
 	public Destination getDestinationByNom(Destination d) {
-		// TODO Auto-generated method stub
-		return null;
+		return destinationDao.getDestinationByNom(d);
 	}
 
 	@Override

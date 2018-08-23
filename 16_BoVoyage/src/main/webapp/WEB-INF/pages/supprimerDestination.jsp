@@ -13,41 +13,23 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 
-<title>Rechercher une destination</title>
+<title>Supprimer une destination</title>
 </head>
 <body>
 
 	<form:form cssClass="form-horizontal" method="POST"
-		action="soumettreRechercherDestination" modelAttribute="dRech">
+		action="soumettreDeleteDestination" modelAttribute="dDelete">
 		<div class="form-group">
 			<form:label for="inputEmail3" class="col-sm-2 control-label"
-				path="id">ID</form:label>
+				path="idDestination">ID</form:label>
 			<div class="col-sm-10">
 				<form:input type="text" class="form-control" id="inputEmail3"
 					placeholder="ID" path="idDestination" />
 			</div>
 		</div>
 
-		<button type="submit" class="btn btn-primary">Rechercher</button>
+		<button type="submit" class="btn btn-primary">Supprimer</button>
 	</form:form>
-
-	<table class="table">
-		<tr>
-			<th>Nom</th>
-			<th>Photo</th>
-			<th>Description</th>
-			<th>Prix</th>
-		</tr>
-
-		<tr>
-			<td>${dFind.nomDestination}</td>
-			<td>${dFind.imageDesti}</td>
-			<td>${dFind.descriptionDesti}</td>
-			<td>${dFind.prixDesti}</td>
-		</tr>
-	</table>
-
-
 
 </body>
 </html>

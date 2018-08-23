@@ -21,10 +21,10 @@
 		action="soumettreRechercherDestination" modelAttribute="dRech">
 		<div class="form-group">
 			<form:label for="inputEmail3" class="col-sm-2 control-label"
-				path="id">ID</form:label>
+				path="id">Nom</form:label>
 			<div class="col-sm-10">
 				<form:input type="text" class="form-control" id="inputEmail3"
-					placeholder="ID" path="idDestination" />
+					placeholder="Nom" path="nomDestination" />
 			</div>
 		</div>
 
@@ -33,14 +33,12 @@
 
 	<table class="table">
 		<tr>
-			<th>Nom</th>
 			<th>Photo</th>
 			<th>Description</th>
 			<th>Prix</th>
 		</tr>
 
 		<tr>
-			<td>${dFind.nomDestination}</td>
 			<td>${dFind.imageDesti}</td>
 			<td>${dFind.descriptionDesti}</td>
 			<td>${dFind.prixDesti}</td>

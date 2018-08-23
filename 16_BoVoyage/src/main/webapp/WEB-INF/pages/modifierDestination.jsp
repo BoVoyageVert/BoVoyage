@@ -13,13 +13,19 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 
-<title>Ajout de destinations</title>
+<title>Modifier une destination</title>
 </head>
 <body>
 
 	<form:form cssClass="form-horizontal" method="POST"
-		action="soumettreAjouterDestination" modelAttribute="dAjout">
+		action="soumettreModifierDestination" modelAttribute="dUpdate">
 		<div class="form-group">
+			<form:label for="inputEmail3" class="col-sm-2 control-label"
+				path="idDestination">ID</form:label>
+			<div class="col-sm-10">
+				<form:input type="text" class="form-control" id="inputEmail3"
+					placeholder="ID" path="idDestination" />
+			</div>
 			<form:label for="inputNom" cssClass="col-sm-2 control-label"
 				path="nomDestination">Nom</form:label>
 			<div class="col-sm-10">
@@ -51,11 +57,8 @@
 			</div>
 		</div>
 
-		<button type="submit" class="btn btn-primary">Ajouter</button>
+		<button type="submit" class="btn btn-primary">Modifier</button>
 	</form:form>
-
-
-
 
 
 </body>

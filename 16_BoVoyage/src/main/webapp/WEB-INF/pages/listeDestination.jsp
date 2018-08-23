@@ -18,6 +18,7 @@
 
 	<table class="table table-striped">
 		<tr>
+			<th>Nom</th>
 			<th>Photo</th>
 			<th>Description</th>
 			<th>Prix</th>
@@ -26,6 +27,7 @@
 
 		<c:forEach var="d" items="${allDestination}">
 			<tr>
+				<td>${d.nomDestination}</td>
 				<td>${d.imageDesti}</td>
 				<td>${d.descriptionDesti}</td>
 				<td>${d.prixDesti}</td>

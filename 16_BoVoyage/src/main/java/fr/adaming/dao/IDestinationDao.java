@@ -10,9 +10,9 @@ public interface IDestinationDao {
 
 	public Destination addDestination(Destination d);
 
-	public int updateDestination(Destination d);
+	public Destination updateDestination(Destination d);
 
-	public int deleteDestination(Destination d);
+	public Destination deleteDestination(Destination d);
 
 	public Destination getDestinationById(Destination d);
 
