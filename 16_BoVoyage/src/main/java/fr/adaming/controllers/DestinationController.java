@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,6 +37,7 @@ public class DestinationController {
 	/**
 	 * >>>>>>>>>>>> FONCTIONNALITE DE RECUPERATION DE LA LISTE DE DESTINATION
 	 */
+	@RequestMapping(value = "/listeDestination", method = RequestMethod.GET)
 	public ModelAndView afficheListeDestination() {
 
 		/**
@@ -72,6 +74,28 @@ public class DestinationController {
 		} else {
 			rda.addAttribute("msg", "Cette destination n'a pas pu être ajoutée, veuillez réessayer !");
 			return "redirect:ajouterDestination";
+		}
+
+	}
+
+	/** >>>>>>>>>>>>>>>>>>>> FONCTIONNALITE DE RECHERCHE D'UNE DESTINATION */
+	@RequestMapping(value = "/rechercherDestination", method = RequestMethod.GET)
+	public ModelAndView afficherGetDestinationById() {
+		return new ModelAndView("rechercherDestinationId", "dRech", new Destination());
+	}
+
+	@RequestMapping(value = "/soumettreRechercherDestination", method = RequestMethod.POST)
+	public String soumettreGetDestinationById(ModelMap modele, @ModelAttribute(value = "dRech") Destination dRech,
+			RedirectAttributes rda) {
+
+		Destination destiOut = destinationService.getDestinationById(dRech);
+
+		if (destiOut != null) {
+			modele.addAttribute("dFind", destiOut);
+			return "rechercherDestinationId";
+		} else {
+			rda.addAttribute("msg", "La destination recherchée n'existe pas encore !");
+			return "rechercherDestinationId";
 		}
 
 	}

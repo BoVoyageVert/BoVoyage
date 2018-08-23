@@ -46,8 +46,7 @@ public class DestinationServiceImpl implements IDestinationService {
 
 	@Override
 	public Destination getDestinationById(Destination d) {
-		// TODO Auto-generated method stub
-		return null;
+		return destinationDao.getDestinationById(d);
 	}
 
 	@Override

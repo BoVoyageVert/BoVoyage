@@ -53,13 +53,34 @@ public class DestinationDaoImpl implements IDestinationDao {
 
 	@Override
 	public Destination getDestinationById(Destination d) {
-		// TODO Auto-generated method stub
-		return null;
+
+		/** Récupération de la session */
+		Session s = sf.getCurrentSession();
+
+		/** Création de la requête HQL */
+		String req = "FROM Destination d WHERE d.id=:pId";
+
+		/** Création du query */
+		Query query = s.createQuery(req);
+
+		/** Passage des paramètres */
+		query.setParameter("pId", d.getIdDestination());
+
+		/** Récupération de la destination */
+		return (Destination) query.uniqueResult();
 	}
 
 	@Override
 	public Destination getDestinationByNom(Destination d) {
-		// TODO Auto-generated method stub
+
+		/** Récupération de la session */
+		Session s=sf.getCurrentSession();
+		
+		/** Création de la requête HQL */
+		String req="FROM Destination d WHERE d.";
+		
+		
+		
 		return null;
 	}
 

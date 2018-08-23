@@ -26,6 +26,8 @@ public class Destination {
 	@Column(name = "id_d")
 	private int idDestination;
 
+	private String nomDestination;
+
 	private String descriptionDesti;
 
 	@Lob
@@ -73,6 +75,29 @@ public class Destination {
 
 	public Destination(String descriptionDesti, byte[] photoDesti, String imageDesti, double prixDesti, Voyage voyage) {
 		super();
+		this.descriptionDesti = descriptionDesti;
+		this.photoDesti = photoDesti;
+		this.imageDesti = imageDesti;
+		this.prixDesti = prixDesti;
+		this.voyage = voyage;
+	}
+
+	public Destination(String nomDestination, String descriptionDesti, byte[] photoDesti, String imageDesti,
+			double prixDesti, Voyage voyage) {
+		super();
+		this.nomDestination = nomDestination;
+		this.descriptionDesti = descriptionDesti;
+		this.photoDesti = photoDesti;
+		this.imageDesti = imageDesti;
+		this.prixDesti = prixDesti;
+		this.voyage = voyage;
+	}
+
+	public Destination(int idDestination, String nomDestination, String descriptionDesti, byte[] photoDesti,
+			String imageDesti, double prixDesti, Voyage voyage) {
+		super();
+		this.idDestination = idDestination;
+		this.nomDestination = nomDestination;
 		this.descriptionDesti = descriptionDesti;
 		this.photoDesti = photoDesti;
 		this.imageDesti = imageDesti;
@@ -135,6 +160,14 @@ public class Destination {
 
 	public void setVoyage(Voyage voyage) {
 		this.voyage = voyage;
+	}
+
+	public String getNomDestination() {
+		return nomDestination;
+	}
+
+	public void setNomDestination(String nomDestination) {
+		this.nomDestination = nomDestination;
 	}
 
 }
