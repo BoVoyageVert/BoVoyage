@@ -21,7 +21,7 @@ public class Loisir {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_l")
 	private int idLoisir;
-	private String Categorie;
+	private String categorie;
 	private String nom;
 	private String description;
 	private double prix;
@@ -48,7 +48,7 @@ public class Loisir {
 	public Loisir(String categorie, String nom, String description, double prix, double reduction, byte[] photo,
 			String image) {
 		super();
-		Categorie = categorie;
+		categorie = categorie;
 		this.nom = nom;
 		this.description = description;
 		this.prix = prix;
@@ -62,7 +62,7 @@ public class Loisir {
 			byte[] photo, String image) {
 		super();
 		this.idLoisir = idLoisir;
-		Categorie = categorie;
+		categorie = categorie;
 		this.nom = nom;
 		this.description = description;
 		this.prix = prix;
@@ -82,11 +82,11 @@ public class Loisir {
 	}
 
 	public String getCategorie() {
-		return Categorie;
+		return categorie;
 	}
 
 	public void setCategorie(String categorie) {
-		Categorie = categorie;
+		categorie = categorie;
 	}
 
 	public double getPrix() {
