@@ -34,20 +34,32 @@ public class VoyageDaoImpl implements IVoyageDao{
 	@Override
 	public int updateVoyage(Voyage v) {
 		
-		
-		return 0;
+		Session s = sf.getCurrentSession();
+		s.saveOrUpdate(v);
+		if (s.get(Voyage.class, v.getId()) != null) {
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 
 	@Override
 	public int deleteVoyage(Voyage v) {
-		// TODO Auto-generated method stub
-		return 0;
+		Session s = sf.getCurrentSession();
+		s.delete(v);
+		if (s.get(Voyage.class, v.getId()) != null) {
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 
 	@Override
 	public Voyage getVoyageById(Voyage v) {
-		// TODO Auto-generated method stub
-		return null;
+		Session s = sf.getCurrentSession();
+		Voyage vOut = (Voyage) s.get(Voyage.class, v.getId());
+		return vOut;
+		
 	}
 
 	@Override

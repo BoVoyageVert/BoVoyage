@@ -26,20 +26,18 @@ public class VoyageServiceImpl implements IVoyageService{
 
 	@Override
 	public int updateVoyage(Voyage v) {
-		// TODO Auto-generated method stub
-		return 0;
+		return vDao.updateVoyage(v);
 	}
 
 	@Override
 	public int deleteVoyage(Voyage v) {
-		// TODO Auto-generated method stub
-		return 0;
+		return vDao.deleteVoyage(v);
 	}
 
 	@Override
 	public Voyage getVoyageById(Voyage v) {
 		// TODO Auto-generated method stub
-		return null;
+		return vDao.getVoyageById(v);
 	}
 
 	@Override
