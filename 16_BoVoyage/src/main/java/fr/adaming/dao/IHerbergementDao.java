@@ -3,6 +3,7 @@ package fr.adaming.dao;
 import java.util.List;
 
 import fr.adaming.model.Hebergement;
+import fr.adaming.model.Voyage;
 
 /** 
  * 
@@ -19,10 +20,10 @@ public interface IHerbergementDao {
 
 	public Hebergement getHebergementByType(Hebergement h);
 
-	public Hebergement addHebergement(Hebergement h);
+	public Hebergement addHebergement(Hebergement h, Voyage v);
 
-	public Hebergement updateHebergement(Hebergement h);
+	public int updateHebergement(Hebergement h);
 
-	public Hebergement deleteHebergement(Hebergement h);
+	public int deleteHebergement(Hebergement h);
 
 }

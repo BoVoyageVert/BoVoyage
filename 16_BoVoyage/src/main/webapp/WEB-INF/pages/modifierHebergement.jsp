@@ -7,14 +7,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Ajouter hebergemente</title>
+<title>Modifier hebergemente</title>
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bootstrap.css"/>" />
 </head>
 <body>
 
 <form:form cssClass="form-horizontal" method="POST"
-		action="soumettreAjoutHebergement" modelAttribute="hAjout">
+		action="soumettreModifierHebergement" modelAttribute="hModifier">
+
+	<div class="form-group">
+			<form:label cssClass="col-sm-2 control-label" path="id">Id : </form:label>
+			<div class="col-sm-10">
+				<form:input cssClass="form-control" placeholder="id" path="id" />
+			</div>
+		</div>
 
 		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="Type">Type : </form:label>
@@ -23,7 +30,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<form:label cssClass="col-sm-2 control-label" path="Disponibilite">Disponibilite : </form:label>
+			<form:label cssClass="col-sm-2 control-label" path="Disponibilite">Disponibilité : </form:label>
 			<div class="col-sm-10">
 				<form:input cssClass="form-control" placeholder="Disponibilite"
 					path="disponibilite" />
@@ -106,7 +113,7 @@
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-default">Ajouter</button>
+				<button type="submit" class="btn btn-default">Modifier</button>
 			</div>
 		</div>
 	</form:form>

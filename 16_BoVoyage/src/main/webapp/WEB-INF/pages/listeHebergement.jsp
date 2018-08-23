@@ -3,6 +3,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="h" uri="http://java.sun.com/jsp/jstl/xml"%>
 
 <!DOCTYPE html>
 <html>
@@ -41,7 +42,7 @@
 				<td>${h.lieux}</td>
 				<td>${h.ville}</td>
 				<td>${h.codePostal}</td>
-				<td>${h.disponibilité}</td>
+				<td>${h.disponibilite}</td>
 				<td>${h.image}</td>
 			</tr>
 		</c:forEach>

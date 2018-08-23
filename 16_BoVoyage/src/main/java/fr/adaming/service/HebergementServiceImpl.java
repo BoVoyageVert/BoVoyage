@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IHerbergementDao;
 import fr.adaming.model.Hebergement;
+import fr.adaming.model.Voyage;
 
 /** 
  * 
@@ -46,31 +47,27 @@ public class HebergementServiceImpl implements IHebergementService{
 
 	@Override
 	public Hebergement getHebergementById(Hebergement h) {
-		// TODO Auto-generated method stub
-		return null;
+		return hebergementDao.getHebergementById(h);
 	}
 
 	@Override
 	public Hebergement getHebergementByType(Hebergement h) {
-		// TODO Auto-generated method stub
-		return null;
+		return hebergementDao.getHebergementByType(h);
 	}
 
 	@Override
-	public Hebergement addHebergement(Hebergement h) {
-		return hebergementDao.addHebergement(h);
+	public Hebergement addHebergement(Hebergement h, Voyage v) {
+		return hebergementDao.addHebergement(h, v);
 	}
 
 	@Override
-	public Hebergement updateHebergement(Hebergement h) {
-		// TODO Auto-generated method stub
-		return null;
+	public int updateHebergement(Hebergement h) {
+		return hebergementDao.updateHebergement(h);
 	}
 
 	@Override
-	public Hebergement deleteHebergement(Hebergement h) {
-		// TODO Auto-generated method stub
-		return null;
+	public int deleteHebergement(Hebergement h) {
+		return hebergementDao.deleteHebergement(h);
 	}
 
 }
