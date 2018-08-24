@@ -9,16 +9,16 @@ import fr.adaming.model.Voyage;
 
 public interface IAssuranceService {
 
-	public Assurance addDestination(Assurance a, Voyage v);
+	public Assurance addAssurance(Assurance a);
 
-	public Assurance updateDestination(Assurance a, Voyage v);
+	public Assurance updateAssurance(Assurance a);
 
-	public Assurance deleteDestination(Assurance a, Voyage v);
+	public Assurance deleteAssurance(Assurance a);
 
-	public Assurance getDestinationById(Assurance a, Voyage v);
+	public Assurance getAssuranceById(Assurance a);
 
-	public Assurance getDestinationByNom(Assurance a, Voyage v);
+	public Assurance getAssuranceByDossier(Assurance a);
 
-	public List<Assurance> getAllDestination(Voyage v);
+	public List<Assurance> getAllAssurance();
 
 }

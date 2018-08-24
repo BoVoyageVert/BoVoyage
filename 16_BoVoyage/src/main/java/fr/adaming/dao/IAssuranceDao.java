@@ -8,16 +8,16 @@ import fr.adaming.model.Assurance;
 
 public interface IAssuranceDao {
 
-	public Assurance addDestination(Assurance a);
+	public Assurance addAssurance(Assurance a);
 
-	public Assurance updateDestination(Assurance a);
+	public Assurance updateAssurance(Assurance a);
 
-	public Assurance deleteDestination(Assurance a);
+	public Assurance deleteAssurance(Assurance a);
 
-	public Assurance getDestinationById(Assurance a);
+	public Assurance getAssuranceById(Assurance a);
 
-	public Assurance getDestinationByNom(Assurance a);
+	public Assurance getAssuranceByDossier(Assurance a);
 
-	public List<Assurance> getAllDestination();
+	public List<Assurance> getAllAssurance();
 
 }

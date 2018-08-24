@@ -26,40 +26,33 @@ public class AssuranceServiceImpl implements IAssuranceService {
 	}
 
 	@Override
-	public Assurance addDestination(Assurance a, Voyage v) {
-		/** Lier les objets assurance et voyage */
-		a.setVoyage(v);
-		return assuranceDao.addDestination(a);
+	public Assurance addAssurance(Assurance a) {
+		return assuranceDao.addAssurance(a);
 	}
 
 	@Override
-	public Assurance updateDestination(Assurance a, Voyage v) {
-		// TODO Auto-generated method stub
-		return null;
+	public Assurance updateAssurance(Assurance a) {
+		return assuranceDao.updateAssurance(a);
 	}
 
 	@Override
-	public Assurance deleteDestination(Assurance a, Voyage v) {
-		// TODO Auto-generated method stub
-		return null;
+	public Assurance deleteAssurance(Assurance a) {
+		return assuranceDao.deleteAssurance(a);
 	}
 
 	@Override
-	public Assurance getDestinationById(Assurance a, Voyage v) {
-		// TODO Auto-generated method stub
-		return null;
+	public Assurance getAssuranceById(Assurance a) {
+		return assuranceDao.getAssuranceById(a);
 	}
 
 	@Override
-	public Assurance getDestinationByNom(Assurance a, Voyage v) {
-		// TODO Auto-generated method stub
-		return null;
+	public Assurance getAssuranceByDossier(Assurance a) {
+		return assuranceDao.getAssuranceByDossier(a);
 	}
 
 	@Override
-	public List<Assurance> getAllDestination(Voyage v) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Assurance> getAllAssurance() {
+		return assuranceDao.getAllAssurance();
 	}
 
 }

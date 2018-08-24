@@ -40,9 +40,8 @@ public class DestinationController {
 	@RequestMapping(value = "/listeDestination", method = RequestMethod.GET)
 	public ModelAndView afficheListeDestination() {
 
-		/**
-		 * Appel de la méthode service pour récupérer la liste des destinations
-		 */
+		// Appel de la méthode service pour récupérer la liste des destinations
+
 		List<Destination> listeDestination = destinationService.getAllDestination();
 
 		return new ModelAndView("listeDestination", "allDestination", listeDestination);
