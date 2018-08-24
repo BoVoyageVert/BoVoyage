@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Supprimer hebergement</title>
+<title>Supprimer pack</title>
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bootstrap.css"/>" />
 </head>
@@ -16,11 +16,11 @@
 
 
 	<form:form cssClass="form-horizontal" method="POST"
-		action="soumettreSupprimerHebergement" modelAttribute="hSupprimer">
+		action="soumettreSupprimerPack" modelAttribute="pSupprimer">
 
 
 		<div class="form-group">
-			<form:label cssClass="col-sm-2 control-label" path="id">ID: </form:label>
+			<form:label cssClass="col-sm-2 control-label" path="id">Id: </form:label>
 			<div class="col-sm-10">
 				<form:input cssClass="form-control" placeholder="id" path="id" />
 			</div>

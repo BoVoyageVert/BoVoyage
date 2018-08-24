@@ -44,7 +44,7 @@ public class HebergementController {
 	private Voyage voyage;
 
 	/**
-	 * Méthode recupper la liste
+	 * Amandine: Méthode recupper la liste
 	 */
 	@RequestMapping(value = "/listeHebergement", method = RequestMethod.GET)
 	public ModelAndView afficherListeHebergement() {
@@ -54,7 +54,7 @@ public class HebergementController {
 	}
 
 	/**
-	 * Méthode ajouter un hebergement
+	 * Amandine : Méthode ajouter un hebergement
 	 */
 	@RequestMapping(value = "/ajouterHebergement", method = RequestMethod.GET)
 	public String afficherFormAjoutHebergement(Model model) {
@@ -76,7 +76,7 @@ public class HebergementController {
 
 	
 	/**
-	 * Méthode modifier un hebergement
+	 * Amandine: Méthode modifier un hebergement
 	 */
 	@RequestMapping(value = "/modifierHebergement", method = RequestMethod.GET)
 	public String afficherFormModifierHebergement(Model model) {
@@ -98,7 +98,7 @@ public class HebergementController {
 	}
 	
 	/**
-	 * Méthode rechercher un hebergement
+	 * Amandine : Méthode rechercher un hebergement
 	 */
 	@RequestMapping(value = "/rechercherHebergementU", method = RequestMethod.GET)
 	public ModelAndView afficheRechercheHebergementById() {
@@ -106,7 +106,7 @@ public class HebergementController {
 	}
 
 	@RequestMapping(value = "/soumettreRechercheHebergementU", method = RequestMethod.POST)
-	public String soumettreRechFormHebergementById(ModelMap modele, RedirectAttributes rda, @ModelAttribute("eRech") Hebergement hIn) {
+	public String soumettreRechFormHebergementById(ModelMap modele, RedirectAttributes rda, @ModelAttribute("hRech") Hebergement hIn) {
 		Hebergement verif = hebergementService.getHebergementById(hIn);
 
 		if (verif != null) {

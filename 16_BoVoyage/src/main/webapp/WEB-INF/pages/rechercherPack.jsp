@@ -15,9 +15,9 @@
 </head>
 <body>
 
-
+<h1>Rechercher un pack par son nom</h1>
 	<form:form cssClass="form-horizontal" method="POST"
-		action="soumettreRechercheHebergementU" modelAttribute="hRecherche">
+		action="soumettreRecherchePack" modelAttribute="pRecherche">
 
 
 		<div class="form-group">
@@ -40,36 +40,39 @@
 
 <table class="table table-bordered">
 		<tr>
-		<th>Numéro de l'hebergement</th>
-			<th>Type</th>
+		<th>Nom du pack</th>
 			<th>Description</th>
-			<th>Prix</th>
-			<th>Réduction</th>
-			<th>Lieu</th>
-			<th>Ville</th>
-			<th>Code Postal</th>
-			<th>Disponibilité</th>
-			<th>image</th>
+			<th>Date d'arrivée</th>
+			<th>Date de départ</th>
+			<th>Prix du pack</th>
+			<th>Prix promo</th>
+			<th>Nombre de places</th>
+			<th>Loisir 1</th>
+			<th>Loisir 2</th>
+			<th>Hebergement</th>
+			<th>Destination</th>
+			<th>Image</th>
 			
 			
 		</tr>
 
-		
+		<c:forEach var="p" items="${allPack}">
 			<tr>
-				<td>${hRech.type}</td>
-				<td>${hRech.description}</td>
-				<td>${hRech.prix}</td>
-				<td>${hRech.reduction}</td>
-				<td>${hRech.lieux}</td>
-				<td>${hRech.ville}</td>
-				<td>${hRech.codePostal}</td>
-				<td>${hRech.disponibilité}</td>
-				<td>${hRech.image}</td>
+				<td>${pRech.nom}</td>
+				<td>${pRech.description}</td>
+				<td>${pRech.dateArrivee}</td>
+				<td>${pRech.dateDepart}</td>
+				<td>${pRech.prixTotal}</td>
+				<td>${pRech.prixPromo}</td>
+				<td>${pRech.nombrePlaces}</td>
+				<td>${pRech.loisir1}</td>
+				<td>${pRech.loisir2}</td>
+				<td>${pRech.hebergement}</td>
+				<td>${pRech.destination}</td>
+				<td>${pRech.image}</td>
 			</tr>
-		
+		</c:forEach>
 	</table>
-
-
 
 
 
