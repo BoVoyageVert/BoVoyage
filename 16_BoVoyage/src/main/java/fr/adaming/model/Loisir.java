@@ -143,14 +143,6 @@ public class Loisir {
 
 	public void setVoyage(Voyage voyage) {
 		this.voyage = voyage;
-	}
-
-
-	
-	
-	
-	
-	
-	
+	}	
 
 }
