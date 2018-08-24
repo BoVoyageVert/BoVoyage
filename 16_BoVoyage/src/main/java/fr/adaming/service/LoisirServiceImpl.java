@@ -35,8 +35,8 @@ public class LoisirServiceImpl implements ILoisirService{
 	}
 
 	@Override
-	public Loisir getLoisirByCat(Loisir l) {
-		return loisirDao.getLoisirByCat(l);
+	public Loisir getLoisirByNom(Loisir l) {
+		return loisirDao.getLoisirByNom(l);
 	}
 
 	@Override

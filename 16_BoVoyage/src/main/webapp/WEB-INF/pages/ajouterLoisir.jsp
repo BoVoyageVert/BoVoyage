@@ -12,7 +12,7 @@
 </head>
 </head>
 <body>
-<form:form class="form-horizontal" method="POST" action="soumettreAjouterLoisir" modelAttribute="lAjout">
+<form:form class="form-horizontal" method="POST" action="soumettreAjouterLoisir" modelAttribute="lAjout" enctype="multipart/form-data">
 
   <div class="form-group">
     <form:label  cssClass="col-sm-2 control-label" path="categorie">Categorie: </form:label>
@@ -56,12 +56,7 @@
     </div>
   </div>
     
-  <div class="form-group">
-    <form:label cssClass="col-sm-2 control-label" path="image">Image:</form:label>
-    <div class="col-sm-5">
-      <form:input type="file" cssClass="form-control" placeholder="Image" path="image"/>
-    </div>
-  </div>
+ <input type="file" name="file" style="margin:auto"/>
    
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">

@@ -19,7 +19,7 @@
 			<th>Description</th>
 			<th>Prix</th>
 			<th>Réduction</th>
-			<th>Image</th>						
+			<th>Photo</th>						
 		</tr>
 
 		<c:forEach var="l" items="${allLoisirs}">
@@ -29,7 +29,7 @@
 				<td>${l.description}</td>
 				<td>${l.prix}</td>
 				<td>${l.reduction}</td>
-				<td>${l.image}</td>
+				<td><img src="${pageContext.request.contextPath}/loisir/getImage?pIdLoisir=${l.idLoisir}" style="width:150px; height: 120px"/></td>
 			</tr>
 		</c:forEach>
 	</table>

@@ -14,24 +14,25 @@
 </head>
 <body>
 	<form:form class="form-horizontal" method="POST"
-		action="soumettreRechLoisirByCat" modelAttribute="lRech">
+		action="soumettreRechLoisirByNom" modelAttribute="lRech"
+		enctype="multipart/form-data">
 
 		<div class="form-group">
-			<form:label cssClass="col-sm-2 control-label" path="categorie">Categorie: </form:label>
+			<form:label cssClass="col-sm-2 control-label" path="nom">Nom: </form:label>
 			<div class="col-sm-5">
-				<form:input cssClass="form-control" placeholder="categorie"
-					path="categorie" />
+				<form:input type="text" cssClass="form-control"
+					placeholder="nom" path="nom" />
 			</div>
 		</div>
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<button type="submit" class="btn btn-success">Rechercher
-					par categorie</button>
+					par nom</button>
 			</div>
 		</div>
 	</form:form>
-	
+
 	<h1 style="color: red">${msg}</h1>
 
 	<table class="table table-bordered">
@@ -41,19 +42,22 @@
 			<th>Description</th>
 			<th>Prix</th>
 			<th>Réduction</th>
-			<th>Image</th>
+			<th>Photo</th>
 		</tr>
+		
 		<tr>
 			<td>${lFind.categorie}</td>
 			<td>${lFind.nom}</td>
 			<td>${lFind.description}</td>
 			<td>${lFind.prix}</td>
 			<td>${lFind.reduction}</td>
-			<td>${lFind.image}</td>
+			<td><img
+				src="${pageContext.request.contextPath}/loisir/getImage?pIdLoisir=${lFind.idLoisir}"
+				style="width: 150px; height: 120px" /></td>
 		</tr>
 
 	</table>
-	
-	
+
+
 </body>
 </html>

@@ -1,16 +1,25 @@
 package fr.adaming.controllers;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.fileupload.FileUpload;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import fr.adaming.model.Voiture;
 import fr.adaming.service.IVoitureService;
 
@@ -41,6 +50,24 @@ public class VoitureController {
 		this.voitService = voitService;
 	}
 
+	private FileUpload file;
+
+	// Getter et setter pour file
+	/**
+	 * @return the file
+	 */
+	public FileUpload getFile() {
+		return file;
+	}
+
+	/**
+	 * @param file
+	 *            the file to set
+	 */
+	public void setFile(FileUpload file) {
+		this.file = file;
+	}
+
 	// claire: Methodes
 
 	// Afficher la liste
@@ -53,6 +80,22 @@ public class VoitureController {
 		return new ModelAndView("listeVoiture", "allVoitures", listeVoit);
 	}
 
+	// recuperer l'image
+	@RequestMapping(value = "/getImageVoit", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody
+	public byte[] recupImage(@RequestParam("pIdVoiture") int id) throws IOException {
+		Voiture voitImage = new Voiture();
+		voitImage.setIdVoiture(id);
+		Voiture voiture = voitService.getVoitureById(voitImage);
+
+		if (voiture.getPhoto() == null) {
+			return new byte[0];
+		} else {
+			return IOUtils.toByteArray(new ByteArrayInputStream(voiture.getPhoto()));
+		}
+
+	}
+
 	// ajouter une voiture
 	@RequestMapping(value = "/ajouterVoiture", method = RequestMethod.GET)
 	public ModelAndView afficherFormAddVoiture() {
@@ -61,7 +104,12 @@ public class VoitureController {
 
 	@RequestMapping(value = "/soumettreAjouterVoiture", method = RequestMethod.POST)
 	public String soumettreAjouterVoiture(Model model, @ModelAttribute("voitAjout") Voiture voitIn,
-			RedirectAttributes rdv) {
+			RedirectAttributes rdv, MultipartFile file) throws IOException {
+
+		if (file != null) {
+			// Transformation de l'image en tableau de byte
+			voitIn.setPhoto(file.getBytes());
+		}
 
 		// Appel de la methode service
 		Voiture voitOut = voitService.addVoiture(voitIn);
@@ -84,7 +132,13 @@ public class VoitureController {
 
 	/** Methode post */
 	@RequestMapping(value = "/soumettreRechVoiture", method = RequestMethod.POST)
-	public String soumettreRechVoiture(Model model, @ModelAttribute("voitRech") Voiture voit, RedirectAttributes rdv) {
+	public String soumettreRechVoiture(Model model, @ModelAttribute("voitRech") Voiture voit, RedirectAttributes rdv,
+			MultipartFile file) throws IOException {
+
+		if (file != null) {
+			// Transformation de l'image en tableau de byte
+			voit.setPhoto(file.getBytes());
+		}
 		// appel de la methode service pour Rechercher une voiture
 		Voiture voitureRech = voitService.getVoitureById(voit);
 
@@ -106,8 +160,13 @@ public class VoitureController {
 	}
 
 	@RequestMapping(value = "/soumettreModifVoiture", method = RequestMethod.POST)
-	public String soumettreModifVoiture(Model model, @ModelAttribute("voitModif") Voiture voit,
-			RedirectAttributes rdv) {
+	public String soumettreModifVoiture(Model model, @ModelAttribute("voitModif") Voiture voit, RedirectAttributes rdv,
+			MultipartFile file) throws IOException {
+
+		if (file != null) {
+			// Transformation de l'image en tableau de byte
+			voit.setPhoto(file.getBytes());
+		}
 		// appel de la methode service pour modifier une voiture
 		Voiture voitureModif = voitService.updateVoiture(voit);
 

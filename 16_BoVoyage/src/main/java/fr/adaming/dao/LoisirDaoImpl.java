@@ -43,20 +43,20 @@ public class LoisirDaoImpl implements ILoisirDao{
 		return listeLoisir;
 	}
 
-	@SuppressWarnings("unchecked")
+
 	@Override
-	public Loisir getLoisirByCat(Loisir l) {
+	public Loisir getLoisirByNom(Loisir l) {
 		/** claire: Recuperer la session*/
 		Session s = sf.getCurrentSession();
 		
 		/** claire: Req */
-		String req = "FROM Loisir l WHERE l.categorie=:pCategorie ";
+		String req = "FROM Loisir l WHERE l.nom=:pNom ";
 		
 		/**claire: Query */
 		Query query = s.createQuery(req);
 		
 		/**Passage des params*/
-		query.setParameter("pCategorie", l.getCategorie());
+		query.setParameter("pNom", l.getNom());
 		
 		return (Loisir) query.uniqueResult();
 	}

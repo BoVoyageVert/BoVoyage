@@ -10,7 +10,7 @@ public interface ILoisirDao {
 	public List<Loisir> getAllLoisir();	
 	
 	/**claire: Methode pour rechercher des loisirs par cat*/
-	public Loisir getLoisirByCat(Loisir l);
+	public Loisir getLoisirByNom(Loisir l);
 	
 	/**claire: Methode pour rechercher des loisirs par id*/
 	public Loisir getLoisirById(Loisir l);

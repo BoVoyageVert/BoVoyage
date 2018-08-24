@@ -11,7 +11,7 @@
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
 </head>
 <body>
-<form:form class="form-horizontal" method="POST" action="soumettreAjouterVoiture" modelAttribute="voitAjout">
+<form:form class="form-horizontal" method="POST" action="soumettreAjouterVoiture" modelAttribute="voitAjout" enctype="multipart/form-data">
   
   <div class="form-group">
     <form:label cssClass="col-sm-2 control-label" path="modele">Modele: </form:label>
@@ -41,12 +41,7 @@
     </div>
   </div>
     
-  <div class="form-group">
-    <form:label cssClass="col-sm-2 control-label" path="image">Image:</form:label>
-    <div class="col-sm-5">
-      <form:input type="file" cssClass="form-control" placeholder="Image" path="image"/>
-    </div>
-  </div>
+  <input type="file" name="file" style="margin:auto"/>
    
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">

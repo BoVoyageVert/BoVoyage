@@ -24,7 +24,9 @@
 				<td>${voit.modele}</td>
 				<td>${voit.nbPlaces}</td>
 				<td>${voit.prix}</td>
-				<td>${voit.image}</td>
+				<td><img
+					src="${pageContext.request.contextPath}/voiture/getImageVoit?pIdVoiture=${voit.idVoiture}"
+					style="width: 190px; height: 120px" /></td>
 			</tr>
 		</c:forEach>
 	</table>

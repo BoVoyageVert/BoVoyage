@@ -14,19 +14,19 @@
 </head>
 <body>
 	<form:form class="form-horizontal" method="POST"
-		action="soumettreRechVoiture" modelAttribute="voitRech">
+		action="soumettreRechVoiture" modelAttribute="voitRech" enctype="multipart/form-data">
 
 		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="idVoiture">Id voiture: </form:label>
 			<div class="col-sm-5">
-				<form:input cssClass="form-control" placeholder="idVoiture"
+				<form:input type="text" cssClass="form-control" placeholder="idVoiture"
 					path="idVoiture" />
 			</div>
 		</div>
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-success">Rechercher
+				<button type="submit" class="btn btn-success">Rechercher par id
 					</button>
 			</div>
 		</div>
@@ -46,7 +46,9 @@
 				<td>${voitFind.modele}</td>
 				<td>${voitFind.nbPlaces}</td>
 				<td>${voitFind.prix}</td>
-				<td>${voitFind.image}</td>
+				<td><img
+				src="${pageContext.request.contextPath}/voiture/getImageVoit?pIdVoiture=${voitFind.idVoiture}"
+				style="width: 190px; height: 120px" /></td>
 			</tr>
 
 	</table>

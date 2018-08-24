@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-   <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+	pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,58 +12,60 @@
 </head>
 </head>
 <body>
-<form:form class="form-horizontal" method="POST" action="soumettreModifVoiture" modelAttribute="voitModif">
+	<form:form class="form-horizontal" method="POST"
+		action="soumettreModifVoiture" modelAttribute="voitModif"
+		enctype="multipart/form-data">
 
-<div class="form-group">
-    <form:label  cssClass="col-sm-2 control-label" path="idVoiture">ID: </form:label>
-    <div class="col-sm-5">
-      <form:input  cssClass="form-control" placeholder="Id voiture" path="idVoiture"/>
-    </div>
-  </div>
+		<div class="form-group">
+			<form:label cssClass="col-sm-2 control-label" path="idVoiture">ID: </form:label>
+			<div class="col-sm-5">
+				<form:input cssClass="form-control" placeholder="Id voiture"
+					path="idVoiture" />
+			</div>
+		</div>
 
-  
-  <div class="form-group">
-    <form:label cssClass="col-sm-2 control-label" path="modele">Modele: </form:label>
-    <div class="col-sm-5">
-      <form:input  cssClass="form-control" placeholder="Modele" path="modele"/>
-    </div>
-  </div>
-  
-  <div class="form-group">
-    <form:label cssClass="col-sm-2 control-label" path="nbPlaces">Nombre de places:</form:label>
-    <div class="col-sm-5">
-      <form:input cssClass="form-control" placeholder="Nombre de places" path="nbPlaces"/>
-    </div>
-  </div>
-  
-  <div class="form-group">
-    <form:label cssClass="col-sm-2 control-label" path="prix">Prix:</form:label>
-    <div class="col-sm-5">
-      <form:input cssClass="form-control" placeholder="Prix" path="prix"/>
-    </div>
-  </div>
-  
-   <div class="form-group">
-    <form:label cssClass="col-sm-2 control-label" path="voyage.id">id voyage:</form:label>
-    <div class="col-sm-5">
-      <form:input cssClass="form-control" placeholder="id voyage" path="voyage.id"/>
-    </div>
-  </div>
-    
-  <div class="form-group">
-    <form:label cssClass="col-sm-2 control-label" path="image">Image:</form:label>
-    <div class="col-sm-5">
-      <form:input type="file" cssClass="form-control" placeholder="Image" path="image"/>
-    </div>
-  </div>
-   
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-success">Modifier voiture</button>
-    </div>
-  </div>
-</form:form>
-<h1 style="color: red">${msg}</h1>
+
+		<div class="form-group">
+			<form:label cssClass="col-sm-2 control-label" path="modele">Modele: </form:label>
+			<div class="col-sm-5">
+				<form:input cssClass="form-control" placeholder="Modele"
+					path="modele" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<form:label cssClass="col-sm-2 control-label" path="nbPlaces">Nombre de places:</form:label>
+			<div class="col-sm-5">
+				<form:input cssClass="form-control" placeholder="Nombre de places"
+					path="nbPlaces" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<form:label cssClass="col-sm-2 control-label" path="prix">Prix:</form:label>
+			<div class="col-sm-5">
+				<form:input cssClass="form-control" placeholder="Prix" path="prix" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<form:label cssClass="col-sm-2 control-label" path="voyage.id">id voyage:</form:label>
+			<div class="col-sm-5">
+				<form:input cssClass="form-control" placeholder="id voyage"
+					path="voyage.id" />
+			</div>
+		</div>
+
+		<input type="file" name="file" style="margin: auto" />
+
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-success">Modifier
+					voiture</button>
+			</div>
+		</div>
+	</form:form>
+	<h1 style="color: red">${msg}</h1>
 
 </body>
 </html>
