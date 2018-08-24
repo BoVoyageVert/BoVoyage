@@ -91,14 +91,25 @@ public class LoisirDaoImpl implements ILoisirDao{
 
 	@Override
 	public Loisir updateLoisir(Loisir l) {
-		// TODO Auto-generated method stub
-		return null;
+		/** claire: Recuperer la session*/
+		Session s = sf.getCurrentSession();
+		
+		/** methode save or update*/
+		s.saveOrUpdate(l);
+			
+		return l;
 	}
 
 	@Override
 	public Loisir deleteLoisir(Loisir l) {
-		// TODO Auto-generated method stub
-		return null;
+		/** claire: Recuperer la session*/
+		Session s = sf.getCurrentSession();
+		
+		/** methode delete*/
+		s.delete(l);
+			
+		return l;
+		
 	}
 
 }

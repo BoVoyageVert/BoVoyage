@@ -86,7 +86,7 @@ public class Loisir {
 	}
 
 	public void setCategorie(String categorie) {
-		categorie = categorie;
+		this.categorie = categorie;
 	}
 
 	public double getPrix() {

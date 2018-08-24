@@ -7,9 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.ILoisirDao;
-import fr.adaming.dao.IVoyageDao;
 import fr.adaming.model.Loisir;
-import fr.adaming.model.Voyage;
+
 
 @Service
 @Transactional
@@ -18,7 +17,7 @@ public class LoisirServiceImpl implements ILoisirService{
 	/**claire: association*/
 	@Autowired
 	private ILoisirDao loisirDao;
-	private IVoyageDao voyageDao;
+
 	
 	/**claire: Getters et setters */
 	public ILoisirDao getLoisirDao() {
@@ -52,14 +51,12 @@ public class LoisirServiceImpl implements ILoisirService{
 
 	@Override
 	public Loisir updateLoisir(Loisir l) {
-		// TODO Auto-generated method stub
-		return null;
+		return loisirDao.updateLoisir(l);
 	}
 
 	@Override
 	public Loisir deleteLoisir(Loisir l) {
-		// TODO Auto-generated method stub
-		return null;
+		return loisirDao.deleteLoisir(l);
 	}
 
 }

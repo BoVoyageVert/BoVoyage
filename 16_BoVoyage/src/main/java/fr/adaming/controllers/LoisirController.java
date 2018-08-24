@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import fr.adaming.model.Loisir;
-import fr.adaming.model.Voyage;
 import fr.adaming.service.ILoisirService;
 
 @Controller
@@ -79,7 +78,7 @@ public class LoisirController {
 	@RequestMapping(value = "/rechercherLoisir", method = RequestMethod.GET)
 	public ModelAndView afficherRechercherLoisir() {
 	
-		return new ModelAndView("rechercherLoisir", "lRech", new Loisir());
+		return new ModelAndView("rechercherLoisirByCat", "lRech", new Loisir());
 	}
 	/**Methode post*/
 	@RequestMapping(value = "/soumettreRechLoisirByCat", method = RequestMethod.POST)
@@ -98,6 +97,48 @@ public class LoisirController {
 		
 	}
 	
+	/** modifier un Loisir */
+	@RequestMapping(value = "/modifierLoisir", method = RequestMethod.GET)
+	public ModelAndView afficherModifierLoisir() {
 
+		return new ModelAndView("modifierLoisir", "lModif", new Loisir());
+
+	}
+
+	@RequestMapping(value = "/soumettreModifLoisir", method = RequestMethod.POST)
+	public String soumettreFormModif(Model model, @ModelAttribute("lModif") Loisir l, RedirectAttributes rdl) {
+		/** appel de la methode service pour modifier un loisir */
+		Loisir lModif = loisirService.updateLoisir(l);
+
+		if (lModif.getIdLoisir() != 0) {
+			return "redirect:listeLoisir";
+		} else {
+			rdl.addAttribute("msg", "Modification impossible!");
+
+			return "redirect:modifierLoisir";
+		}
+	}
+
+	/** supprimer un Loisir */
+	@RequestMapping(value = "/supprimerLoisir", method = RequestMethod.GET)
+	public ModelAndView afficherSupprimerLoisir() {
+
+		return new ModelAndView("supprimerLoisir", "lSup", new Loisir());
+
+	}
+
+	@RequestMapping(value = "/soumettresupprimerLoisir", method = RequestMethod.POST)
+	public String soumettreSupLoisir(Model model, @ModelAttribute("lSup") Loisir l, RedirectAttributes rdl) {
+		/** appel de la methode service pour supprimer un loisir */
+		Loisir lSup = loisirService.deleteLoisir(l);
+
+		if (lSup.getIdLoisir() != 0) {
+			return "redirect:listeLoisir";
+		} else {
+			rdl.addAttribute("msg", "Suppression impossible!");
+
+			return "redirect:supprimerLoisir";
+		}
+	}
 	
 }
