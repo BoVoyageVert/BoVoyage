@@ -5,18 +5,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Liste des clients</title>
+<title>Ajouter un client</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 </head>
 <body>
-	<form:form enctype="multipart/form-data" cssClass="form-horizontal" method="POST" action="soumettreAjouterClient" modelAttribute="clAjout">
+	<form:form cssClass="form-horizontal" method="POST" action="soumettreAjouterClient" modelAttribute="clAjout">
+		
 		<div class="form-group">
-			<form:label cssClass="col-sm-2 control-label" path="civilite">Civilité : </form:label>
-			<form class="col-sm-10">
-				<form:radiobutton path="civilite" value="M." /> Monsieur<br> 
-				<form:radiobutton path="civilite" value="Mme" /> Madame<br> 
-			</form>
+			<form:label cssClass="col-sm-2 control-label" path="civilite">Civilité</form:label>
+			<div class="col-sm-10">
+				<form:input type="text" cssClass="form-control" placeholder="Entrez votre civilité" path="civilite" />
+			</div>
 		</div>
 		
 		<div class="form-group">

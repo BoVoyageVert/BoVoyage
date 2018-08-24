@@ -24,6 +24,7 @@ import fr.adaming.service.IClientService;
 @RequestMapping("/client")
 public class ClientController {
 	
+	
 	@Autowired
 	IClientService clService;
 	public void setClService(IClientService clService) {
@@ -46,7 +47,6 @@ public class ClientController {
 		List<Client> listeClients = clService.getAllClients();
 		return new ModelAndView("listeClients", "allClients", listeClients);
 	}
-	
 	
 	/** steven : recup du formulaire d'ajout */
 	@RequestMapping(value="/ajouterClient", method=RequestMethod.GET)

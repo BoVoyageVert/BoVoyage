@@ -11,7 +11,7 @@
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 </head>
 <body>
-	<form:form cssClass="form-horizontal" method="POST" action="soumettreModifierVoyage" modelAttribute="vModif">
+	<form:form cssClass="form-horizontal" method="POST" action="soumettreModifierClient" modelAttribute="clModif">
 		
 		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="idClient">ID</form:label>
@@ -21,11 +21,10 @@
 		</div>
 	
 		<div class="form-group">
-			<form:label cssClass="col-sm-2 control-label" path="civilite">Civilité : </form:label>
-			<form class="col-sm-10">
-				<form:radiobutton path="civilite" value="M." /> Monsieur<br> 
-				<form:radiobutton path="civilite" value="Mme" /> Madame<br> 
-			</form>
+			<form:label cssClass="col-sm-2 control-label" path="civilite">ID</form:label>
+			<div class="col-sm-10">
+				<form:input type="text" cssClass="form-control" placeholder="Civilité" path="civilite" />
+			</div>
 		</div>
 		
 		<div class="form-group">
