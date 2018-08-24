@@ -18,7 +18,8 @@
 <body>
 
 	<form:form cssClass="form-horizontal" method="POST"
-		action="soumettreRechercherDestination" modelAttribute="dRech">
+		action="soumettreRechercherDestinationId" modelAttribute="dRech"
+		enctype="multipart/form-data">
 		<div class="form-group">
 			<form:label for="inputEmail3" class="col-sm-2 control-label"
 				path="id">ID</form:label>
@@ -41,7 +42,9 @@
 
 		<tr>
 			<td>${dFind.nomDestination}</td>
-			<td>${dFind.imageDesti}</td>
+			<td><img
+				src="${pageContext.request.contextPath}/destination/getImage?pId=${dFind.idDestination}"
+				class="img-rounded" style="width: 200px; height: 200px"></td>
 			<td>${dFind.descriptionDesti}</td>
 			<td>${dFind.prixDesti}</td>
 		</tr>

@@ -1,14 +1,22 @@
 package fr.adaming.controllers;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.fileupload.FileUpload;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -24,6 +32,8 @@ import fr.adaming.service.IDestinationService;
 								 * requête
 								 */
 public class DestinationController {
+
+	private FileUpload file;
 
 	/** jd : Transformation de l'association UML en Java */
 	@Autowired
@@ -48,6 +58,23 @@ public class DestinationController {
 
 	}
 
+	/** Méthode permettant de récupérer l'image */
+	@RequestMapping(value = "/getImage", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody
+	public byte[] getImage(@RequestParam("pId") int id) throws IOException {
+
+		Destination des = new Destination();
+		des.setIdDestination(id);
+
+		Destination destination = destinationService.getDestinationById(des);
+
+		if (destination.getPhotoDesti() == null) {
+			return new byte[0];
+		} else {
+			return IOUtils.toByteArray(new ByteArrayInputStream(destination.getPhotoDesti()));
+		}
+	}
+
 	/** >>>>>>>>>>>> FONCTIONNALITE D'AJOUT D'UNE DESTINATION */
 	/**
 	 * 1. Méthode permettant d'afficher le formulaire d'ajout de la destination
@@ -63,7 +90,13 @@ public class DestinationController {
 	 * destination
 	 */
 	@RequestMapping(value = "/soumettreAjouterDestination", method = RequestMethod.POST)
-	public String soumettreAddDestination(@ModelAttribute("dAjout") Destination destIn, RedirectAttributes rda) {
+	public String soumettreAddDestination(@ModelAttribute("dAjout") Destination destIn, MultipartFile file,
+			RedirectAttributes rda) throws IOException {
+
+		if (file != null) {
+			// transformation de l'image en tableau de byte
+			destIn.setPhotoDesti(file.getBytes());
+		}
 
 		/** Appel de la méthode service pour ajouter une destination */
 		Destination destOut = destinationService.addDestination(destIn);
@@ -88,7 +121,12 @@ public class DestinationController {
 
 	@RequestMapping(value = "/soumettreRechercherDestinationId", method = RequestMethod.POST)
 	public String soumettreGetDestinationById(ModelMap modele, @ModelAttribute(value = "dRech") Destination dRech,
-			RedirectAttributes rda) {
+			RedirectAttributes rda, MultipartFile file) throws IOException {
+
+		if (file != null) {
+			// transformation de l'image en tableau de byte
+			dRech.setPhotoDesti(file.getBytes());
+		}
 
 		Destination destiOut = destinationService.getDestinationById(dRech);
 
@@ -111,9 +149,14 @@ public class DestinationController {
 		return new ModelAndView("rechercherDestinationNom", "dRech", new Destination());
 	}
 
-	@RequestMapping(value = "/soumettreRechercherDestination", method = RequestMethod.POST)
+	@RequestMapping(value = "/soumettreRechercherDestinationNom", method = RequestMethod.POST)
 	public String soumettreGetDestinationByNom(ModelMap modele, @ModelAttribute(value = "dRech") Destination dRech,
-			RedirectAttributes rda) {
+			RedirectAttributes rda, MultipartFile file) throws IOException {
+
+		if (file != null) {
+			// transformation de l'image en tableau de byte
+			dRech.setPhotoDesti(file.getBytes());
+		}
 
 		Destination destiOut = destinationService.getDestinationByNom(dRech);
 
@@ -143,9 +186,17 @@ public class DestinationController {
 	/**
 	 * 2. Méthode permettant de soumettre le formulaire de modification de la
 	 * destination
+	 * 
+	 * @throws IOException
 	 */
 	@RequestMapping(value = "/soumettreModifierDestination", method = RequestMethod.POST)
-	public String soumettreUpdateDestination(@ModelAttribute("dUpdate") Destination destModif, RedirectAttributes rda) {
+	public String soumettreUpdateDestination(@ModelAttribute("dUpdate") Destination destModif, RedirectAttributes rda,
+			MultipartFile file) throws IOException {
+
+		if (file != null) {
+			// transformation de l'image en tableau de byte
+			destModif.setPhotoDesti(file.getBytes());
+		}
 
 		/** Appel de la méthode service pour ajouter une destination */
 		Destination destiModif = destinationService.updateDestination(destModif);

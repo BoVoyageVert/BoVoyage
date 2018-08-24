@@ -18,14 +18,13 @@
 <body>
 
 	<form:form cssClass="form-horizontal" method="POST"
-		action="soumettreRechercherDestinationNom" modelAttribute="dRech"
-		enctype="multipart/form-data">
+		action="soumettreRechercherAssuranceId" modelAttribute="aRech">
 		<div class="form-group">
 			<form:label for="inputEmail3" class="col-sm-2 control-label"
-				path="nomDestination">Nom</form:label>
+				path="idAssurance">ID</form:label>
 			<div class="col-sm-10">
 				<form:input type="text" class="form-control" id="inputEmail3"
-					placeholder="Nom" path="nomDestination" />
+					placeholder="ID" path="idAssurance" />
 			</div>
 		</div>
 
@@ -34,19 +33,17 @@
 
 	<table class="table">
 		<tr>
-			<th>Nom</th>
-			<th>Photo</th>
-			<th>Description</th>
-			<th>Prix</th>
+			<th>Assurance annulation</th>
+			<th>Assurance complémentaire</th>
+			<th>Numéro de dossier</th>
+			<th>Voyage</th>
 		</tr>
 
 		<tr>
-			<td>${dFind.nomDestination}</td>
-			<td><img
-				src="${pageContext.request.contextPath}/destination/getImage?pId=${dFind.idDestination}"
-				class="img-rounded" style="width: 200px; height: 200px"></td>
-			<td>${dFind.descriptionDesti}</td>
-			<td>${dFind.prixDesti}</td>
+			<td>${aFind.assuranceAnnulation}</td>
+			<td>${aFind.assuranceComplementaire}</td>
+			<td>${aFind.numeroDossier}</td>
+			<td>${aFind.voyage.id}</td>
 		</tr>
 	</table>
 

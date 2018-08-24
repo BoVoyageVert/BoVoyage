@@ -18,7 +18,8 @@
 <body>
 
 	<form:form cssClass="form-horizontal" method="POST"
-		action="soumettreAjouterDestination" modelAttribute="dAjout">
+		action="soumettreAjouterDestination" modelAttribute="dAjout"
+		enctype="multipart/form-data">
 		<div class="form-group">
 			<form:label for="inputNom" cssClass="col-sm-2 control-label"
 				path="nomDestination">Nom</form:label>
@@ -26,12 +27,8 @@
 				<form:input type="text" cssClass="form-control" id="inputNom"
 					placeholder="Nom" path="nomDestination" />
 			</div>
-			<form:label for="inputPhoto" cssClass="col-sm-2 control-label"
-				path="imageDesti">Photo</form:label>
-			<div class="form-group">
-				<form:label for="inputFile" path="imageDesti">Choisir une image</form:label>
-				<form:input type="file" id="exampleInputFile" path="imageDesti" />
-			</div>
+			<label for="inputPhoto" class="col-sm-2 control-label">Photo</label>
+			<input type="file" name="file" />
 		</div>
 		<div class="form-group">
 			<form:label for="inputDescription" cssClass="col-sm-2 control-label"
