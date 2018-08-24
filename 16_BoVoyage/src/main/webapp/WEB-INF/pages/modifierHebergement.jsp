@@ -14,7 +14,7 @@
 <body>
 
 <form:form cssClass="form-horizontal" method="POST"
-		action="soumettreModifierHebergement" modelAttribute="hModifier">
+		action="soumettreModifierHebergement" modelAttribute="hModifier" enctype="multipart/form-data">
 
 	<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="id">Id : </form:label>
@@ -101,13 +101,7 @@
 			</div>
 		</div>
 		
-		<div class="form-group">
-			<form:label cssClass="col-sm-2 control-label" path="image">Image : </form:label>
-			<div class="col-sm-10">
-				<form:input type="file" cssClass="form-control"
-					placeholder="image" path="image" />
-			</div>
-		</div>
+		<input type="file" name="file"/>
 		
 		
 

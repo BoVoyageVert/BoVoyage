@@ -43,7 +43,7 @@
 				<td>${h.ville}</td>
 				<td>${h.codePostal}</td>
 				<td>${h.disponibilite}</td>
-				<td>${h.image}</td>
+				<td><img src="${pageContext.request.contextPath}/hebergement/getImage?pId=${h.id}" style="width: 200px; height: 200px"/></td>
 			</tr>
 		</c:forEach>
 	</table>

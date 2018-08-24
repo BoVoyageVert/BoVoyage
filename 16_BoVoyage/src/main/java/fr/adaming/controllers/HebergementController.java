@@ -1,20 +1,29 @@
 package fr.adaming.controllers;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.fileupload.FileUpload;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import fr.adaming.model.Hebergement;
+import fr.adaming.model.Pack;
 import fr.adaming.model.Voyage;
 import fr.adaming.service.IHebergementService;
 
@@ -43,6 +52,33 @@ public class HebergementController {
 
 	private Voyage voyage;
 
+	public FileUpload getFile() {
+		return file;
+	}
+
+	public void setFile(FileUpload file) {
+		this.file = file;
+	}
+
+	private FileUpload file;
+	
+	
+	/**
+	 * Amandine : Methode pour recuperer les images et envoyer à la page jsp
+	 */
+	@RequestMapping(value="/getImage", method=RequestMethod.GET, produces=MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody
+	public byte [] recupImage(@RequestParam("pId") int id) throws IOException{
+		Hebergement hebergementImage= new Hebergement();
+		hebergementImage.setId(id);
+		Hebergement hebergement=hebergementService.getHebergementById(hebergementImage);
+		if(hebergement.getPhoto()==null){
+			return new byte [0];
+		}else{
+			return IOUtils.toByteArray(new ByteArrayInputStream(hebergement.getPhoto()));
+		}
+	}
+	
 	/**
 	 * Amandine: Méthode recupper la liste
 	 */
@@ -64,7 +100,13 @@ public class HebergementController {
 
 	@RequestMapping(value = "/soumettreAjoutHebergement", method = RequestMethod.POST)
 	public String soumettreAjouterHebergement(@ModelAttribute("hAjout") Hebergement hIn, Voyage vIn,
-			RedirectAttributes rda) {
+			RedirectAttributes rda, MultipartFile file) throws IOException{
+		if(file!=null){
+			//transformation de l'image en tableau de byte
+			hIn.setPhoto(file.getBytes());
+		}
+				
+		
 		Hebergement verif = hebergementService.addHebergement(hIn, vIn);
 		if (verif != null) {
 			return "redirect:listeHebergement";
@@ -87,7 +129,12 @@ public class HebergementController {
 
 	@RequestMapping(value = "/soumettreModifierHebergement", method = RequestMethod.POST)
 	public String soumettreModifierHebergement(@ModelAttribute("hModifier") Hebergement hIn,
-			RedirectAttributes rda) {
+			RedirectAttributes rda, MultipartFile file) throws IOException {
+		if(file!=null){
+			//transformation de l'image en tableau de byte
+			hIn.setPhoto(file.getBytes());
+		}
+		
 		int verif = hebergementService.updateHebergement(hIn);
 		if (verif != 0) {
 			return "redirect:listeHebergement";
@@ -106,9 +153,14 @@ public class HebergementController {
 	}
 
 	@RequestMapping(value = "/soumettreRechercheHebergementU", method = RequestMethod.POST)
-	public String soumettreRechFormHebergementById(ModelMap modele, RedirectAttributes rda, @ModelAttribute("hRech") Hebergement hIn) {
+	public String soumettreRechFormHebergementById(ModelMap modele, RedirectAttributes rda, @ModelAttribute("hRech") Hebergement hIn, MultipartFile file) throws IOException {
+		
+		if(file!=null){
+			//transformation de l'image en tableau de byte
+			hIn.setPhoto(file.getBytes());
+		}
+		
 		Hebergement verif = hebergementService.getHebergementById(hIn);
-
 		if (verif != null) {
 			modele.addAttribute("hRecherche", verif);
 			return "rechercherHebergement";
@@ -118,8 +170,7 @@ public class HebergementController {
 		}
 	}
 	
-	
-	
+
 	
 	/**
 	 * Méthode supprimer un hebergement

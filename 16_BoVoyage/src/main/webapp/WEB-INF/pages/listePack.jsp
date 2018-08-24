@@ -48,7 +48,7 @@
 				<td>${p.loisir2}</td>
 				<td>${p.hebergement}</td>
 				<td>${p.destination}</td>
-				<td>${p.image}</td>
+				<td><img src="${pageContext.request.contextPath}/pack/getImage?pId=${p.id}"/></td>
 			</tr>
 		</c:forEach>
 	</table>

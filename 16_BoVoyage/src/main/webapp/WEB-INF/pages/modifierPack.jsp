@@ -15,7 +15,7 @@
 
 
 <form:form cssClass="form-horizontal" method="POST"
-		action="soumettreModifierPack" modelAttribute="pModifier">
+		action="soumettreModifierPack" modelAttribute="pModifier"  enctype="multipart/form-data">
 
 <div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="id">Id : </form:label>
@@ -113,14 +113,8 @@
 		</div>
 
 		
-			<div class="form-group">
-			<form:label cssClass="col-sm-2 control-label" path="image">Image : </form:label>
-			<div class="col-sm-8">
-				<form:input type="file" cssClass="form-control"
-					placeholder="image" path="image" />
-			</div>
-		</div>
 		
+			<input type="file" name="file"/>
 		
 
 		<div class="form-group">

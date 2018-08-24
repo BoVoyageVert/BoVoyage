@@ -1,12 +1,17 @@
 package fr.adaming.controllers;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.fileupload.FileUpload;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -15,6 +20,9 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -39,7 +47,19 @@ public class PackController {
 	
 	public void setPackService(IPackService packService) {
 		this.packService = packService;
+		
 	}
+	
+	public FileUpload getFile() {
+		return file;
+	}
+
+	public void setFile(FileUpload file) {
+		this.file = file;
+	}
+
+	private FileUpload file;
+	
 	@InitBinder
 	public void initBinder(WebDataBinder binder){
 		// web databinder sert à lier les params de la req aux objets java
@@ -47,6 +67,24 @@ public class PackController {
 		formatDate.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(formatDate, false));
 	}
+	
+	/**
+	 * Methode pour recuperer les images et envoyer à la page jsp
+	 */
+	@RequestMapping(value="/getImage", method=RequestMethod.GET, produces=MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody
+	public byte [] recupImage(@RequestParam("pId") int id) throws IOException{
+		Pack packImage= new Pack();
+		packImage.setId(id);
+		Pack pack=packService.getPacktById(packImage);
+		if(pack.getPhoto()==null){
+			return new byte [0];
+		}else{
+			return IOUtils.toByteArray(new ByteArrayInputStream(pack.getPhoto()));
+		}
+	}
+	
+	
 	
 	/**
 	 * Amandine: Méthode recupper la liste des pack
@@ -70,9 +108,17 @@ public class PackController {
 
 	@RequestMapping(value = "/soumettreAjoutPack", method = RequestMethod.POST)
 	public String soumettreAjouterHebergement(@ModelAttribute("pAjout") Pack pIn,
-			RedirectAttributes rda) {
+			RedirectAttributes rda, MultipartFile file) throws IOException{
+	if(file!=null){
+		//transformation de l'image en tableau de byte
+		pIn.setPhoto(file.getBytes());
+	}
+		
+		
 		Pack verif = packService.addPack(pIn);
 		if (verif != null) {
+			//transformer l'image en tableau de byte
+			
 			return "redirect:listePack";
 		} else {
 			rda.addAttribute("msg", "L'ajout d'un nouvel nouveau pack a echoué!");
@@ -92,7 +138,11 @@ public class PackController {
 
 	@RequestMapping(value = "/soumettreModifierPack", method = RequestMethod.POST)
 	public String soumettreModifierHebergement(@ModelAttribute("pModifier") Pack pIn,
-			RedirectAttributes rda) {
+			RedirectAttributes rda, MultipartFile file) throws IOException{
+		if(file!=null){
+			//transformation de l'image en tableau de byte
+			pIn.setPhoto(file.getBytes());
+		}
 		int verif = packService.updatePack(pIn);
 		if (verif != 0) {
 			return "redirect:listePack";
@@ -106,12 +156,18 @@ public class PackController {
 	 * Amandine : Méthode rechercher un pack par son nom
 	 */
 	@RequestMapping(value = "/rechercherPack", method = RequestMethod.GET)
-	public ModelAndView afficheRecherchePackByNom() {
+	public ModelAndView afficheRecherchePackById() {
 		return new ModelAndView("rechercherPack", "pRecherche", new Pack());
 	}
 
-	@RequestMapping(value = "/soumettreRecherchePack", method = RequestMethod.POST)
-	public String soumettreRechFormPackById(ModelMap modele, RedirectAttributes rda, @ModelAttribute("pRech") Pack pIn) {
+	@RequestMapping(value = "/soumettreRechercherPack", method = RequestMethod.POST)
+	public String soumettreRechFormPackById(ModelMap modele, RedirectAttributes rda, @ModelAttribute("pRech") Pack pIn, MultipartFile file) throws IOException {
+		if(file!=null){
+			//transformation de l'image en tableau de byte
+			pIn.setPhoto(file.getBytes());
+		}
+		
+		
 		Pack verif = packService.getPacktById(pIn);
 
 		if (verif != null) {
