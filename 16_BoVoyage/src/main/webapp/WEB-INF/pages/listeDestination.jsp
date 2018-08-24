@@ -18,19 +18,22 @@
 
 	<table class="table table-striped">
 		<tr>
-			<th>Nom</th>
-			<th>Photo</th>
-			<th>Description</th>
-			<th>Prix</th>
-			<th>Actions</th>
+			<th style="text-align: center;">Nom</th>
+			<th style="text-align: center;">Photo</th>
+			<th style="text-align: center;">Description</th>
+			<th style="text-align: center;">Prix</th>
+			<th style="text-align: center;">Actions</th>
 		</tr>
 
 		<c:forEach var="d" items="${allDestination}">
 			<tr>
-				<td>${d.nomDestination}</td>
-				<td>${d.imageDesti}</td>
-				<td>${d.descriptionDesti}</td>
-				<td>${d.prixDesti}</td>
+				<td style="text-align: center;">${d.nomDestination}</td>
+				<td><img
+					src="${pageContext.request.contextPath}/destination/getImage?pId=${d.idDestination}"
+					class="img-rounded"
+					style="width: 200px; height: 200px; margin: auto;"></td>
+				<td style="text-align: center;">${d.descriptionDesti}</td>
+				<td style="text-align: center;">${d.prixDesti}</td>
 				<td><a>Modifier</a></td>
 				<td><a>Supprimer</a></td>
 			</tr>

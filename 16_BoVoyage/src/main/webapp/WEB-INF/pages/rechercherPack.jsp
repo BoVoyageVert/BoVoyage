@@ -17,7 +17,7 @@
 
 <h1>Rechercher un pack par son nom</h1>
 	<form:form cssClass="form-horizontal" method="POST"
-		action="soumettreRecherchePack" modelAttribute="pRecherche">
+		action="soumettreRechercherPack" modelAttribute="pRecherche" enctype="multipart/form-data">
 
 
 		<div class="form-group">
@@ -56,22 +56,22 @@
 			
 		</tr>
 
-		<c:forEach var="p" items="${allPack}">
+		
 			<tr>
-				<td>${pRech.nom}</td>
-				<td>${pRech.description}</td>
-				<td>${pRech.dateArrivee}</td>
-				<td>${pRech.dateDepart}</td>
-				<td>${pRech.prixTotal}</td>
-				<td>${pRech.prixPromo}</td>
-				<td>${pRech.nombrePlaces}</td>
-				<td>${pRech.loisir1}</td>
-				<td>${pRech.loisir2}</td>
-				<td>${pRech.hebergement}</td>
-				<td>${pRech.destination}</td>
-				<td>${pRech.image}</td>
+				<td>${pRecherche.nom}</td>
+				<td>${pRecherche.description}</td>
+				<td>${pRecherche.dateArrivee}</td>
+				<td>${pRecherche.dateDepart}</td>
+				<td>${pRecherche.prixTotal}</td>
+				<td>${pRecherche.prixPromo}</td>
+				<td>${pRecherche.nombrePlaces}</td>
+				<td>${pRecherche.loisir1}</td>
+				<td>${pRecherche.loisir2}</td>
+				<td>${pRecherche.hebergement}</td>
+				<td>${pRecherche.destination}</td>
+				<td><img src="${pageContext.request.contextPath}/pack/getImage?pId=${pRecherche.id}" style="width: 200px; height: 200px" ></td>
 			</tr>
-		</c:forEach>
+	
 	</table>
 
 

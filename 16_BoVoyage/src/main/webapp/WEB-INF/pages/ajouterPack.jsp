@@ -15,7 +15,7 @@
 
 
 <form:form cssClass="form-horizontal" method="POST"
-		action="soumettreAjoutPack" modelAttribute="pAjout">
+		action="soumettreAjoutPack" modelAttribute="pAjout" enctype="multipart/form-data">
 
 		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="nom">Nom : </form:label>
@@ -105,17 +105,9 @@
 			</div>
 		</div>
 
+		<input type="file" name="file"/>
+			
 		
-			<div class="form-group">
-			<form:label cssClass="col-sm-2 control-label" path="image">Image : </form:label>
-			<div class="col-sm-10">
-				<form:input type="file" cssClass="form-control"
-					placeholder="image" path="image" />
-			</div>
-		</div>
-		
-		
-
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<button type="submit" class="btn btn-default">Ajouter</button>

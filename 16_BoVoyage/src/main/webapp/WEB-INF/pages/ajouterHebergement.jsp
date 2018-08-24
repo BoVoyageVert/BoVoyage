@@ -14,7 +14,7 @@
 <body>
 
 <form:form cssClass="form-horizontal" method="POST"
-		action="soumettreAjoutHebergement" modelAttribute="hAjout">
+		action="soumettreAjoutHebergement" modelAttribute="hAjout" enctype="multipart/form-data">
 
 		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="Type">Type : </form:label>
@@ -94,14 +94,7 @@
 			</div>
 		</div>
 		
-		<div class="form-group">
-			<form:label cssClass="col-sm-2 control-label" path="image">Image : </form:label>
-			<div class="col-sm-10">
-				<form:input type="file" cssClass="form-control"
-					placeholder="image" path="image" />
-			</div>
-		</div>
-		
+	<input type="file" name="file"/>
 		
 
 		<div class="form-group">

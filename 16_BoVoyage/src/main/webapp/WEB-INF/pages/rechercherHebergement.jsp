@@ -17,7 +17,7 @@
 
 
 	<form:form cssClass="form-horizontal" method="POST"
-		action="soumettreRechercheHebergementU" modelAttribute="hRecherche">
+		action="soumettreRechercheHebergementU" modelAttribute="hRecherche" enctype="multipart/form-data">
 
 
 		<div class="form-group">
@@ -56,15 +56,15 @@
 
 		
 			<tr>
-				<td>${hRech.type}</td>
-				<td>${hRech.description}</td>
-				<td>${hRech.prix}</td>
-				<td>${hRech.reduction}</td>
-				<td>${hRech.lieux}</td>
-				<td>${hRech.ville}</td>
-				<td>${hRech.codePostal}</td>
-				<td>${hRech.disponibilité}</td>
-				<td>${hRech.image}</td>
+				<td>${hRecherche.type}</td>
+				<td>${hRecherche.description}</td>
+				<td>${hRecherche.prix}</td>
+				<td>${hRecherche.reduction}</td>
+				<td>${hRecherche.lieux}</td>
+				<td>${hRecherche.ville}</td>
+				<td>${hRecherche.codePostal}</td>
+				<td>${hRecherche.disponibilite}</td>
+				<td><img src="${pageContext.request.contextPath}/hebergement/getImage?pId=${hRecherche.id}" style="width: 200px; height: 200px" ></td>
 			</tr>
 		
 	</table>
