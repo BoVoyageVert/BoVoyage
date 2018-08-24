@@ -33,26 +33,42 @@ public class ClientDaoImpl implements IClientDao{
 
 	@Override
 	public int updateClient(Client cl) {
-		// TODO Auto-generated method stub
+		
+	Session s = sf.getCurrentSession();
+	
+	Client cl1 = (Client) s.get(Client.class, cl.getIdClient());
+	s.saveOrUpdate(cl);
+	if (cl1.toString() != s.get(Client.class, cl.getIdClient())){
+		return 1;
+	}else{
 		return 0;
+	}
 	}
 
 	@Override
 	public int deleteClient(Client cl) {
-		// TODO Auto-generated method stub
-		return 0;
+		Session s = sf.getCurrentSession();
+		
+		s.delete(cl);
+		if ( s.get(Client.class, cl.getIdClient()) == null){
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 
 	@Override
 	public Client getClientById(Client cl) {
-		// TODO Auto-generated method stub
-		return null;
+		Session s = sf.getCurrentSession();
+		
+		
+		return (Client) s.get(Client.class, cl.getIdClient());
 	}
 
 	@Override
 	public Client getClientByNum(Client cl) {
-		// TODO Auto-generated method stub
-		return null;
+		Session s = sf.getCurrentSession();
+		return (Client) s.get(Client.class, cl.getNom());
 	}
 
 	@Override

@@ -7,6 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Liste des clients</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 </head>
 <body>
 	
@@ -33,7 +35,7 @@
 			<td>${cl.telephone}</td>
 			<td><fmt:formatDate value="${cl.dateNaissance}" pattern="dd/MM/yyyy" /></td>
 			<td>${cl.numCb}</td>
-			<td>${cl.numSequenciel}</td>
+			<td>${cl.numSequentiel}</td>
 			<td>${cl.mdp}</td>
 			
 		</tr>
