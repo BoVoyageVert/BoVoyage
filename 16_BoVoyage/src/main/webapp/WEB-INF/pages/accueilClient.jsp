@@ -75,6 +75,9 @@
 								href="${pageContext.request.contextPath}/voiture/listeVoiture"><i
 									class="fa fa-car" aria-hidden="true"></i> Voitures</a></li>
 							<li><a
+								href="${pageContext.request.contextPath}/pack/listePack"><i
+									class="fa fa-suitcase" aria-hidden="true"></i> Nos Packs</a></li>
+							<li><a
 								href="${pageContext.request.contextPath}/login/client"><i
 									class="fa fa-user-o" aria-hidden="true"></i> Mon compte</a></li>
 						</ul>
@@ -84,6 +87,20 @@
 
 		</div>
 	</div>
+
+	<!-- Jumbotron for reservation trip -->
+	<div class="jumbotron">
+		<div class="container">
+			<h1 style="font-size: 40px">Votre voyage</h1>
+			<p>...</p>
+			<p>
+				<a class="btn btn-primary btn-lg" href="#" role="button"
+					style="background-color: #90EE90">Rechercher</a>
+			</p>
+		</div>
+	</div>
+
+
 
 	<!-- Marketing messaging and featurettes
     ================================================== -->
