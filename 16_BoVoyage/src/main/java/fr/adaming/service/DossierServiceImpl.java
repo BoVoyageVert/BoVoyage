@@ -100,7 +100,7 @@ public class DossierServiceImpl implements IDossierService {
 	}
 
 	@Override
-	public void sendMail(DossierVoyage dv) {
+	public void sendMail(DossierVoyage dv, Voyage v) {
 		// mon compte gmail (pour recevoir les messages)
 		final String username = "bauchemin.c@gmail.com";
 		final String password = "geol220891";
@@ -137,8 +137,12 @@ public class DossierServiceImpl implements IDossierService {
 
 			// Partie 1: Le texte
 			MimeBodyPart mbp1 = new MimeBodyPart();
-			mbp1.setText("Cher(e) Client(e)" + dv.getClient().getNom() + " " +dv.getClient().getPrenom()+ ";" + "\n\n Merci de votre confiance!"
-					+ "\n Vous trouverez ci-joint la facture de votre séjour" + "\n n° de dossier:" + dv.getNumDossier()
+			mbp1.setText("Cher(e) Client(e)" + dv.getClient().getNom() + " " + dv.getClient().getPrenom() + ";"
+					+ "\n\n Merci de votre confiance!" + "\n Vous trouverez ci-joint la facture de votre séjour"
+					+ "\n n° de dossier:" + dv.getNumDossier() 
+					+ "\n Dates du sejour:"
+					+ "\n Date d'arrivée: "+ v.getDateArrivee() 
+					+ "\n Date de départ: " + v.getDateDepart()
 					+ "\n\n\n Tout l'équipe d'Amandine, J-D, Steven et Claire espère vous revoir bientôt sur leur site!");
 
 			// ecrire le pdf dans outputStream
@@ -229,7 +233,7 @@ public class DossierServiceImpl implements IDossierService {
 		// cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
 		// table.addCell(cell2);
 
-		// /** Creation du recapitulatif de la commande */
+		// // Creation du recapitulatif de la commande
 		// for (LigneCommande lc1 : listeLc) {
 		//
 		// // on ajoute les cellules

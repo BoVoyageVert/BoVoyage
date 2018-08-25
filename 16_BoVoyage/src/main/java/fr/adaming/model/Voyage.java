@@ -47,6 +47,8 @@ public class Voyage {
 	@OneToOne(mappedBy="voyage")
 	Hebergement hebergement;
 	
+	@OneToOne(mappedBy="voyage")
+	Voiture voiture;
 	
 	public Voyage(Date dateArrivee, Date dateDepart, Double prixTotal, int nombrePlaces, byte[] photo, String image) {
 		super();
