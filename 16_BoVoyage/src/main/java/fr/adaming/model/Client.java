@@ -27,42 +27,53 @@ public class Client extends Personne {
 	private String numCb;
 	private String numSequentiel;
 	private String mdp;
+	private String mail;
+
 
 	/** jd : Déclaration des constructeurs */
 	public Client() {
 		super();
 	}
 
-	public Client(String numCb, String numSequentiel, String mdp) {
-		super();
-		this.numCb = numCb;
-		this.numSequentiel = numSequentiel;
-		this.mdp = mdp;
-	}
-
-	public Client(int idClient, String numCb, String numSequentiel, String mdp) {
+	public Client(int idClient, String numCb, String numSequentiel, String mdp, String mail) {
 		super();
 		this.idClient = idClient;
 		this.numCb = numCb;
 		this.numSequentiel = numSequentiel;
 		this.mdp = mdp;
+		this.mail = mail;
+	}
+	
+	
+
+	public Client(String numCb, String numSequentiel, String mdp, String mail) {
+		super();
+		this.numCb = numCb;
+		this.numSequentiel = numSequentiel;
+		this.mdp = mdp;
+		this.mail = mail;
 	}
 
+	
 	public Client(String civilite, String nom, String prenom, String adresse, String telephone, Date dateNaissance,
-			String numCb, String numSequentiel, String mdp) {
+			String numCb, String numSequentiel, String mdp, String mail) {
 		super(civilite, nom, prenom, adresse, telephone, dateNaissance);
 		this.numCb = numCb;
 		this.numSequentiel = numSequentiel;
 		this.mdp = mdp;
+		this.mail = mail;
 	}
+	
+	
 
 	public Client(String civilite, String nom, String prenom, String adresse, String telephone, Date dateNaissance,
-			int idClient, String numCb, String numSequentiel, String mdp) {
+			int idClient, String numCb, String numSequentiel, String mdp, String mail) {
 		super(civilite, nom, prenom, adresse, telephone, dateNaissance);
 		this.idClient = idClient;
 		this.numCb = numCb;
 		this.numSequentiel = numSequentiel;
 		this.mdp = mdp;
+		this.mail = mail;
 	}
 
 	/** jd : Déclaration des getters et setters */
@@ -98,4 +109,19 @@ public class Client extends Personne {
 		this.mdp = mdp;
 	}
 
+	/**
+	 * @return the mail
+	 */
+	public String getMail() {
+		return mail;
+	}
+
+	/**
+	 * @param mail the mail to set
+	 */
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import fr.adaming.model.Client;
 
+
 public interface IClientService {
 	
 	public int addClient(Client cl);

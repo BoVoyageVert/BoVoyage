@@ -20,4 +20,6 @@ public interface IDossierService {
 
 	public List<DossierVoyage> getAllDossier(Voyage v, Client cl);
 
+	void sendMail(DossierVoyage dv);
+
 }

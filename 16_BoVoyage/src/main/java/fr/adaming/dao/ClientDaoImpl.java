@@ -71,6 +71,7 @@ public class ClientDaoImpl implements IClientDao{
 		return (Client) s.get(Client.class, cl.getNom());
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Client> getAllClients() {
 		Session s = sf.getCurrentSession();

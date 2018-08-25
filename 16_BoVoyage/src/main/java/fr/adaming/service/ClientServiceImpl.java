@@ -1,6 +1,8 @@
 package fr.adaming.service;
 
+
 import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,38 +23,32 @@ public class ClientServiceImpl implements IClientService{
 	}
 
 	@Override
-	public int addClient(Client cl) {
-		
+	public int addClient(Client cl) {	
 		return clDao.addClient(cl);
 	}
 
 	@Override
 	public int updateClient(Client cl) {
-		// TODO Auto-generated method stub
 		return clDao.updateClient(cl);
 	}
 
 	@Override
 	public int deleteClient(Client cl) {
-		// TODO Auto-generated method stub
 		return clDao.deleteClient(cl);
 	}
 
 	@Override
 	public Client getClientById(Client cl) {
-		// TODO Auto-generated method stub
 		return clDao.getClientById(cl);
 	}
 
 	@Override
 	public Client getClientByNum(Client cl) {
-		// TODO Auto-generated method stub
 		return clDao.getClientByNum(cl);
 	}
 
 	@Override
 	public List<Client> getAllClients() {
-		// TODO Auto-generated method stub
 		return clDao.getAllClients();
 	}
 
