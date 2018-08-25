@@ -223,6 +223,22 @@
 	    <version>1.2.2</version>
 	</dependency>
 	
+	<!-- ###### Librairies pour le mail et le pdf -->
+	<!-- javax.mail -->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.5.5</version>
+		</dependency>
+
+
+		<!-- itextpdf -->
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>itextpdf</artifactId>
+			<version>5.0.6</version>
+		</dependency>
+	
 	
 
 	</dependencies>
