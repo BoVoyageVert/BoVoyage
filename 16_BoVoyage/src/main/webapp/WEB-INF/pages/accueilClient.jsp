@@ -1,5 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="h" uri="http://java.sun.com/jsp/jstl/xml"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -57,21 +63,20 @@
 					<div id="navbar" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
 							<li><a
-								href="${pageContext.request.contextPath}/destination/listeDestination">Destinations</a></li>
-							<li><a href="${pageContext.request.contextPath}/hebergement/listeHebergement">H�bergements</a></li>
-							<li><a href="${pageContext.request.contextPath}/loisir/listeDestination">Loisirs</a></li>
-							<li class="dropdown"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown" role="button" aria-haspopup="true"
-								aria-expanded="false">Dropdown <span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li><a href="#">Action</a></li>
-									<li><a href="#">Another action</a></li>
-									<li><a href="#">Something else here</a></li>
-									<li role="separator" class="divider"></li>
-									<li class="dropdown-header">Nav header</li>
-									<li><a href="#">Separated link</a></li>
-									<li><a href="#">One more separated link</a></li>
-								</ul></li>
+								href="${pageContext.request.contextPath}/destination/listeDestination"><i
+									class="fa fa-plane" aria-hidden="true"></i> Destinations</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/hebergement/listeHebergement"><i
+									class="fa fa-bed" aria-hidden="true"></i> Hébergements</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/loisir/listeLoisir"><i
+									class="fa fa-map-o" aria-hidden="true"></i> Loisirs</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/voiture/listeVoiture"><i
+									class="fa fa-car" aria-hidden="true"></i> Voitures</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/login/client"><i
+									class="fa fa-user-o" aria-hidden="true"></i> Mon compte</a></li>
 						</ul>
 					</div>
 				</div>
@@ -79,10 +84,6 @@
 
 		</div>
 	</div>
-
-
-
-
 
 	<!-- Marketing messaging and featurettes
     ================================================== -->
@@ -93,47 +94,50 @@
 		<!-- Three columns of text below the carousel -->
 		<div class="row">
 			<div class="col-lg-4">
-				<img class="img-circle"
-					src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
-					alt="Generic placeholder image" width="140" height="140">
-				<h2>Heading</h2>
-				<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis
-					euismod. Nullam id dolor id nibh ultricies vehicula ut id elit.
-					Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-					Praesent commodo cursus magna.</p>
+				<img class="img-circle" src="../resources/img/destinationcircle.jpg"
+					alt="Generic placeholder image" width="170" height="170">
+				<h2 style="color: #90EE90">
+					<b>Découvrez nos destinations dans les montagnes françaises</b>
+				</h2>
+				<p>Seul ? En couple ? En famille ? Entre amis ? Découvrez nos
+					plus belles destinations dans les montagnes françaises.</p>
 				<p>
-					<a class="btn btn-default" href="#" role="button">View details
-						&raquo;</a>
+					<a class="btn btn-default"
+						href="${pageContext.request.contextPath}/destination/listeDestination"
+						role="button" style="background-color: #F5F5DC">Voir les
+						détails &raquo;</a>
 				</p>
 			</div>
 			<!-- /.col-lg-4 -->
 			<div class="col-lg-4">
-				<img class="img-circle"
-					src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
-					alt="Generic placeholder image" width="140" height="140">
-				<h2>Heading</h2>
-				<p>Duis mollis, est non commodo luctus, nisi erat porttitor
-					ligula, eget lacinia odio sem nec elit. Cras mattis consectetur
-					purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo,
-					tortor mauris condimentum nibh.</p>
+				<img class="img-circle" src="../resources/img/hebergementcircle.jpg"
+					alt="Generic placeholder image" width="170" height="170">
+				<h2 style="color: #90EE90">
+					<b>Nos hébergements</b>
+				</h2>
+				<p>Trouvez l'hébergement qu'il vous faut parmi notre sélection
+					des plus beaux chalets.</p>
 				<p>
-					<a class="btn btn-default" href="#" role="button">View details
-						&raquo;</a>
+					<a class="btn btn-default"
+						href="${pageContext.request.contextPath}/hebergement/listeHebergement"
+						role="button" style="background-color: #F5F5DC">Voir les
+						détails &raquo;</a>
 				</p>
 			</div>
 			<!-- /.col-lg-4 -->
 			<div class="col-lg-4">
-				<img class="img-circle"
-					src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
-					alt="Generic placeholder image" width="140" height="140">
-				<h2>Heading</h2>
-				<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
-					egestas eget quam. Vestibulum id ligula porta felis euismod semper.
-					Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
-					nibh, ut fermentum massa justo sit amet risus.</p>
+				<img class="img-circle" src="../resources/img/raftingcircle.jpg"
+					alt="Generic placeholder image" width="170" height="170">
+				<h2 style="color: #90EE90">
+					<b>Nos loisirs</b>
+				</h2>
+				<p>Besoin de repos ? À la recherche de sensations fortes ? Vous
+					trouverez tout ce qu'il vous faut dans notre sélection.</p>
 				<p>
-					<a class="btn btn-default" href="#" role="button">View details
-						&raquo;</a>
+					<a class="btn btn-default"
+						href="${pageContext.request.contextPath}/loisir/listeLoisir"
+						role="button" style="background-color: #F5F5DC">Voir les
+						détails &raquo;</a>
 				</p>
 			</div>
 			<!-- /.col-lg-4 -->
@@ -144,22 +148,26 @@
 		<!-- START THE FEATURETTES -->
 
 		<hr class="featurette-divider">
-
+		<h1 style="color: #90EE90">Nos destinations vedettes</h1>
 		<div class="row featurette">
 			<div class="col-md-7">
 				<h2 class="featurette-heading">
-					First featurette heading. <span class="text-muted">It'll
-						blow your mind.</span>
+					<b>Chamonix. </b><span class="text-muted">Le luxe pour toute
+						la famille.</span>
 				</h2>
-				<p class="lead">Donec ullamcorper nulla non metus auctor
-					fringilla. Vestibulum id ligula porta felis euismod semper.
-					Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-					Fusce dapibus, tellus ac cursus commodo.</p>
+				<p class="lead">Chamonix se situe dans la partie occidentale et
+					septentrionale des Alpes, à 15 km de la Suisse par le Col des
+					Montets et à 15 km de l'Italie par le tunnel du Mont Blanc. La
+					vallée de Chamonix est dominée par le Mont Blanc, le plus haut
+					sommet d'Europe occidentale avec ses 4810,45 mètres et propose de
+					nombreux points de vue incroyables grâce aux remontées mécaniques
+					et aux sentiers pédestres.</p>
 			</div>
 			<div class="col-md-5">
 				<img class="featurette-image img-responsive center-block"
 					data-src="holder.min.js/500x500/auto"
-					alt="Generic placeholder image">
+					alt="Generic placeholder image" src="../resources/img/chamonix.jpg"
+					class="img-rounded">
 			</div>
 		</div>
 
@@ -168,18 +176,23 @@
 		<div class="row featurette">
 			<div class="col-md-7 col-md-push-5">
 				<h2 class="featurette-heading">
-					Oh yeah, it's that good. <span class="text-muted">See for
-						yourself.</span>
+					<b>Tignes. </b> <span class="text-muted">Voyez par vous
+						même.</span>
 				</h2>
-				<p class="lead">Donec ullamcorper nulla non metus auctor
-					fringilla. Vestibulum id ligula porta felis euismod semper.
-					Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-					Fusce dapibus, tellus ac cursus commodo.</p>
+				<p class="lead">Au cœur de la Savoie, dans les Alpes du Nord, la
+					station de ski Tignes vous accueille hiver comme été. Du 25 juin au
+					7 août 2016, vous pouvez skier sur les 20 km de pistes du glacier
+					entre 3456 et 3000 mètres, pratiquer le ski de fond ou encore
+					bronzer sur la terrasse du Panoramic. Durant l'été, la station
+					propose aussi d'autres activités comme de la randonnée pédestre, du
+					Bike Park, de l'acroland, du parapente, de l'équitation ou du
+					rafting.</p>
 			</div>
 			<div class="col-md-5 col-md-pull-7">
 				<img class="featurette-image img-responsive center-block"
 					data-src="holder.min.js/500x500/auto"
-					alt="Generic placeholder image">
+					alt="Generic placeholder image" src="../resources/img/tignes.jpg"
+					class="img-rounded">
 			</div>
 		</div>
 
@@ -188,17 +201,25 @@
 		<div class="row featurette">
 			<div class="col-md-7">
 				<h2 class="featurette-heading">
-					And lastly, this one. <span class="text-muted">Checkmate.</span>
+					<b>Samoëns. </b> <span class="text-muted">Idéale pour les
+						familles.</span>
 				</h2>
-				<p class="lead">Donec ullamcorper nulla non metus auctor
-					fringilla. Vestibulum id ligula porta felis euismod semper.
-					Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-					Fusce dapibus, tellus ac cursus commodo.</p>
+				<p class="lead">En été comme en hiver, c'est une destination
+					idéale pour les familles. Située en Haute Savoie et profitant du
+					domaine du Grand Massif, Samoëns est une station particulièrement
+					adaptée pour accueillir dans les meilleures conditions les
+					familles. Elle dispose de nombreuses infrastructures pour les
+					enfants comme la halte-garderie Les Loupiots et le centre de
+					loisirs la Marmotte. Il existe aussi la structure « Famille plus »
+					qui aidera les famille à organiser au mieux leurs vacances avec
+					leurs enfants. Elles reçoivent un accueil personnalisé et des
+					animations adaptés à tous les âges.</p>
 			</div>
 			<div class="col-md-5">
 				<img class="featurette-image img-responsive center-block"
 					data-src="holder.min.js/500x500/auto"
-					alt="Generic placeholder image">
+					alt="Generic placeholder image" src="../resources/img/samoens.jpg"
+					class="img-rounded">
 			</div>
 		</div>
 
@@ -210,10 +231,10 @@
 		<!-- FOOTER -->
 		<footer>
 			<p class="pull-right">
-				<a href="#">Back to top</a>
+				<a href="#">Revenir en haut de page</a>
 			</p>
 			<p>
-				&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a> &middot;
+				&copy; 2018 BoVoyage, Inc. &middot; <a href="#">Privacy</a> &middot;
 				<a href="#">Terms</a>
 			</p>
 		</footer>
