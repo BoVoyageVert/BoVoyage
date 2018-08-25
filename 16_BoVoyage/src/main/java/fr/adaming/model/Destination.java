@@ -60,45 +60,23 @@ public class Destination {
 		this.prixDesti = prixDesti;
 	}
 
-	public Destination(int idDestination, String descriptionDesti, byte[] photoDesti, String imageDesti,
-			double prixDesti, Voyage voyage) {
-		super();
-		this.idDestination = idDestination;
-		this.descriptionDesti = descriptionDesti;
-		this.photoDesti = photoDesti;
-		this.imageDesti = imageDesti;
-		this.prixDesti = prixDesti;
-		this.voyage = voyage;
-	}
-
-	public Destination(String descriptionDesti, byte[] photoDesti, String imageDesti, double prixDesti, Voyage voyage) {
-		super();
-		this.descriptionDesti = descriptionDesti;
-		this.photoDesti = photoDesti;
-		this.imageDesti = imageDesti;
-		this.prixDesti = prixDesti;
-		this.voyage = voyage;
-	}
-
-	public Destination(String nomDestination, String descriptionDesti, byte[] photoDesti, String imageDesti,
-			double prixDesti, Voyage voyage) {
+	public Destination(String nomDestination, String descriptionDesti, byte[] photoDesti, double prixDesti,
+			Voyage voyage) {
 		super();
 		this.nomDestination = nomDestination;
 		this.descriptionDesti = descriptionDesti;
 		this.photoDesti = photoDesti;
-		this.imageDesti = imageDesti;
 		this.prixDesti = prixDesti;
 		this.voyage = voyage;
 	}
 
 	public Destination(int idDestination, String nomDestination, String descriptionDesti, byte[] photoDesti,
-			String imageDesti, double prixDesti, Voyage voyage) {
+			double prixDesti, Voyage voyage) {
 		super();
 		this.idDestination = idDestination;
 		this.nomDestination = nomDestination;
 		this.descriptionDesti = descriptionDesti;
 		this.photoDesti = photoDesti;
-		this.imageDesti = imageDesti;
 		this.prixDesti = prixDesti;
 		this.voyage = voyage;
 	}
@@ -142,14 +120,6 @@ public class Destination {
 
 	public void setIdDestination(int idDestination) {
 		this.idDestination = idDestination;
-	}
-
-	public String getImageDesti() {
-		return imageDesti;
-	}
-
-	public void setImageDesti(String imageDesti) {
-		this.imageDesti = imageDesti;
 	}
 
 	public Voyage getVoyage() {
