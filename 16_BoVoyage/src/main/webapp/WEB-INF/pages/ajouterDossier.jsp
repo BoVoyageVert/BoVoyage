@@ -44,11 +44,11 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<form:label for="inputPrix" cssClass="col-sm-2 control-label"
-				path="client.id">Client</form:label>
+			<form:label for="inputClient" cssClass="col-sm-2 control-label"
+				path="client.idClient">Client</form:label>
 			<div class="col-sm-10">
-				<form:input type="text" cssClass="form-control" id="inputPrix"
-					placeholder="Client" path="client.id" />
+				<form:input type="text" cssClass="form-control" id="inputClient"
+					placeholder="Client" path="client.idClient" />
 			</div>
 		</div>
 		<div class="form-group">
