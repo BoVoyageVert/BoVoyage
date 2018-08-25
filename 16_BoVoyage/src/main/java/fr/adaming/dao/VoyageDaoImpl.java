@@ -47,7 +47,7 @@ public class VoyageDaoImpl implements IVoyageDao{
 	public int deleteVoyage(Voyage v) {
 		Session s = sf.getCurrentSession();
 		s.delete(v);
-		if (s.get(Voyage.class, v.getId()) != null) {
+		if (s.get(Voyage.class, v.getId()) == null) {
 			return 1;
 		} else {
 			return 0;

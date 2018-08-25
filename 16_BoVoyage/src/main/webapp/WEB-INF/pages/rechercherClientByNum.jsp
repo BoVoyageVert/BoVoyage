@@ -16,7 +16,7 @@
 		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="idClient">ID</form:label>
 			<div class="col-sm-10">
-				<form:input type="number" cssClass="form-control" placeholder="Identifiant" path="idClient" />
+				<form:input type="text" cssClass="form-control" placeholder="Identifiant" path="idClient" />
 			</div>
 		</div>
 		

@@ -6,12 +6,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Modifiaction du client</title>
+<title>Modification du client</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 </head>
 <body>
-	<form:form cssClass="form-horizontal" method="POST" action="soumettreModifierClient" modelAttribute="clModif">
+	<form:form enctype="multipart/form-data" cssClass="form-horizontal" method="POST" action="soumettreModifierClient" modelAttribute="clModif">
 		
 		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="idClient">ID</form:label>
@@ -21,7 +21,7 @@
 		</div>
 	
 		<div class="form-group">
-			<form:label cssClass="col-sm-2 control-label" path="civilite">ID</form:label>
+			<form:label cssClass="col-sm-2 control-label" path="civilite">Civilité</form:label>
 			<div class="col-sm-10">
 				<form:input type="text" cssClass="form-control" placeholder="Civilité" path="civilite" />
 			</div>

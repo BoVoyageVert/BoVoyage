@@ -1,19 +1,28 @@
 package fr.adaming.controllers;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.fileupload.FileUpload;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -23,6 +32,8 @@ import fr.adaming.service.IVoyageService;
 @Controller
 @RequestMapping("/voyage")
 public class VoyageController {
+	
+	private FileUpload file;
 	
 	/** steven : transformation de l'association */
 	@Autowired
@@ -38,6 +49,30 @@ public class VoyageController {
 		formatDate.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(formatDate, false));
 	}
+	
+	public FileUpload getFile() {
+		return file;
+	}
+
+	public void setFile(FileUpload file) {
+		this.file = file;
+	}
+
+	@RequestMapping(value="/getPhoto", method=RequestMethod.GET, produces=MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody
+	public byte[] recupImage( @RequestParam("pId") int id) throws IOException{
+		Voyage voyage2 = new Voyage();
+		voyage2.setId(id);
+		Voyage voyage = vService.getVoyageById(voyage2);
+		
+		if(voyage.getPhoto()==null){
+			return new byte[0];
+		}else{
+			return IOUtils.toByteArray(new ByteArrayInputStream(voyage.getPhoto()));
+		}	
+	}
+	
+	
 	
 	/** steven : recup de la liste des voyages */
 		@RequestMapping(value="/listeVoyages", method=RequestMethod.GET)
@@ -57,7 +92,16 @@ public class VoyageController {
 			}
 			/** steven : soumission de la modification */
 			@RequestMapping (value="/soumettreModifierVoyage", method=RequestMethod.POST)
-			public String soumettreModifierVoyage(@ModelAttribute("vModif") Voyage vIn, RedirectAttributes rda){
+			public String soumettreModifierVoyage(@ModelAttribute("vModif") Voyage vIn, RedirectAttributes rda, MultipartFile file){
+				
+				if (file != null){
+					try {
+						vIn.setPhoto(file.getBytes());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}}
+				
 				int verif = vService.updateVoyage(vIn);
 				if (verif != 0){
 					return "redirect:listeVoyages";
@@ -73,7 +117,18 @@ public class VoyageController {
 			}
 			/** steven : soumission de l'ajout */
 			@RequestMapping (value="/soumettreAjouterVoyage", method=RequestMethod.POST)
-			public String soumettreAjouterVoyage(@ModelAttribute("vAjout") Voyage vIn, RedirectAttributes rda){
+			public String soumettreAjouterVoyage(@ModelAttribute("vAjout") Voyage vIn, RedirectAttributes rda, MultipartFile file){
+				
+				if (file != null){
+				try {
+					vIn.setPhoto(file.getBytes());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				}
+				
+				
 				int verif = vService.addVoyage(vIn);
 				if (verif != 0){
 					return "redirect:listeVoyages";
@@ -99,22 +154,26 @@ public class VoyageController {
 					return "redirect:supprimerVoyage";}
 				}			
 			
-			/** steven : recup du formulaire de recherche */
+
+			
 			@RequestMapping(value="/rechercherVoyage", method=RequestMethod.GET)
-			public String afficherFormRechercherVoyage(Model modele){
-					modele.addAttribute("vRech", new Voyage());
-					return "rechercherVoyage";
+			public ModelAndView afficherFormRechercherVoyage(){
+				return new ModelAndView("rechercherVoyage", "vRech", new Voyage());
 			}
-			/** steven : soumission de la recherche */
-			@RequestMapping (value="/soumettreRechercherVoyage", method=RequestMethod.POST)
-			public String soumettreRechercherVoyage(@ModelAttribute("vRech") Voyage vIn, RedirectAttributes rda){
+			
+			@RequestMapping(value="/soumettreRechercherVoyage", method=RequestMethod.POST)
+			public String soumettreFormRecherche(ModelMap modele, @ModelAttribute("vRech") Voyage vIn, RedirectAttributes rda){
+				
 				Voyage vOut = vService.getVoyageById(vIn);
-				if (vOut != null){
-					return "redirect:listeVoyages";
+				if (vOut !=null){
+					modele.addAttribute("vFind", vOut);
+					return "rechercherVoyage";
 				}else{
-					rda.addAttribute("msg","La recherche du voyage a échoué !");
-					return "redirect:rechercherVoyage";}
-				}		
+					rda.addAttribute("msg","La recherche du voyage a échoué");
+					return "redirect:rechercherVoyage";
+				}
+			}
+			
 			
 	
 	

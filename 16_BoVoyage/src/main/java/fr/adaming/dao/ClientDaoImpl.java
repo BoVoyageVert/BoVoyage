@@ -34,15 +34,15 @@ public class ClientDaoImpl implements IClientDao{
 	@Override
 	public int updateClient(Client cl) {
 		
-	Session s = sf.getCurrentSession();
+		Session s = sf.getCurrentSession();
+		s.saveOrUpdate(cl);
+		if (s.get(Client.class, cl.getIdClient()) != null) {
+			return 1;
+		} else {
+			return 0;
+		}
+		
 	
-	Client cl1 = (Client) s.get(Client.class, cl.getIdClient());
-	s.saveOrUpdate(cl);
-	if (cl1.toString() != s.get(Client.class, cl.getIdClient())){
-		return 1;
-	}else{
-		return 0;
-	}
 	}
 
 	@Override

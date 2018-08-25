@@ -10,7 +10,7 @@
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 </head>
 <body>
-	<form:form cssClass="form-horizontal" method="POST" action="soumettreAjouterClient" modelAttribute="clAjout">
+	<form:form enctype="multipart/form-data" cssClass="form-horizontal" method="POST" action="soumettreAjouterClient" modelAttribute="clAjout">
 		
 		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="civilite">Civilité</form:label>

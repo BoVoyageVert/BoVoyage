@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -79,7 +80,7 @@ public class ClientController {
 			return "redirect:listeClients";
 		}else {
 			rda.addAttribute("msg", "La modification du client a échoué");
-			return "redirect:modifClient";
+			return "redirect:modifierClient";
 		}
 	}
 	/** steven : recup du formulaire de suppression */
@@ -98,22 +99,22 @@ public class ClientController {
 			return "redirect:supprimerClient";
 		}
 	}
-	/** steven : recup du formulaire de recherche par ID */
-	@RequestMapping(value="/rechercherClientById", method=RequestMethod.GET)
-	public String afficherFormRechercherClientById(Model modele){
-		modele.addAttribute("clRechById",new Client());
-		return "rechercherClientById";
-	}
-	/** steven : soumission de la recherche par ID */
-	@RequestMapping(value="/soumettreRechercherClientById", method=RequestMethod.POST)
-	public String soumettreRechercherClientById(@ModelAttribute(value="clRechById") Client clIn, RedirectAttributes rda){
-		Client clOut = clService.getClientById(clIn);
-		if (clOut != null){
-			return "redirect:listeClients";
-		}else {
-			return "redirect:rechercherClientById";
-		}
-	}
+//	/** steven : recup du formulaire de recherche par ID */
+//	@RequestMapping(value="/rechercherClientById", method=RequestMethod.GET)
+//	public String afficherFormRechercherClientById(Model modele){
+//		modele.addAttribute("clRechById",new Client());
+//		return "rechercherClientById";
+//	}
+//	/** steven : soumission de la recherche par ID */
+//	@RequestMapping(value="/soumettreRechercherClientById", method=RequestMethod.POST)
+//	public String soumettreRechercherClientById(@ModelAttribute(value="clRechById") Client clIn, RedirectAttributes rda){
+//		Client clOut = clService.getClientById(clIn);
+//		if (clOut != null){
+//			return "redirect:listeClients";
+//		}else {
+//			return "redirect:rechercherClientById";
+//		}
+//	}
 	/** steven : recup du formulaire de recherche par num */
 	@RequestMapping(value="/rechercherClientByNum", method= RequestMethod.GET)
 	public String afficherFormRechercherClientByNum(Model modele){
@@ -130,6 +131,24 @@ public class ClientController {
 			return "redirect:listeClients";
 		}else{
 			return "redirect:rechercherClientByNum";
+		}
+	}
+	
+	@RequestMapping(value="/rechercherClientById", method=RequestMethod.GET)
+	public ModelAndView afficherFormRechercherClientById(){
+		return new ModelAndView("rechercherClientById", "clRechId", new Client());
+	}
+	
+	@RequestMapping(value="/soumettreRechercherClientById", method=RequestMethod.POST)
+	public String soumettreRechercherClientById(ModelMap modele, @ModelAttribute("clRechId") Client clIn, RedirectAttributes rda){
+		
+		Client clOut = clService.getClientById(clIn);
+		if (clOut !=null){
+			modele.addAttribute("clFind", clOut);
+			return "rechercherClientById";
+		}else{
+			rda.addAttribute("msg","La recherche du client a échoué");
+			return "redirect:rechercherClientById";
 		}
 	}
 	

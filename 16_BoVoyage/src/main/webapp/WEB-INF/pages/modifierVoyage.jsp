@@ -10,7 +10,7 @@
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 </head>
 <body>
-	<form:form cssClass="form-horizontal" method="POST" action="soumettreModifierVoyage" modelAttribute="vModif">
+	<form:form enctype="multipart/form-data" cssClass="form-horizontal" method="POST" action="soumettreModifierVoyage" modelAttribute="vModif">
 	
 		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="id">ID</form:label>
@@ -47,12 +47,8 @@
 			</div>
 		</div>
 		
-		<div class="form-group">
-			<form:label cssClass="col-sm-2 control-label" path="photo">Image</form:label>
-			<div class="col-sm-10">
-				<form:input type="file" cssClass="form-control" path="photo" />
-			</div>
-		</div>
+		
+		<input type="file" name="file">
 
 
 		<div class="form-group">

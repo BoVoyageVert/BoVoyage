@@ -28,7 +28,7 @@
 			<td><fmt:formatDate value="${v.dateDepart}" pattern="dd/MM/yyyy" /></td>
 			<td>${v.prixTotal}</td>
 			<td>${v.nombrePlaces}</td>
-			<td>${v.image}</td>
+			<td><img src="${pageContext.request.contextPath}/voyage/getPhoto?pId=${v.id}" style="width:150px;height:150px" /></td>
 			
 		</tr>
 	
