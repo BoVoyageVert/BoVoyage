@@ -10,8 +10,11 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
 </head>
-</head>
+
 <body>
+<!-- Insertion du templateTest (navbar) -->
+<jsp:include page="${request.contextPath}/template/templateTest"></jsp:include>
+
 	<form:form class="form-horizontal" method="POST"
 		action="soumettreModifLoisir" modelAttribute="lModif"
 		enctype="multipart/form-data">

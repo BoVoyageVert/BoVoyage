@@ -12,6 +12,9 @@
 </head>
 </head>
 <body>
+<!-- Insertion du templateTest (navbar) -->
+<jsp:include page="${request.contextPath}/template/templateTest"></jsp:include>
+
 <table class="table table-bordered">
 		<tr>
 		<th>Categorie</th>

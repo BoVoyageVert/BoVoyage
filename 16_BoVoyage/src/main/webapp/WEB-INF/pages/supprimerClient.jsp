@@ -11,6 +11,10 @@
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 </head>
 <body>
+
+<!-- Insertion du templateTest (navbar) -->
+<jsp:include page="${request.contextPath}/template/templateTest"></jsp:include>
+
 	<form:form cssClass="form-horizontal" method="POST" action="soumettreSupprimerClient" modelAttribute="clSuppr">
 		
 		<div class="form-group">

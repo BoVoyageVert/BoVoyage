@@ -16,6 +16,8 @@
 <title>Modifier une assurance</title>
 </head>
 <body>
+<!-- Insertion du templateTest (navbar) -->
+<jsp:include page="${request.contextPath}/template/templateTest"></jsp:include>
 
 	<form:form cssClass="form-horizontal" method="POST"
 		action="soumettreModifierAssurance" modelAttribute="aUpdate">

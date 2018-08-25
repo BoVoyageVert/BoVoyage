@@ -10,6 +10,9 @@
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 </head>
 <body>
+<!-- Insertion du templateTest (navbar) -->
+<jsp:include page="${request.contextPath}/template/templateTest"></jsp:include>
+
 	<form:form enctype="multipart/form-data" cssClass="form-horizontal" method="POST" action="soumettreAjouterClient" modelAttribute="clAjout">
 		
 		<div class="form-group">
