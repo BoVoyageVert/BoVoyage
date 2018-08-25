@@ -33,8 +33,6 @@ public class Destination {
 	@Lob
 	private byte[] photoDesti;
 
-	@Transient
-	private String imageDesti;
 	private double prixDesti;
 
 	/** Mapping de l'association One to One unidirectionnelle */
