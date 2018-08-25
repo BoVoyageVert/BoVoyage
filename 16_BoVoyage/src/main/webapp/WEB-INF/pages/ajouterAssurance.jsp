@@ -45,7 +45,7 @@
 		</div>
 		<div class="form-group">
 			<form:label for="inputDossier" cssClass="col-sm-2 control-label"
-				path="numeroDossier">Voyage</form:label>
+				path="voyage.id">Voyage</form:label>
 			<div class="col-sm-10">
 				<form:input type="text" cssClass="form-control" id="inputVoyage"
 					placeholder="Voyage" path="voyage.id" />

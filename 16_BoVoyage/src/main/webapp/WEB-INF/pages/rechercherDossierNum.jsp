@@ -18,14 +18,13 @@
 <body>
 
 	<form:form cssClass="form-horizontal" method="POST"
-		action="soumettreRechercherDestinationId" modelAttribute="dRech"
-		enctype="multipart/form-data">
+		action="soumettreRechercherDossierNum" modelAttribute="dossRech">
 		<div class="form-group">
 			<form:label for="inputEmail3" class="col-sm-2 control-label"
-				path="id">ID</form:label>
+				path="numDossier">Numéro de dossier</form:label>
 			<div class="col-sm-10">
 				<form:input type="text" class="form-control" id="inputEmail3"
-					placeholder="ID" path="idDestination" />
+					placeholder="Numéro de dossier" path="numDossier" />
 			</div>
 		</div>
 
@@ -34,21 +33,19 @@
 
 	<table class="table">
 		<tr>
-			<th>Nom</th>
-			<th>Photo</th>
-			<th>Description</th>
-			<th>Prix</th>
+			<th>Numéro de dossier</th>
+			<th>Statut</th>
 			<th>Voyage</th>
+			<th>Client</th>
+			<th>Admin</th>
 		</tr>
 
 		<tr>
-			<td>${dFind.nomDestination}</td>
-			<td><img
-				src="${pageContext.request.contextPath}/destination/getImage?pId=${dFind.idDestination}"
-				class="img-rounded" style="width: 200px; height: 200px"></td>
-			<td>${dFind.descriptionDesti}</td>
-			<td>${dFind.prixDesti}</td>
-			<td>${dFind.voyage.id}</td>
+			<td>${dossFind.numDossier}</td>
+			<td>${dossFind.statut}</td>
+			<td>${dossFind.voyage.id}</td>
+			<td>${dossFind.client.id}</td>
+			<td>${dossFind.admin.id}</td>
 		</tr>
 	</table>
 

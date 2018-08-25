@@ -13,46 +13,23 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 
-<title>Rechercher une destination</title>
+<title>Supprimer un dossier</title>
 </head>
 <body>
 
 	<form:form cssClass="form-horizontal" method="POST"
-		action="soumettreRechercherDestinationId" modelAttribute="dRech"
-		enctype="multipart/form-data">
+		action="soumettreDeleteDossier" modelAttribute="dossDelete">
 		<div class="form-group">
 			<form:label for="inputEmail3" class="col-sm-2 control-label"
-				path="id">ID</form:label>
+				path="idDossier">ID</form:label>
 			<div class="col-sm-10">
 				<form:input type="text" class="form-control" id="inputEmail3"
-					placeholder="ID" path="idDestination" />
+					placeholder="ID" path="idDossier" />
 			</div>
 		</div>
 
-		<button type="submit" class="btn btn-primary">Rechercher</button>
+		<button type="submit" class="btn btn-primary">Supprimer</button>
 	</form:form>
-
-	<table class="table">
-		<tr>
-			<th>Nom</th>
-			<th>Photo</th>
-			<th>Description</th>
-			<th>Prix</th>
-			<th>Voyage</th>
-		</tr>
-
-		<tr>
-			<td>${dFind.nomDestination}</td>
-			<td><img
-				src="${pageContext.request.contextPath}/destination/getImage?pId=${dFind.idDestination}"
-				class="img-rounded" style="width: 200px; height: 200px"></td>
-			<td>${dFind.descriptionDesti}</td>
-			<td>${dFind.prixDesti}</td>
-			<td>${dFind.voyage.id}</td>
-		</tr>
-	</table>
-
-
 
 </body>
 </html>

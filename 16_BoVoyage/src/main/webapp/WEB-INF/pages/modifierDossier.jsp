@@ -13,43 +13,32 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 
-<title>Modifier une destination</title>
+<title>Modifier un dossier</title>
 </head>
 <body>
 
 	<form:form cssClass="form-horizontal" method="POST"
-		action="soumettreModifierDestination" modelAttribute="dUpdate"
-		enctype="multipart/form-data">
+		action="soumettreModifierDossier" modelAttribute="dossUpdate">
 		<div class="form-group">
 			<form:label for="inputEmail3" class="col-sm-2 control-label"
-				path="idDestination">ID</form:label>
+				path="idDossier">ID</form:label>
 			<div class="col-sm-10">
 				<form:input type="text" class="form-control" id="inputEmail3"
-					placeholder="ID" path="idDestination" />
+					placeholder="ID" path="idDossier" />
 			</div>
 			<form:label for="inputNom" cssClass="col-sm-2 control-label"
-				path="nomDestination">Nom</form:label>
+				path="numDossier">Numéro de dossier</form:label>
 			<div class="col-sm-10">
 				<form:input type="text" cssClass="form-control" id="inputNom"
-					placeholder="Nom" path="nomDestination" />
+					placeholder="Numéro dossier" path="numDossier" />
 			</div>
-			<label>Photo</label> <input type="file" name="file" />
 		</div>
 		<div class="form-group">
 			<form:label for="inputDescription" cssClass="col-sm-2 control-label"
-				path="descriptionDesti">Description</form:label>
+				path="statut">Statut</form:label>
 			<div class="col-sm-10">
 				<form:input type="text" cssClass="form-control"
-					id="inputDescritption" placeholder="Description"
-					path="descriptionDesti" />
-			</div>
-		</div>
-		<div class="form-group">
-			<form:label for="inputPrix" cssClass="col-sm-2 control-label"
-				path="prixDesti">Prix</form:label>
-			<div class="col-sm-10">
-				<form:input type="number" cssClass="form-control" id="inputPrix"
-					placeholder="Prix" path="prixDesti" />
+					id="inputDescritption" placeholder="ex : en cours" path="statut" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -58,6 +47,22 @@
 			<div class="col-sm-10">
 				<form:input type="number" cssClass="form-control" id="inputPrix"
 					placeholder="Voyage" path="voyage.id" />
+			</div>
+		</div>
+		<div class="form-group">
+			<form:label for="inputPrix" cssClass="col-sm-2 control-label"
+				path="client.id">Client</form:label>
+			<div class="col-sm-10">
+				<form:input type="number" cssClass="form-control" id="inputPrix"
+					placeholder="Client" path="client.id" />
+			</div>
+		</div>
+		<div class="form-group">
+			<form:label for="inputPrix" cssClass="col-sm-2 control-label"
+				path="admin.id">Admin</form:label>
+			<div class="col-sm-10">
+				<form:input type="number" cssClass="form-control" id="inputPrix"
+					placeholder="Admin" path="admin.id" />
 			</div>
 		</div>
 
