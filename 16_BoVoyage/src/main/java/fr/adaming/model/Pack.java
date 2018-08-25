@@ -55,9 +55,9 @@ public class Pack {
 	 */
 
 	
-//	@ManyToOne
-//	@JoinColumn(name = "ad_id", referencedColumnName = "id_ad")
-//	Admin admin;
+	@ManyToOne
+	@JoinColumn(name = "ad_id", referencedColumnName = "id_ad")
+	Admin admin;
 
 
 	/** Constructeurs
@@ -111,6 +111,56 @@ public class Pack {
 		this.photo = photo;
 		this.image = image;
 	
+	}
+
+
+
+	
+	
+	
+
+	public Pack(String nom, String description, Date dateArrivee, Date dateDepart, Double prixTotal, Double prixPromo,
+			int nombrePlaces, String loisir1, String loisir2, String hebergement, String destination, byte[] photo,
+			String image, Admin admin) {
+		super();
+		this.nom = nom;
+		this.description = description;
+		this.dateArrivee = dateArrivee;
+		this.dateDepart = dateDepart;
+		this.prixTotal = prixTotal;
+		this.prixPromo = prixPromo;
+		this.nombrePlaces = nombrePlaces;
+		this.loisir1 = loisir1;
+		this.loisir2 = loisir2;
+		this.hebergement = hebergement;
+		this.destination = destination;
+		this.photo = photo;
+		this.image = image;
+		this.admin = admin;
+	}
+
+
+
+
+	public Pack(int id, String nom, String description, Date dateArrivee, Date dateDepart, Double prixTotal,
+			Double prixPromo, int nombrePlaces, String loisir1, String loisir2, String hebergement, String destination,
+			byte[] photo, String image, Admin admin) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.description = description;
+		this.dateArrivee = dateArrivee;
+		this.dateDepart = dateDepart;
+		this.prixTotal = prixTotal;
+		this.prixPromo = prixPromo;
+		this.nombrePlaces = nombrePlaces;
+		this.loisir1 = loisir1;
+		this.loisir2 = loisir2;
+		this.hebergement = hebergement;
+		this.destination = destination;
+		this.photo = photo;
+		this.image = image;
+		this.admin = admin;
 	}
 
 
@@ -273,6 +323,20 @@ public class Pack {
 
 	public void setDestination(String destination) {
 		this.destination = destination;
+	}
+
+
+
+
+	public Admin getAdmin() {
+		return admin;
+	}
+
+
+
+
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
 	}
 	
 

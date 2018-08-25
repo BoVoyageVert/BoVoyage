@@ -126,6 +126,37 @@ public class PackController {
 		}
 	}
 	
+	
+	/**
+	 * Amandine : Méthode ajouter un pack
+	 */
+	@RequestMapping(value = "/ajouterPackClient", method = RequestMethod.GET)
+	public String afficherFormAjoutPackClient(Model model) {
+		model.addAttribute("pcAjout", new Pack());
+		return "ajouterPackClient";
+	}
+
+	@RequestMapping(value = "/soumettreAjoutPackClient", method = RequestMethod.POST)
+	public String soumettreAjouterPackClient(@ModelAttribute("pcAjout") Pack pIn,
+			RedirectAttributes rda, MultipartFile file) throws IOException{
+	if(file!=null){
+		//transformation de l'image en tableau de byte
+		pIn.setPhoto(file.getBytes());
+	}
+		
+		
+		Pack verif = packService.addPack(pIn);
+		if (verif != null) {
+			//transformer l'image en tableau de byte
+			
+			return "redirect:listePack";
+		} else {
+			rda.addAttribute("msg", "La selection du pack a echoué!");
+			return "redirect:ajouterPackClient";
+		}
+	}
+	
+	
 	/**
 	 * Amandine: Méthode modifier un hebergement
 	 */

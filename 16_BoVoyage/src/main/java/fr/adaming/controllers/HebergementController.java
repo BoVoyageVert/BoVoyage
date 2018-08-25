@@ -115,6 +115,36 @@ public class HebergementController {
 			return "redirect:ajouterHebergement";
 		}
 	}
+	
+	
+	/**
+	 * Amandine : Méthode ajouter un hebergement
+	 */
+	@RequestMapping(value = "/ajouterHebergementClient", method = RequestMethod.GET)
+	public String afficherFormAjoutHebergementClient(Model model) {
+		model.addAttribute("hcAjout", new Hebergement());
+		return "ajouterHebergementClient";
+	}
+
+	@RequestMapping(value = "/soumettreAjoutHebergementClient", method = RequestMethod.POST)
+	public String soumettreAjouterHebergementClient(@ModelAttribute("hcAjout") Hebergement hIn, Voyage vIn,
+			RedirectAttributes rda, MultipartFile file) throws IOException{
+		if(file!=null){
+			//transformation de l'image en tableau de byte
+			hIn.setPhoto(file.getBytes());
+		}
+				
+		
+		Hebergement verif = hebergementService.addHebergement(hIn, vIn);
+		if (verif != null) {
+			return "redirect:listeHebergement";
+		} else {
+			rda.addAttribute("msg", "La selection a échouée a echoué!");
+			return "redirect:ajouterHebergementClient";
+		}
+	}
+	
+	
 
 	
 	/**

@@ -18,13 +18,17 @@
 
 		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="Type">Type : </form:label>
-			<div class="col-sm-10">
-				<form:input cssClass="form-control" placeholder="Type" path="type" />
+			<div class="col-sm-8">
+				<form:select cssClass="form-control" placeholder="Type" path="type">
+				<option>Chalet</option>
+ 				 <option>Appartement</option>
+  				<option>Cabane dans les arbres</option>
+				</form:select>
 			</div>
 		</div>
 		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="Disponibilite">Disponibilite : </form:label>
-			<div class="col-sm-10">
+			<div class="col-sm-8">
 				<form:input cssClass="form-control" placeholder="Disponibilite"
 					path="disponibilite" />
 			</div>
@@ -32,7 +36,7 @@
 
 		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="Prix">Prix : </form:label>
-			<div class="col-sm-10">
+			<div class="col-sm-8">
 				<form:input cssClass="form-control"
 					placeholder="Prix en euros" path="prix" />
 			</div>
@@ -40,7 +44,7 @@
 		
 		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="Reduction">Reduction : </form:label>
-			<div class="col-sm-10">
+			<div class="col-sm-8">
 				<form:input cssClass="form-control"
 					placeholder="Reduction" path="reduction" />
 			</div>
@@ -48,7 +52,7 @@
 		
 				<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="lieux">Lieu : </form:label>
-			<div class="col-sm-10">
+			<div class="col-sm-8">
 				<form:input cssClass="form-control"
 					placeholder="lieux" path="lieux" />
 			</div>
@@ -56,7 +60,7 @@
 		
 		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="ville">Ville : </form:label>
-			<div class="col-sm-10">
+			<div class="col-sm-8">
 				<form:input cssClass="form-control"
 					placeholder="ville" path="ville" />
 			</div>
@@ -64,7 +68,7 @@
 		
 		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="codePostal">Code postal : </form:label>
-			<div class="col-sm-10">
+			<div class="col-sm-8">
 				<form:input cssClass="form-control"
 					placeholder="codePostal" path="codePostal" />
 			</div>
@@ -72,7 +76,7 @@
 		
 			<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="menage">Ménage : </form:label>
-			<div class="col-sm-10">
+			<div class="col-sm-8">
 				<form:input cssClass="form-control"
 					placeholder="menage" path="menage" />
 			</div>
@@ -80,7 +84,7 @@
 		
 		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="numHebergement">Numero de l'hebergement : </form:label>
-			<div class="col-sm-10">
+			<div class="col-sm-8">
 				<form:input cssClass="form-control"
 					placeholder="numHebergement" path="numHebergement" />
 			</div>
@@ -88,7 +92,7 @@
 		
 		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="description">Description : </form:label>
-			<div class="col-sm-10">
+			<div class="col-sm-8">
 				<form:input cssClass="form-control"
 					placeholder="description" path="description" />
 			</div>
@@ -99,7 +103,7 @@
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-default">Ajouter</button>
+				<button type="submit" class="btn btn-sucess">Ajouter</button>
 			</div>
 		</div>
 	</form:form>

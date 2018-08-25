@@ -68,7 +68,7 @@
 			<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="nombrePlaces">Nombre de places : </form:label>
 			<div class="col-sm-10">
-				<form:input cssClass="form-control"
+				<form:input type="number" cssClass="form-control"
 					placeholder="nombre de places" path="nombrePlaces" />
 			</div>
 		</div>

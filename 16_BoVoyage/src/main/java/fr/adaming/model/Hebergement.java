@@ -41,7 +41,7 @@ public class Hebergement {
 	private String lieux;
 	private String ville;
 	private int codePostal;
-	private boolean menage;
+	private String menage;
 	private long numHebergement;
 	private String description;
 	@Lob
@@ -85,7 +85,7 @@ public class Hebergement {
 
 
 	public Hebergement(int id, String type, boolean disponibilite, double prix, double reduction, String lieux,
-			String ville, int codePostal, boolean menage, long numHebergement, String description, byte[] photo,
+			String ville, int codePostal, String menage, long numHebergement, String description, byte[] photo,
 			String image, Voyage voyage) {
 		super();
 		this.id = id;
@@ -107,7 +107,7 @@ public class Hebergement {
 	
 
 	public Hebergement(String type, boolean disponibilite, double prix, double reduction, String lieux, String ville,
-			int codePostal, boolean menage, long numHebergement, String description, byte[] photo, String image,
+			int codePostal, String menage, long numHebergement, String description, byte[] photo, String image,
 			Voyage voyage) {
 		super();
 		this.type = type;
@@ -231,13 +231,13 @@ public class Hebergement {
 
 
 
-	public boolean isMenage() {
+	public String isMenage() {
 		return menage;
 	}
 
 
 
-	public void setMenage(boolean menage) {
+	public void setMenage(String menage) {
 		this.menage = menage;
 	}
 

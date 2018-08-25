@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<h1>Rechercher un pack par son nom</h1>
+<h1>Rechercher un pack par son id</h1>
 	<form:form cssClass="form-horizontal" method="POST"
 		action="soumettreRechercherPack" modelAttribute="pRecherche" enctype="multipart/form-data">
 
