@@ -22,6 +22,7 @@ public class LoisirDaoImpl implements ILoisirDao{
 	public void setSf(SessionFactory sf) {
 		this.sf = sf;
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Loisir> getAllLoisir() {
 		/** claire: Recuperer la session*/
@@ -32,6 +33,7 @@ public class LoisirDaoImpl implements ILoisirDao{
 		
 		/**claire: Query */
 		Query queryListe = s.createQuery(req);
+		
 		
 		List<Loisir> listeLoisir = queryListe.list();
 		

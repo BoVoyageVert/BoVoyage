@@ -139,10 +139,8 @@ public class DossierServiceImpl implements IDossierService {
 			MimeBodyPart mbp1 = new MimeBodyPart();
 			mbp1.setText("Cher(e) Client(e)" + dv.getClient().getNom() + " " + dv.getClient().getPrenom() + ";"
 					+ "\n\n Merci de votre confiance!" + "\n Vous trouverez ci-joint la facture de votre séjour"
-					+ "\n n° de dossier:" + dv.getNumDossier() 
-					+ "\n Dates du sejour:"
-					+ "\n Date d'arrivée: "+ v.getDateArrivee() 
-					+ "\n Date de départ: " + v.getDateDepart()
+					+ "\n n° de dossier:" + dv.getNumDossier() + "\n Dates du sejour:" + "\n Date d'arrivée: "
+					+ v.getDateArrivee() + "\n Date de départ: " + v.getDateDepart()
 					+ "\n\n\n Tout l'équipe d'Amandine, J-D, Steven et Claire espère vous revoir bientôt sur leur site!");
 
 			// ecrire le pdf dans outputStream
@@ -165,7 +163,7 @@ public class DossierServiceImpl implements IDossierService {
 			// on envoie le message
 			Transport.send(message);
 
-			System.out.println("Sent message successfully....");// verifier si
+			System.out.println("message envoyé! c'est ok!!");// verifier si
 																// ca a reussi
 
 		} catch (Exception e) {
@@ -216,22 +214,30 @@ public class DossierServiceImpl implements IDossierService {
 		document.add(paragraph1);
 
 		// // On créer un objet table dans lequel on intialise ça taille.
-		// PdfPTable table = new PdfPTable(3);
+		// PdfPTable table = new PdfPTable(5);
 		// // ajout des cellules entêtes
 		// Font f = new Font(FontFamily.HELVETICA, 15, Font.BOLD,
 		// GrayColor.BLACK);
-		// PdfPCell cell = new PdfPCell(new Phrase("Produit", f));
+		// PdfPCell cell = new PdfPCell(new Phrase("Voyage", f));
 		// cell.setBackgroundColor(GrayColor.LIGHT_GRAY);
 		// cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 		// table.addCell(cell);
-		// PdfPCell cell1 = new PdfPCell(new Phrase("Quantité", f));
+		// PdfPCell cell1 = new PdfPCell(new Phrase("Caution", f));
 		// cell1.setBackgroundColor(GrayColor.LIGHT_GRAY);
 		// cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
 		// table.addCell(cell1);
-		// PdfPCell cell2 = new PdfPCell(new Phrase("Prix", f));
+		// PdfPCell cell2 = new PdfPCell(new Phrase("Options", f));
 		// cell2.setBackgroundColor(GrayColor.LIGHT_GRAY);
 		// cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
 		// table.addCell(cell2);
+		// PdfPCell cell3 = new PdfPCell(new Phrase("Prix initial", f));
+		// cell3.setBackgroundColor(GrayColor.LIGHT_GRAY);
+		// cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
+		// table.addCell(cell3);
+		// PdfPCell cell4 = new PdfPCell(new Phrase("Reduction", f));
+		// cell4.setBackgroundColor(GrayColor.LIGHT_GRAY);
+		// cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
+		// table.addCell(cell4);
 
 		// // Creation du recapitulatif de la commande
 		// for (LigneCommande lc1 : listeLc) {
