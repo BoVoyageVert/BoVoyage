@@ -38,6 +38,7 @@
 			<th>Photo</th>
 			<th>Description</th>
 			<th>Prix</th>
+			<th>Voyage</th>
 		</tr>
 
 		<tr>
@@ -47,6 +48,7 @@
 				class="img-rounded" style="width: 200px; height: 200px"></td>
 			<td>${dFind.descriptionDesti}</td>
 			<td>${dFind.prixDesti}</td>
+			<td>${dFind.voyage.id}</td>
 		</tr>
 	</table>
 

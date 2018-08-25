@@ -52,6 +52,14 @@
 					placeholder="Prix" path="prixDesti" />
 			</div>
 		</div>
+		<div class="form-group">
+			<form:label for="inputPrix" cssClass="col-sm-2 control-label"
+				path="voyage.id">Voyage</form:label>
+			<div class="col-sm-10">
+				<form:input type="number" cssClass="form-control" id="inputPrix"
+					placeholder="Voyage" path="voyage.id" />
+			</div>
+		</div>
 
 		<button type="submit" class="btn btn-primary">Modifier</button>
 	</form:form>
