@@ -12,8 +12,8 @@
 </head>
 <body>
 
-<!-- Insertion du templateTest (navbar) -->
-<jsp:include page="${request.contextPath}/template/templateTest"></jsp:include>
+<!-- Insertion du templateAd (navbar) -->
+<jsp:include page="${request.contextPath}/template/templateAd"></jsp:include>
 
 	<form:form cssClass="form-horizontal" method="POST" action="soumettreSupprimerClient" modelAttribute="clSuppr">
 		

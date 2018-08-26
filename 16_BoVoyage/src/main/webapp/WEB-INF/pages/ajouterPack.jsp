@@ -13,6 +13,8 @@
 </head>
 <body>
 
+<!-- Insertion du templateAd (navbar) -->
+<jsp:include page="${request.contextPath}/template/templateAd"></jsp:include>
 
 <form:form cssClass="form-horizontal" method="POST"
 		action="soumettreAjoutPack" modelAttribute="pAjout" enctype="multipart/form-data">
@@ -105,12 +107,12 @@
 			</div>
 		</div>
 
-		<input type="file" name="file"/>
+		<input type="file" name="file" style="margin: auto" />
 			
 		
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-default">Ajouter</button>
+				<button type="submit" class="btn btn-success">Ajouter</button>
 			</div>
 		</div>
 	</form:form>

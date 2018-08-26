@@ -12,7 +12,7 @@
 </head>
 </head>
 <body>
-<!-- Insertion du templateTest (navbar) -->
+<!-- Insertion du templateAd (navbar) -->
 <jsp:include page="${request.contextPath}/template/templateAd"></jsp:include>
 
 <form:form class="form-horizontal" method="POST" action="soumettreAjouterLoisir" modelAttribute="lAjout" enctype="multipart/form-data">

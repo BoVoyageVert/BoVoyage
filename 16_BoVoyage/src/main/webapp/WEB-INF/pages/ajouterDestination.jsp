@@ -16,8 +16,8 @@
 <title>Ajout de destinations</title>
 </head>
 <body>
-<!-- Insertion du templateTest (navbar) -->
-<jsp:include page="${request.contextPath}/template/templateTest"></jsp:include>
+<!-- Insertion du templateAd (navbar) -->
+<jsp:include page="${request.contextPath}/template/templateAd"></jsp:include>
 
 	<form:form cssClass="form-horizontal" method="POST"
 		action="soumettreAjouterDestination" modelAttribute="dAjout"
@@ -30,7 +30,7 @@
 					placeholder="Nom" path="nomDestination" />
 			</div>
 			<label for="inputPhoto" class="col-sm-2 control-label">Photo</label>
-			<input type="file" name="file" />
+			<input type="file" name="file" style="margin: auto" />
 		</div>
 		<div class="form-group">
 			<form:label for="inputDescription" cssClass="col-sm-2 control-label"
@@ -58,7 +58,7 @@
 			</div>
 		</div>
 
-		<button type="submit" class="btn btn-primary">Ajouter</button>
+		<button type="submit" class="btn btn-success">Ajouter</button>
 	</form:form>
 
 

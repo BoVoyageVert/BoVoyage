@@ -13,8 +13,8 @@
 </head>
 <body>
 
-	<!-- Insertion du templateTest (navbar) -->
-	<jsp:include page="${request.contextPath}/template/templateTest"></jsp:include>
+<!-- Insertion du templateAd (navbar) -->
+<jsp:include page="${request.contextPath}/template/templateAd"></jsp:include>
 
 	<form:form cssClass="form-horizontal" method="POST"
 		action="soumettreAjoutHebergement" modelAttribute="hAjout"
@@ -100,7 +100,7 @@
 			</div>
 		</div>
 
-		<input type="file" name="file" />
+		<input type="file" name="file" style="margin: auto" />
 
 
 		<div class="form-group">

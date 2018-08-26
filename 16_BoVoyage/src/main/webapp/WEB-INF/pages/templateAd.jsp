@@ -64,10 +64,10 @@
 						<ul class="nav navbar-nav">
 							<li><a
 								href="${pageContext.request.contextPath}/admin/accueilAdmin"><i
-									class="fa fa-plane" aria-hidden="true"></i> Accueil admin</a></li>
-							<li><a
+									class="fa fa-home" aria-hidden="true"></i> Accueil admin</a></li>
+							<li><a style="margin-left:750px"
 								href="${pageContext.request.contextPath}/admin/seDeconnecter"><i
-									class="fa fa-bed" aria-hidden="true" style="margin-right: 10px"></i> Se deconnecter</a></li>
+									class="fa fa-times" aria-hidden="true" ></i> Se deconnecter</a></li>
 							
 						</ul>
 					</div>

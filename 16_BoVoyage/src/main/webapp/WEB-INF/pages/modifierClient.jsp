@@ -11,9 +11,8 @@
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 </head>
 <body>
-<!-- Insertion du templateTest (navbar) -->
-<jsp:include page="${request.contextPath}/template/templateTest"></jsp:include>
-
+<!-- Insertion du templateAd (navbar) -->
+<jsp:include page="${request.contextPath}/template/templateAd"></jsp:include>
 	<form:form enctype="multipart/form-data" cssClass="form-horizontal" method="POST" action="soumettreModifierClient" modelAttribute="clModif">
 		
 		<div class="form-group">
@@ -88,7 +87,7 @@
 		
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-default">Modifier</button>
+				<button type="submit" class="btn btn-success">Modifier</button>
 			</div>
 		</div>
 	

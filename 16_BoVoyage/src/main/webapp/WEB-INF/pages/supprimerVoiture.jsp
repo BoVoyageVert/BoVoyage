@@ -13,8 +13,8 @@
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 </head>
 <body>
-<!-- Insertion du templateTest (navbar) -->
-<jsp:include page="${request.contextPath}/template/templateTest"></jsp:include>
+<!-- Insertion du templateAd (navbar) -->
+<jsp:include page="${request.contextPath}/template/templateAd"></jsp:include>
 
 <form:form cssClass="form-horizontal" method="POST" action="soumettreSupVoiture" modelAttribute="voitSup">
 	
@@ -27,7 +27,7 @@
 	
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-default">Supprimer voiture</button>
+				<button type="submit" class="btn btn-success">Supprimer voiture</button>
 			</div>
 		</div>
 	</form:form>

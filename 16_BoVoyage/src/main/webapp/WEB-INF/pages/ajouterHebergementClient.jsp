@@ -17,6 +17,9 @@
 </head>
 <body>
 
+<!-- Insertion du templateTest (navbar) -->
+<jsp:include page="${request.contextPath}/template/templateTest"></jsp:include>
+
 <h1>Voici la liste des hebergements disponibles</h1>
 
 <table class="table table-bordered">

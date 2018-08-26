@@ -16,8 +16,8 @@
 <title>Modifier une assurance</title>
 </head>
 <body>
-<!-- Insertion du templateTest (navbar) -->
-<jsp:include page="${request.contextPath}/template/templateTest"></jsp:include>
+<!-- Insertion du templateAd (navbar) -->
+<jsp:include page="${request.contextPath}/template/templateAd"></jsp:include>
 
 	<form:form cssClass="form-horizontal" method="POST"
 		action="soumettreModifierAssurance" modelAttribute="aUpdate">
@@ -59,7 +59,7 @@
 			</div>
 		</div>
 
-		<button type="submit" class="btn btn-primary">Modifier</button>
+		<button type="submit" class="btn btn-success">Modifier</button>
 	</form:form>
 
 

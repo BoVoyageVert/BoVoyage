@@ -13,7 +13,8 @@
 	href="<c:url value="/resources/css/bootstrap.css"/>" />
 </head>
 <body>
-
+<!-- Insertion du templateAd (navbar) -->
+<jsp:include page="${request.contextPath}/template/templateAd"></jsp:include>
 
 	<form:form cssClass="form-horizontal" method="POST"
 		action="soumettreSupprimerHebergement" modelAttribute="hSupprimer">
@@ -28,7 +29,7 @@
 		
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-default">Supprimer</button>
+				<button type="submit" class="btn btn-success">Supprimer</button>
 			</div>
 		</div>
 	</form:form>

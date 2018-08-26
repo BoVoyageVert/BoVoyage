@@ -12,6 +12,8 @@
 	href="<c:url value="/resources/css/bootstrap.css"/>" />
 </head>
 <body>
+<!-- Insertion du templateAd (navbar) -->
+<jsp:include page="${request.contextPath}/template/templateAd"></jsp:include>
 
 <form:form cssClass="form-horizontal" method="POST"
 		action="soumettreModifierHebergement" modelAttribute="hModifier" enctype="multipart/form-data">
@@ -101,7 +103,7 @@
 			</div>
 		</div>
 		
-		<input type="file" name="file"/>
+		<input type="file" name="file" style="margin: auto" />
 		
 		
 
