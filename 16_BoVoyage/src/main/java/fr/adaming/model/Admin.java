@@ -1,11 +1,15 @@
 package fr.adaming.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /** 
@@ -28,20 +32,24 @@ public class Admin {
 	private String prenom;
 	private String identifiant;
 	private String motDePasse;
+	private boolean active;
+
 	
 //	/** Association
 //	 */
 //	@OneToMany(mappedBy="admin")
 //	Pack pack;
 //	
-//	@OneToMany(mappedBy="admin")
-//	Voyage voyage;
-//
-//	
-//	
 ////	@OneToMany(mappedBy="admin")
-////	DossierVoyage dossierVoyage;
-////	
+////	Voyage voyage;
+//
+//	@OneToMany(mappedBy="admin")
+//	private List<RoleSecurity> roleSecurity;
+//	
+//	@OneToOne
+//	@JoinColumn(name = "ad_do", referencedColumnName = "do_ad")
+//	DossierVoyage dossierVoyage;
+//	
 //	
 //	/** Constructeurs
 //	 */
@@ -51,7 +59,7 @@ public class Admin {
 //
 //
 //
-//	public Admin(int id, String nom, String prenom, String identifiant, String motDePasse, Pack pack, Voyage voyage) {
+//	public Admin(int id, String nom, String prenom, String identifiant, String motDePasse, Pack pack) {
 //		super();
 //		this.id = id;
 //		this.nom = nom;
@@ -59,22 +67,66 @@ public class Admin {
 //		this.identifiant = identifiant;
 //		this.motDePasse = motDePasse;
 //		this.pack = pack;
-//		this.voyage = voyage;
+//		
 //	}
 //
 //
 //
-//	public Admin(String nom, String prenom, String identifiant, String motDePasse, Pack pack, Voyage voyage) {
+//	public Admin(String nom, String prenom, String identifiant, String motDePasse, Pack pack) {
 //		super();
 //		this.nom = nom;
 //		this.prenom = prenom;
 //		this.identifiant = identifiant;
 //		this.motDePasse = motDePasse;
 //		this.pack = pack;
-//		this.voyage = voyage;
+//	
 //	}
 //
 //	
+//	
+//	
+//	public Admin(String nom, String prenom, String identifiant, String motDePasse, boolean active, Pack pack,
+//			DossierVoyage dossierVoyage) {
+//		super();
+//		this.nom = nom;
+//		this.prenom = prenom;
+//		this.identifiant = identifiant;
+//		this.motDePasse = motDePasse;
+//		this.active = active;
+//		this.pack = pack;
+//		this.dossierVoyage = dossierVoyage;
+//	}
+//
+//
+//
+//	public Admin(int id, String nom, String prenom, String identifiant, String motDePasse, boolean active, Pack pack,
+//			 DossierVoyage dossierVoyage) {
+//		super();
+//		this.id = id;
+//		this.nom = nom;
+//		this.prenom = prenom;
+//		this.identifiant = identifiant;
+//		this.motDePasse = motDePasse;
+//		this.active = active;
+//		this.pack = pack;
+//		
+//		this.dossierVoyage = dossierVoyage;
+//	}
+//
+//
+//
+//	public Admin(int id, String nom, String prenom, String identifiant, String motDePasse, boolean active) {
+//		super();
+//		this.id = id;
+//		this.nom = nom;
+//		this.prenom = prenom;
+//		this.identifiant = identifiant;
+//		this.motDePasse = motDePasse;
+//		this.active = active;
+//	}
+//
+//
+//
 //	/** Getters et Setters
 //	 */
 //	public int getId() {
@@ -149,20 +201,47 @@ public class Admin {
 //
 //
 //
-//	public Voyage getVoyage() {
-//		return voyage;
+//
+//	public boolean isActive() {
+//		return active;
 //	}
 //
 //
 //
-//	public void setVoyage(Voyage voyage) {
-//		this.voyage = voyage;
+//	public void setActive(boolean active) {
+//		this.active = active;
 //	}
-//	
-//	
 //
-//	
-//	
-//	
+//
+//
+//	public DossierVoyage getDossierVoyage() {
+//		return dossierVoyage;
+//	}
+//
+//
+//
+//	public void setDossierVoyage(DossierVoyage dossierVoyage) {
+//		this.dossierVoyage = dossierVoyage;
+//	}
+//
+//
+//
+//	public List<RoleSecurity> getRoleSecurity() {
+//		return roleSecurity;
+//	}
+//
+//
+//
+//	public void setRoleSecurity(List<RoleSecurity> roleSecurity) {
+//		this.roleSecurity = roleSecurity;
+//	}
+//
+
+
+
+
+	
+	
+	
 	
 }

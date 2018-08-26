@@ -68,7 +68,7 @@
 		
 		
 			<div class="form-group">
-			<form:label cssClass="col-sm-2 control-label" path="menage">Ménage : </form:label>
+			<form:label cssClass="col-sm-2 control-label" path="menage">Menage : </form:label>
 			<div class="col-sm-8">
 				<form:select cssClass="form-control"
 					placeholder="menage" path="menage">

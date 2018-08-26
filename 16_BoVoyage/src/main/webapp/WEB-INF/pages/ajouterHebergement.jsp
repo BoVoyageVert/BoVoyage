@@ -74,11 +74,14 @@
 			</div>
 		</div>
 		
-			<div class="form-group">
-			<form:label cssClass="col-sm-2 control-label" path="menage">Ménage : </form:label>
+				<div class="form-group">
+			<form:label cssClass="col-sm-2 control-label" path="menage">Menage : </form:label>
 			<div class="col-sm-8">
-				<form:input cssClass="form-control"
-					placeholder="menage" path="menage" />
+				<form:select cssClass="form-control"
+					placeholder="menage" path="menage">
+				<option>Oui</option>
+ 				 <option>Non</option>
+				</form:select>
 			</div>
 		</div>
 		

@@ -294,6 +294,11 @@ public class Hebergement {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+
+	public String getMenage() {
+		return menage;
+	}
 	
 	
 
