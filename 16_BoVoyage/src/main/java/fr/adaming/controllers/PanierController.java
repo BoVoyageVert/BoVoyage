@@ -91,7 +91,7 @@ public class PanierController {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(formatDate, false));
 	}
 	
-	
+	 
 	/** steven : recup de la liste des lignes de commande */
 		@RequestMapping(value="/panier", method=RequestMethod.GET)
 		public String afficherPanier(HttpServletRequest req, Model modele){
