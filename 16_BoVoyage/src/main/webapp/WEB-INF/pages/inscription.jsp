@@ -72,6 +72,13 @@
 		</div>
 		
 		<div class="form-group">
+			<form:label cssClass="col-sm-2 control-label" path="mail">Mail</form:label>
+			<div class="col-sm-10">
+				<form:input type="text" cssClass="form-control" placeholder="Entrez votre adresse mail" path="mail" />
+			</div>
+		</div>
+		
+		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="mdp">Mot de passe</form:label>
 			<div class="col-sm-10">
 				<form:input type="password" cssClass="form-control" placeholder="Entrez votre mot de passe" path="mdp" />

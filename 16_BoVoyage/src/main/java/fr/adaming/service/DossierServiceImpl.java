@@ -36,8 +36,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.adaming.dao.IDossierDao;
+import fr.adaming.dao.ILigneCommandeDao;
 import fr.adaming.model.Client;
 import fr.adaming.model.DossierVoyage;
+import fr.adaming.model.LigneCommande;
 import fr.adaming.model.Voyage;
 
 @Service
@@ -51,6 +53,14 @@ public class DossierServiceImpl implements IDossierService {
 	@Autowired
 	public void setDossierDao(IDossierDao dossierDao) {
 		this.dossierDao = dossierDao;
+	}
+	
+	//association avec ligne de commande + setter
+	@Autowired
+	private ILigneCommandeDao lcDao;
+	
+	public void setLcDao(ILigneCommandeDao lcDao) {
+		this.lcDao = lcDao;
 	}
 
 	@Override
@@ -145,7 +155,8 @@ public class DossierServiceImpl implements IDossierService {
 
 			// ecrire le pdf dans outputStream
 			outputStream = new ByteArrayOutputStream();
-			writePdf(outputStream, dv);
+			LigneCommande lc = new LigneCommande();
+			writePdf(outputStream, dv, lc);
 			byte[] bytes = outputStream.toByteArray();
 
 			// construire le pdf
@@ -174,7 +185,8 @@ public class DossierServiceImpl implements IDossierService {
 
 	// ecrire le pdf (using iText API)
 
-	public void writePdf(ByteArrayOutputStream outputStream, DossierVoyage dv) throws Exception {
+	@SuppressWarnings("unchecked")
+	public void writePdf(ByteArrayOutputStream outputStream, DossierVoyage dv, LigneCommande lc) throws Exception {
 		Document document = new Document();
 		PdfWriter.getInstance(document, outputStream);
 
@@ -188,15 +200,14 @@ public class DossierServiceImpl implements IDossierService {
 		document.addAuthor("Steven, Amandine, J-D et Claire");
 		document.addCreator("Steven, Amandine, J-D et Claire");
 
-		// récup de la liste des lignes commandes associées à la commande
-		// List<LigneCommande> listeLc =
-		// lcDao.getListeLigneCommandeByComId(com);
+		// récup de la liste des lignes commandes associées à la reservation
+		 List<LigneCommande> liste = (List<LigneCommande>) lcDao.getLigneCommandeById(lc);
 
 		// calcul du prix total =
-		// Double d = 0.0;
-		// for (LigneCommande lc : listeLc) {
-		// d += lc.getPrix();
-		// }
+		 Double d = 0.0;
+		 for (LigneCommande lc1 : liste) {
+		 d += lc1.getPrixNormal();
+		 }
 
 		// composition du pdf
 
@@ -213,51 +224,52 @@ public class DossierServiceImpl implements IDossierService {
 				+ dv.getStatut() + "\n\n voici le recapitulatif de votre facture:\n\n"));
 		document.add(paragraph1);
 
-		// // On créer un objet table dans lequel on intialise ça taille.
-		// PdfPTable table = new PdfPTable(5);
-		// // ajout des cellules entêtes
-		// Font f = new Font(FontFamily.HELVETICA, 15, Font.BOLD,
-		// GrayColor.BLACK);
-		// PdfPCell cell = new PdfPCell(new Phrase("Voyage", f));
-		// cell.setBackgroundColor(GrayColor.LIGHT_GRAY);
-		// cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-		// table.addCell(cell);
-		// PdfPCell cell1 = new PdfPCell(new Phrase("Caution", f));
-		// cell1.setBackgroundColor(GrayColor.LIGHT_GRAY);
-		// cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
-		// table.addCell(cell1);
-		// PdfPCell cell2 = new PdfPCell(new Phrase("Options", f));
-		// cell2.setBackgroundColor(GrayColor.LIGHT_GRAY);
-		// cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
-		// table.addCell(cell2);
-		// PdfPCell cell3 = new PdfPCell(new Phrase("Prix initial", f));
-		// cell3.setBackgroundColor(GrayColor.LIGHT_GRAY);
-		// cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
-		// table.addCell(cell3);
-		// PdfPCell cell4 = new PdfPCell(new Phrase("Reduction", f));
-		// cell4.setBackgroundColor(GrayColor.LIGHT_GRAY);
-		// cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
-		// table.addCell(cell4);
+		 // On créer un objet table dans lequel on intialise ça taille.
+		 PdfPTable table = new PdfPTable(5);
+		 // ajout des cellules entêtes
+		 Font f = new Font(FontFamily.HELVETICA, 15, Font.BOLD,
+		 GrayColor.BLACK);
+		 PdfPCell cell = new PdfPCell(new Phrase("type de prestation", f));
+		 cell.setBackgroundColor(GrayColor.LIGHT_GRAY);
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 table.addCell(cell);
+		 PdfPCell cell1 = new PdfPCell(new Phrase("Designation", f));
+		 cell1.setBackgroundColor(GrayColor.LIGHT_GRAY);
+		 cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 table.addCell(cell1);
+		 PdfPCell cell2 = new PdfPCell(new Phrase("Prix normal", f));
+		 cell2.setBackgroundColor(GrayColor.LIGHT_GRAY);
+		 cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 table.addCell(cell2);
+		 PdfPCell cell3 = new PdfPCell(new Phrase("Promotion", f));
+		 cell3.setBackgroundColor(GrayColor.LIGHT_GRAY);
+		 cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 table.addCell(cell3);
+		 PdfPCell cell4 = new PdfPCell(new Phrase("Quantité", f));
+		 cell4.setBackgroundColor(GrayColor.LIGHT_GRAY);
+		 cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 table.addCell(cell4);
 
-		// // Creation du recapitulatif de la commande
-		// for (LigneCommande lc1 : listeLc) {
-		//
-		// // on ajoute les cellules
-		// table.addCell(prDao.rechProduit(lc1.getProduit()).getDesignation());
-		// table.addCell("x " + lc1.getQuantite());
-		// table.addCell(prDao.rechProduit(lc1.getProduit()).getPrix() + "€ x "
-		// + lc1.getQuantite());
-		//
-		// }
-		// document.add(table);
+		 //Creation du recapitulatif de la commande
+		 for (LigneCommande lc1 : liste ) {
+		
+		 // on ajoute les cellules
+		 table.addCell(lc1.getTypePrestation());
+		 table.addCell(lc1.getDesignation());
+		 table.addCell(lc1.getPrixNormal()+" € ");
+		 table.addCell(lc1.getPrixPromotion() +"€ ");
+		 table.addCell(lc1.getQuantite()+"");
+		
+		 }
+		 document.add(table);
 
 		Paragraph paragraph2 = new Paragraph();
 		paragraph2.add(new Chunk("______________________________________________________________________________"));
 		document.add(paragraph2);
 
-		// Paragraph paragraph3 = new Paragraph();
-		// paragraph3.add(new Chunk("Prix total: " + d + " €"));
-		// document.add(paragraph3);
+		Paragraph paragraph3 = new Paragraph();
+		 paragraph3.add(new Chunk("Prix total: " + d + " €"));
+		 document.add(paragraph3);
 
 		Paragraph paragraph4 = new Paragraph();
 		paragraph4.add(new Chunk(
