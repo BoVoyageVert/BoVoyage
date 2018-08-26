@@ -61,7 +61,8 @@
 			method="POST" action="soumettrePanier" modelAttribute="clInscrip">
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-default">Commander</button>
+					<button type="submit" class="btn btn-default"
+						style="background-color: #90EE90;">Commander</button>
 				</div>
 			</div>
 		</form:form>

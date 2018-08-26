@@ -63,5 +63,16 @@
 		</c:forEach>
 	</div>
 
+	<!-- FOOTER -->
+	<footer>
+		<p class="pull-right">
+			<a href="#">Revenir en haut de page</a>
+		</p>
+		<p>
+			&copy; 2018 BoVoyage, Inc. &middot; <a href="#">Privacy</a> &middot;
+			<a href="#">Terms</a>
+		</p>
+	</footer>
+
 </body>
 </html>

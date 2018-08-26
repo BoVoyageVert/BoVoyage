@@ -84,8 +84,8 @@
 								href="${pageContext.request.contextPath}/pack/listePack"><i
 									class="fa fa-suitcase" aria-hidden="true"></i> Nos Packs</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}/login/client"><i
-									class="fa fa-user-o" aria-hidden="true"></i> Mon compte</a></li>
+								href="${pageContext.request.contextPath}/admin/accueilAdmin"><i
+									class="fa fa-user-o" aria-hidden="true"></i> Portail Admin</a></li>
 						</ul>
 					</div>
 				</div>
