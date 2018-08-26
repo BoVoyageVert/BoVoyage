@@ -79,7 +79,7 @@
 									class="fa fa-suitcase" aria-hidden="true"></i> Nos Packs</a></li>
 							<li><a
 								href="${pageContext.request.contextPath}/admin/accueilAdmin"><i
-									class="fa fa-user-o" aria-hidden="true"></i>Portail admin</a></li>
+									class="fa fa-user-o" aria-hidden="true"></i> Portail admin</a></li>
 						</ul>
 					</div>
 				</div>
