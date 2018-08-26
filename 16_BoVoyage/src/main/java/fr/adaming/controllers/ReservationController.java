@@ -23,13 +23,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import fr.adaming.model.Hebergement;
 import fr.adaming.model.LigneCommande;
 import fr.adaming.model.Loisir;
+import fr.adaming.model.Voiture;
 import fr.adaming.model.Voyage;
 import fr.adaming.service.IHebergementService;
 import fr.adaming.service.ILoisirService;
+import fr.adaming.service.IVoitureService;
 
 @Controller
 @RequestMapping("/reservation")
 public class ReservationController {
+	
+	
 	
 	/**
 	 * la ligne de commande
@@ -46,6 +50,12 @@ public class ReservationController {
 	 * Transfo de l'association
 	 */
 	@Autowired
+	IVoitureService vService;
+	public void setvService(IVoitureService vService) {
+		this.vService = vService;
+	}
+
+	@Autowired
 	IHebergementService hService;
 	public IHebergementService gethService() {
 		return hService;
@@ -60,23 +70,23 @@ public class ReservationController {
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder){
-		// web databinder sert à lier les params de la req aux objets java
+		// web databinder sert ï¿½ lier les params de la req aux objets java
 		DateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
 		formatDate.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(formatDate, false));
 	}
 	
-	/** steven : recup du formulaire de la réservation du voyage */
+	/** steven : recup du formulaire de la rï¿½servation du voyage */
 	@RequestMapping(value = "/reserverVoyage", method = RequestMethod.GET)
 	public String afficherFormAjouterClient(Model modele) {
 		modele.addAttribute("vReserv", new Voyage());
 		return "reserverVoyage";
 	}
 	
-	/** steven : soumission de la réservation du voyage */
+	/** steven : soumission de la rï¿½servation du voyage */
 	@RequestMapping(value = "/soumettreReserverVoyage", method = RequestMethod.POST)
 	public String soumettreReserverVoyage(@ModelAttribute("vReserv") Voyage vIn, RedirectAttributes rda, HttpServletRequest req) {
-	/** mettre le voyage réservé dans la session*/
+	/** mettre le voyage rï¿½servï¿½ dans la session*/
 		if (vIn != null) {
 		req.getSession().setAttribute("voyage", vIn);
 			return "redirect:reserverHebergement";
@@ -86,7 +96,7 @@ public class ReservationController {
 		}
 	}
 	
-	/** steven : recup du formulaire de la réservation de l'hébergement */
+	/** steven : recup du formulaire de la rï¿½servation de l'hï¿½bergement */
 	@RequestMapping(value = "/reserverHebergement", method = RequestMethod.GET)
 	public String afficherFormReserverHebergement(Model modele) {
 		modele.addAttribute("hReserv", new Hebergement());
@@ -95,14 +105,14 @@ public class ReservationController {
 		return "reserverHebergement";
 	}
 	
-	/** steven : soumission de la réservation de l'hébergement */
+	/** steven : soumission de la rï¿½servation de l'hï¿½bergement */
 	@RequestMapping(value = "/soumettreReserverHebergement", method = RequestMethod.POST)
 	public String soumettreReserverHebergement(@ModelAttribute("hReserv") Hebergement hIn, @ModelAttribute("lcHeberg") LigneCommande lcIn, RedirectAttributes rda, HttpServletRequest req) {
 	
 		if (hIn != null && lcIn != null) { 
 			
 			/**
-			 * récupérer l'hébergement à partir du num
+			 * rï¿½cupï¿½rer l'hï¿½bergement ï¿½ partir du num
 			 */
 			hIn = hService.getHebergementByNum(hIn);
 			
@@ -110,7 +120,7 @@ public class ReservationController {
 			 * remplir la ligne de commande
 			 */
 			
-			lcIn.setTypePrestation("Hébergement");
+			lcIn.setTypePrestation("Hï¿½bergement");
 			lcIn.setDesignation(hService.getHebergementById(hIn).getType());
 			
 			Voyage voy = (Voyage) req.getSession().getAttribute("voyage");
@@ -119,7 +129,7 @@ public class ReservationController {
 			int jours1=(int) (date1.getTime()/(1000*60*60*24));
 			int jours2=(int) (date2.getTime()/(1000*60*60*24));
 			int jours = jours2-jours1;
-			System.out.println("la différence est : "+jours);
+			System.out.println("la diffï¿½rence est : "+jours);
 			
 			lcIn.setQuantite(jours);
 			lcIn.setPrixNormal(hService.getHebergementById(hIn).getPrix()*jours);
@@ -139,12 +149,12 @@ public class ReservationController {
 			
 			return "redirect:reserverLoisir";
 		} else {
-			rda.addAttribute("msg", "Vous devez reserver un hébergement !");
+			rda.addAttribute("msg", "Vous devez reserver un hï¿½bergement !");
 			return "redirect:reserverHebergement";
 		}
 	}
 	
-	/** steven : recup du formulaire de la réservation des loisirs */
+	/** steven : recup du formulaire de la rï¿½servation des loisirs */
 	@RequestMapping(value = "/reserverLoisir", method = RequestMethod.GET)
 	public String afficherFormReserverLoisir(Model modele) {
 		modele.addAttribute("lReserv", new Loisir());
@@ -153,14 +163,14 @@ public class ReservationController {
 		return "reserverLoisir";
 	}
 	
-	/** steven : soumission de la réservation du loisir */
+	/** steven : soumission de la rï¿½servation du loisir */
 	@RequestMapping(value = "/soumettreReserverLoisir", method = RequestMethod.POST)
 	public String soumettreReserverLoisir(@ModelAttribute("lReserv") Loisir lIn, @ModelAttribute("lcLoisir") LigneCommande lcIn, RedirectAttributes rda, HttpServletRequest req) {
 		if (lIn != null) { 
-			// petite magouille qui passe inaperçue
+			// petite magouille qui passe inaperï¿½ue
 			lcIn.setQuantite(lIn.getIdLoisir());
 			/**
-			 * récupérer le loisir à partir du nom
+			 * rï¿½cupï¿½rer le loisir ï¿½ partir du nom
 			 */
 			lIn = lService.getLoisirByNom(lIn);
 			
@@ -187,7 +197,58 @@ public class ReservationController {
 			req.getSession().setAttribute("panier", liste);
 		}
 		return "redirect:reserverLoisir";
-	
-		
 	}
+	
+	
+	/** steven : recup du formulaire de la rï¿½servation de la voiture */
+	@RequestMapping(value = "/reserverVoiture", method = RequestMethod.GET)
+	public String afficherFormReserverVoiture(Model modele) {
+		modele.addAttribute("vReserv", new Voiture());
+		modele.addAttribute("allVoiture", vService.getAllVoitures());
+		modele.addAttribute("lcVoiture", new LigneCommande());
+		return "reserverVoiture";
+	}
+	
+	/** steven : soumission de la rï¿½servation de la voiture */
+	@RequestMapping(value = "/soumettreReserverVoiture", method = RequestMethod.POST)
+	public String soumettreReserverVoiture(@ModelAttribute("vReserv") Voiture vIn, @ModelAttribute("lcVoiture") LigneCommande lcIn, RedirectAttributes rda, HttpServletRequest req) {
+		if (vIn != null) { 
+			// petite magouille qui passe inaperï¿½ue
+			lcIn.setQuantite(1);
+			/**
+			 * rï¿½cupï¿½rer le loisir ï¿½ partir du nom
+			 */
+			vIn = vService.getVoitureById(vIn);
+			
+			/**
+			 * remplir la ligne de commande
+			 */
+			// ######################################################################
+			lcIn.setTypePrestation("Voiture");
+			lcIn.setDesignation(vService.getVoitureById(lIn).getNom());
+			
+			lcIn.setPrixNormal(lService.getLoisirById(lIn).getPrix()*lcIn.getQuantite());
+			lcIn.setPrixPromotion(lService.getLoisirById(lIn).getReduction()*lcIn.getQuantite());
+			
+			/**
+			 * rajouter la ligne de commande au panier
+			 */
+			List<LigneCommande> liste = (List<LigneCommande>) req.getSession().getAttribute("panier");
+			if(liste != null){
+				liste.add(lcIn);
+			}else{
+				liste = new ArrayList<LigneCommande>();
+				liste.add(lcIn);
+			}
+			req.getSession().setAttribute("panier", liste);
+		}
+		return "redirect:reserverLoisir";
+	}
+	
+	
+	
+	
+	
+	
+	
 }

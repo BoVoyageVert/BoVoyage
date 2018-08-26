@@ -2,6 +2,7 @@ package fr.adaming.dao;
 
 import java.util.List;
 
+import fr.adaming.model.DossierVoyage;
 import fr.adaming.model.LigneCommande;
 
 public interface ILigneCommandeDao {
@@ -10,6 +11,8 @@ public interface ILigneCommandeDao {
 	public int deleteLigneCommande(LigneCommande lc);
 	public LigneCommande getLigneCommandeById(LigneCommande lc);
 	public List<LigneCommande> getAllLigneCommande();
+	
+	public List<LigneCommande> getLigneCommandeByDossier(DossierVoyage dossier);
 }
 
 

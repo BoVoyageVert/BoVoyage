@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.ILigneCommandeDao;
+import fr.adaming.model.DossierVoyage;
 import fr.adaming.model.LigneCommande;
 
 
@@ -48,6 +49,12 @@ public class LigneCommandeServiceImpl implements ILigneCommandeService{
 	public List<LigneCommande> getAllLigneCommande() {
 		// TODO Auto-generated method stub
 		return lcDao.getAllLigneCommande();
+	}
+
+	@Override
+	public List<LigneCommande> getLigneCommandeByDossier(DossierVoyage dossier) {
+		// TODO Auto-generated method stub
+		return lcDao.getLigneCommandeByDossier(dossier);
 	}
 
 }

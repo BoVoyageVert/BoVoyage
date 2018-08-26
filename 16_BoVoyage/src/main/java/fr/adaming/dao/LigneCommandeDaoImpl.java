@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import fr.adaming.model.DossierVoyage;
 import fr.adaming.model.LigneCommande;
 import fr.adaming.model.Voyage;
 
@@ -69,6 +70,17 @@ public class LigneCommandeDaoImpl implements ILigneCommandeDao {
 		
 
 		return listeLigneCommande;
+	}
+
+	@Override
+	public List<LigneCommande> getLigneCommandeByDossier(DossierVoyage dossier) {
+		Session s = sf.getCurrentSession();
+		String req = "FROM LigneCommande lc WHERE lc.dossier.idDossier=:pId";
+		org.hibernate.Query queryList = s.createQuery(req);
+		queryList.setParameter("pId", dossier.getIdDossier());
+		
+		return queryList.list();
+		
 	}
 
 }
