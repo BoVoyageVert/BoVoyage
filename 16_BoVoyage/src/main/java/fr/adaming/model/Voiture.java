@@ -28,10 +28,7 @@ public class Voiture {
 	@Transient
 	private String image;
 	
-	//Association avec voyage
-	@OneToOne
-	@JoinColumn(name="v_id", referencedColumnName="id_v")
-	private Voyage voyage;
+
 
 
 	
@@ -180,20 +177,6 @@ public class Voiture {
 	}
 
 
-	/**
-	 * @return the voyage
-	 */
-	public Voyage getVoyage() {
-		return voyage;
-	}
-
-
-	/**
-	 * @param voyage the voyage to set
-	 */
-	public void setVoyage(Voyage voyage) {
-		this.voyage = voyage;
-	}
 
 
 	

@@ -35,9 +35,6 @@ public class VoitureDaoImpl implements IVoitureDao {
 
 		List<Voiture> listeVoiture = queryListe.list();
 
-		for (Voiture voit : listeVoiture) {
-			voit.setImage("data:image/png);base64," + Base64.encodeBase64String(voit.getPhoto()));
-		}
 
 		return listeVoiture;
 
