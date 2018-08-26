@@ -26,6 +26,47 @@
 			et les autorisations suprotées grace à l'attribut access -->
 		<security:intercept-url pattern="/admin/**"
 			access="ROLE_ADMIN" />
+				<security:intercept-url pattern="/hebergement/ajouterHebergement"
+			access="ROLE_ADMIN" />
+			<security:intercept-url pattern="/hebergement/modifierHebergement"
+			access="ROLE_ADMIN" />
+			<security:intercept-url pattern="/hebergement/supprimerHebergement"
+			access="ROLE_ADMIN" />
+				<security:intercept-url pattern="/pack/ajouterPack"
+			access="ROLE_ADMIN" />
+			<security:intercept-url pattern="/pack/modifierPack"
+			access="ROLE_ADMIN" />
+			<security:intercept-url pattern="/pack/supprimerPack"
+			access="ROLE_ADMIN" />
+			<security:intercept-url pattern="/destination/ajouterDestination"
+			access="ROLE_ADMIN" />
+			<security:intercept-url pattern="/destination/modifierDestination"
+			access="ROLE_ADMIN" />
+			<security:intercept-url pattern="/destination/supprimerDestination"
+			access="ROLE_ADMIN" />
+			
+			<security:intercept-url pattern="/loisir/ajouterLoisir"
+			access="ROLE_ADMIN" />
+			<security:intercept-url pattern="/loisir/modifierLoisir"
+			access="ROLE_ADMIN" />
+			<security:intercept-url pattern="/loisir/supprimerLoisir"
+			
+			access="ROLE_ADMIN" />
+			<security:intercept-url pattern="/voiture/ajouterVoiture"
+			access="ROLE_ADMIN" />
+			<security:intercept-url pattern="/voiture/modifierVoiture"
+			access="ROLE_ADMIN" />
+			<security:intercept-url pattern="/voiture/supprimerVoiture"
+			access="ROLE_ADMIN" />
+			
+			<security:intercept-url pattern="/assurance/ajouterAssurance"
+			access="ROLE_ADMIN" />
+			<security:intercept-url pattern="/assurance/modifierAssurance"
+			access="ROLE_ADMIN" />
+			<security:intercept-url pattern="/assurance/supprimerAssurance"
+			access="ROLE_ADMIN" />
+			
+			
 
 		<!-- Utiliser d'un formulaire pour la connexion -->
 		<!-- <security:form-login login-page="/admin/loginPageAdmin"
@@ -37,7 +78,7 @@
 
 		<!-- La balise qui sert pour la deconnexion -->
 		<security:logout logout-success-url="/admin/logout"
-			logout-url="/accueilClient" />
+			logout-url="/seDeconnecter" />
 
 
 
