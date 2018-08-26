@@ -51,13 +51,7 @@
 			</div>
 		</div>
 
-		<div class="form-group">
-			<form:label cssClass="col-sm-2 control-label" path="voyage.id">id voyage:</form:label>
-			<div class="col-sm-5">
-				<form:input cssClass="form-control" placeholder="id voyage"
-					path="voyage.id" />
-			</div>
-		</div>
+
 
 		<input type="file" name="file" style="margin: auto" />
 
