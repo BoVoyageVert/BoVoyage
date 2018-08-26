@@ -21,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
 import fr.adaming.model.Hebergement;
 import fr.adaming.model.Pack;
 import fr.adaming.model.Voyage;
@@ -61,24 +60,23 @@ public class HebergementController {
 	}
 
 	private FileUpload file;
-	
-	
+
 	/**
 	 * Amandine : Methode pour recuperer les images et envoyer à la page jsp
 	 */
-	@RequestMapping(value="/getImage", method=RequestMethod.GET, produces=MediaType.IMAGE_JPEG_VALUE)
+	@RequestMapping(value = "/getImage", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
-	public byte [] recupImage(@RequestParam("pId") int id) throws IOException{
-		Hebergement hebergementImage= new Hebergement();
+	public byte[] recupImage(@RequestParam("pId") int id) throws IOException {
+		Hebergement hebergementImage = new Hebergement();
 		hebergementImage.setId(id);
-		Hebergement hebergement=hebergementService.getHebergementById(hebergementImage);
-		if(hebergement.getPhoto()==null){
-			return new byte [0];
-		}else{
+		Hebergement hebergement = hebergementService.getHebergementById(hebergementImage);
+		if (hebergement.getPhoto() == null) {
+			return new byte[0];
+		} else {
 			return IOUtils.toByteArray(new ByteArrayInputStream(hebergement.getPhoto()));
 		}
 	}
-	
+
 	/**
 	 * Amandine: Méthode recupper la liste
 	 */
@@ -87,6 +85,14 @@ public class HebergementController {
 		// recup liste de Service
 		List<Hebergement> listeHebergement = hebergementService.getAllHebergement();
 		return new ModelAndView("listeHebergement", "allHebergement", listeHebergement);
+	}
+
+	/**
+	 * jd: Afficher la carte
+	 */
+	@RequestMapping(value = "/localisation", method = RequestMethod.GET)
+	public ModelAndView afficherCarteHebergement() {
+		return new ModelAndView("localisation");
 	}
 
 	/**
@@ -100,13 +106,12 @@ public class HebergementController {
 
 	@RequestMapping(value = "/soumettreAjoutHebergement", method = RequestMethod.POST)
 	public String soumettreAjouterHebergement(@ModelAttribute("hAjout") Hebergement hIn, Voyage vIn,
-			RedirectAttributes rda, MultipartFile file) throws IOException{
-		if(file!=null){
-			//transformation de l'image en tableau de byte
+			RedirectAttributes rda, MultipartFile file) throws IOException {
+		if (file != null) {
+			// transformation de l'image en tableau de byte
 			hIn.setPhoto(file.getBytes());
 		}
-				
-		
+
 		Hebergement verif = hebergementService.addHebergement(hIn, vIn);
 		if (verif != null) {
 			return "redirect:listeHebergement";
@@ -115,8 +120,7 @@ public class HebergementController {
 			return "redirect:ajouterHebergement";
 		}
 	}
-	
-	
+
 	/**
 	 * Amandine : Méthode ajouter un hebergement
 	 */
@@ -128,13 +132,12 @@ public class HebergementController {
 
 	@RequestMapping(value = "/soumettreAjoutHebergementClient", method = RequestMethod.POST)
 	public String soumettreAjouterHebergementClient(@ModelAttribute("hcAjout") Hebergement hIn, Voyage vIn,
-			RedirectAttributes rda, MultipartFile file) throws IOException{
-		if(file!=null){
-			//transformation de l'image en tableau de byte
+			RedirectAttributes rda, MultipartFile file) throws IOException {
+		if (file != null) {
+			// transformation de l'image en tableau de byte
 			hIn.setPhoto(file.getBytes());
 		}
-				
-		
+
 		Hebergement verif = hebergementService.addHebergement(hIn, vIn);
 		if (verif != null) {
 			return "redirect:listeHebergement";
@@ -143,10 +146,7 @@ public class HebergementController {
 			return "redirect:ajouterHebergementClient";
 		}
 	}
-	
-	
 
-	
 	/**
 	 * Amandine: Méthode modifier un hebergement
 	 */
@@ -154,17 +154,17 @@ public class HebergementController {
 	public String afficherFormModifierHebergement(Model model) {
 		model.addAttribute("hModifier", new Hebergement());
 		return "modifierHebergement";
-	
-}
+
+	}
 
 	@RequestMapping(value = "/soumettreModifierHebergement", method = RequestMethod.POST)
-	public String soumettreModifierHebergement(@ModelAttribute("hModifier") Hebergement hIn,
-			RedirectAttributes rda, MultipartFile file) throws IOException {
-		if(file!=null){
-			//transformation de l'image en tableau de byte
+	public String soumettreModifierHebergement(@ModelAttribute("hModifier") Hebergement hIn, RedirectAttributes rda,
+			MultipartFile file) throws IOException {
+		if (file != null) {
+			// transformation de l'image en tableau de byte
 			hIn.setPhoto(file.getBytes());
 		}
-		
+
 		int verif = hebergementService.updateHebergement(hIn);
 		if (verif != 0) {
 			return "redirect:listeHebergement";
@@ -173,7 +173,7 @@ public class HebergementController {
 			return "redirect:modifierHebergement";
 		}
 	}
-	
+
 	/**
 	 * Amandine : Méthode rechercher un hebergement
 	 */
@@ -183,13 +183,14 @@ public class HebergementController {
 	}
 
 	@RequestMapping(value = "/soumettreRechercheHebergementU", method = RequestMethod.POST)
-	public String soumettreRechFormHebergementById(ModelMap modele, RedirectAttributes rda, @ModelAttribute("hRech") Hebergement hIn, MultipartFile file) throws IOException {
-		
-		if(file!=null){
-			//transformation de l'image en tableau de byte
+	public String soumettreRechFormHebergementById(ModelMap modele, RedirectAttributes rda,
+			@ModelAttribute("hRech") Hebergement hIn, MultipartFile file) throws IOException {
+
+		if (file != null) {
+			// transformation de l'image en tableau de byte
 			hIn.setPhoto(file.getBytes());
 		}
-		
+
 		Hebergement verif = hebergementService.getHebergementById(hIn);
 		if (verif != null) {
 			modele.addAttribute("hRecherche", verif);
@@ -199,9 +200,7 @@ public class HebergementController {
 			return "redirect:rechercherHebergement";
 		}
 	}
-	
 
-	
 	/**
 	 * Méthode supprimer un hebergement
 	 */
@@ -210,15 +209,16 @@ public class HebergementController {
 		model.addAttribute("hSupprimer", new Hebergement());
 		return "supprimerHebergement";
 	}
-	@RequestMapping (value="/soumettreSupprimerHebergement", method=RequestMethod.POST)
-	public String soumettreSupprimerHebergement(@ModelAttribute("hSupprimer") Hebergement hIn, RedirectAttributes rda){
-		int verif = hebergementService.deleteHebergement(hIn);
-		if (verif != 0){
-			return "redirect:listeHebergement";
-		}else{
-			rda.addAttribute("msg","La suppression de l'hébergement a échoué !");
-			return "redirect:supprimerHebergement";}
-		}			
 
-	
+	@RequestMapping(value = "/soumettreSupprimerHebergement", method = RequestMethod.POST)
+	public String soumettreSupprimerHebergement(@ModelAttribute("hSupprimer") Hebergement hIn, RedirectAttributes rda) {
+		int verif = hebergementService.deleteHebergement(hIn);
+		if (verif != 0) {
+			return "redirect:listeHebergement";
+		} else {
+			rda.addAttribute("msg", "La suppression de l'hébergement a échoué !");
+			return "redirect:supprimerHebergement";
+		}
+	}
+
 }

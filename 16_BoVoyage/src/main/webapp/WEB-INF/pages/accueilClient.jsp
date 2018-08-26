@@ -256,8 +256,8 @@
 			src="https://www.youtube.com/embed/iCc5eqqF2mE" frameborder="0"
 			allow="autoplay; encrypted-media" allowfullscreen="true"></iframe>
 		<p style="text-align: inherit;">
-		<h2 style="color: #90EE90">Marre de cette situtation ? Marmotte
-			Vacances est fait pour vous !</h2>
+		<h2 style="color: #90EE90">Marre de cette situtation ? Avec
+			Marmotte Vacances, découvrez la montagne l'été !</h2>
 		<br /> <br /> <br />
 
 
