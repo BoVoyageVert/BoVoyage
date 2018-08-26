@@ -1,5 +1,6 @@
 package fr.adaming.controllers;
 
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -220,5 +222,58 @@ public class HebergementController {
 			return "redirect:supprimerHebergement";
 		}
 	}
+	
+	
+	@RequestMapping(value = "/modifLinkHebergement", method = RequestMethod.GET)
+	public String modifLienHebergement(Model modele, @RequestParam("pId_h") int id) {
+		Hebergement hIn = new Hebergement();
+		hIn.setId(id);
+
+		Hebergement hOut = hebergementService.getHebergementById(hIn);
+
+		modele.addAttribute("hModifHebergement", hOut);
+
+		return "modifierHebergement";
+	}
+
+	
+	
+	@RequestMapping(value = "/supprLinkHebergement/{pId}")
+	public String deleteLienHeberhgement(ModelMap model, @PathVariable("pId_h") int id) {
+		Hebergement hIn = new Hebergement();
+		hIn.setId(id);
+
+		hebergementService.deleteHebergement(hIn);
+
+		// recuperer la liste de service
+		List<Hebergement> listeHebergement = hebergementService.getAllHebergement();
+
+		model.addAttribute("allHebergement", listeHebergement);
+		return "listeHebergementAdmin";
+	}
+	
+	
+	
+
+	@RequestMapping(value = "/ajouterLinkHebergement", method = RequestMethod.GET)
+	public ModelAndView ajouterLienHebergement() {
+		return new ModelAndView("ajouterHebergement");
+	}
+
+	
+	
+	
+	
+	/**
+	 * Amandine : Méthode page hebergement Admin
+	 */
+	@RequestMapping(value = "/listeHebergementAdmin", method = RequestMethod.GET)
+	public ModelAndView afficherListeHebergementAdmin() {
+		return new ModelAndView("listeHebergementAdmin");
+	}
+	
+	
+	
+	
 
 }

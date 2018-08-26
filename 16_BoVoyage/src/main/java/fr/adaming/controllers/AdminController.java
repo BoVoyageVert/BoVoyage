@@ -35,7 +35,12 @@ public class AdminController {
 	public IAdminService getAdminService() {
 		return adminService;
 	}
-
+	
+	/** Amandine : méthodeafficher page d'accueil Admin */
+	@RequestMapping(value = "/accueilAdmin", method = RequestMethod.GET)
+	public ModelAndView afficherAccueilAdmin() {
+		return new ModelAndView("accueilAdmin");
+	}
 
 	/**
 	 * Amandine : Méthode recupper la liste
@@ -93,7 +98,7 @@ public class AdminController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String afficheLogout(Model model) {
 		model.addAttribute("msg", true);
-		return "loginPage";
+		return "accueilClient";
 	}
 	
 	

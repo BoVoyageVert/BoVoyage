@@ -230,4 +230,12 @@ public class PackController {
 		}		
 	
 	
+	/**
+	 * Amandine : Méthode page hebergement Admin
+	 */
+	@RequestMapping(value = "/listePackAdmin", method = RequestMethod.GET)
+	public ModelAndView afficherListePackAdmin() {
+		return new ModelAndView("listePackAdmin");
+	}
+	
 }

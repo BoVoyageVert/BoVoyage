@@ -28,21 +28,21 @@
 			access="ROLE_ADMIN" />
 
 		<!-- Utiliser d'un formulaire pour la connexion -->
-		<security:form-login login-page="/admin/loginPageAdmin"
-			authentication-failure-url="/echec" default-target-url="/pack/listePack"/>
+		<!-- <security:form-login login-page="/admin/loginPageAdmin"
+			authentication-failure-url="/admin/echec" default-target-url="/pack/listePack"/>-->
 
 		<!-- Specifier la page de l'access refusé -->
 		<security:access-denied-handler
-			error-page="/denied" />
+			error-page="/admin/denied" />
 
 		<!-- La balise qui sert pour la deconnexion -->
-		<security:logout logout-success-url="/logout"
-			logout-url="/seDeconnecter" />
+		<security:logout logout-success-url="/admin/logout"
+			logout-url="/accueilClient" />
 
 
 
 		<!-- Utiliser le formulaire pre definit dans spring security pour la connexion -->
-		<!-- <security:http-basic /> -->
+		<security:http-basic />
 
 	</security:http>
 
