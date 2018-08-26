@@ -23,7 +23,8 @@
 
 <body>
 <!-- Insertion du templateTest (navbar) -->
-	<jsp:include page="${request.contextPath}/template/templateTest"></jsp:include>
+<!-- Insertion du templateTest (navbar) -->
+<jsp:include page="${request.contextPath}/template/templateAd"></jsp:include>
 
 
 <a style="color: red; text-align: center;" href="${pageContext.request.contextPath}/admin/seDeconnecter">Se Deconnecter</a>
