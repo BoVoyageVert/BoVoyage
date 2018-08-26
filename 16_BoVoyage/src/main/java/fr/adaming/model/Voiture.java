@@ -29,6 +29,10 @@ public class Voiture {
 	private String image;
 	
 
+	//l'association One to One
+	@OneToOne
+	@JoinColumn(name = "v_id", referencedColumnName = "id_v")
+	private Voyage voyage;
 
 
 	
@@ -174,6 +178,16 @@ public class Voiture {
 	 */
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+
+	public Voyage getVoyage() {
+		return voyage;
+	}
+
+
+	public void setVoyage(Voyage voyage) {
+		this.voyage = voyage;
 	}
 
 
