@@ -21,16 +21,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.GrayColor;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.adaming.dao.IDossierDao;
+import fr.adaming.dao.ILigneCommandeDao;
 import fr.adaming.model.Client;
 import fr.adaming.model.DossierVoyage;
+import fr.adaming.model.LigneCommande;
 import fr.adaming.model.Voyage;
 
 @Service
@@ -44,6 +53,14 @@ public class DossierServiceImpl implements IDossierService {
 	@Autowired
 	public void setDossierDao(IDossierDao dossierDao) {
 		this.dossierDao = dossierDao;
+	}
+	
+	@Autowired
+	private ILigneCommandeDao  lcDao;
+	
+	
+	public void setLcDao(ILigneCommandeDao lcDao) {
+		this.lcDao = lcDao;
 	}
 
 	@Override
@@ -130,10 +147,10 @@ public class DossierServiceImpl implements IDossierService {
 			// Partie 1: Le texte
 			MimeBodyPart mbp1 = new MimeBodyPart();
 			mbp1.setText("Cher(e) Client(e)" + dv.getClient().getNom() + " " + dv.getClient().getPrenom() + ";"
-					+ "\n\n Merci de votre confiance!" + "\n Vous trouverez ci-joint la facture de votre s�jour"
-					+ "\n n� de dossier:" + dv.getIdDossier() + "\n Dates du sejour:" + "\n Date d'arriv�e: "
-					+ v.getDateArrivee() + "\n Date de d�part: " + v.getDateDepart()
-					+ "\n\n\n Tout l'�quipe d'Amandine, J-D, Steven et Claire esp�re vous revoir bient�t sur leur site!");
+					+ "\n\n Merci de votre confiance!" + "\n Vous trouverez ci-joint la facture de votre sejour"
+					+ "\n numero de dossier:" + dv.getIdDossier() + "\n Dates du sejour:" + "\n Date d'arrivee: "
+					+ v.getDateArrivee() + "\n Date de depart: " + v.getDateDepart()
+					+ "\n\n\n Tout l'equipe d'Amandine, J-D, Steven et Claire espere vous revoir bientot sur leur site!");
 
 			// ecrire le pdf dans outputStream
 			outputStream = new ByteArrayOutputStream();
@@ -155,7 +172,7 @@ public class DossierServiceImpl implements IDossierService {
 			// on envoie le message
 			Transport.send(message);
 
-			System.out.println("message envoy�! c'est ok!!");// verifier si
+			System.out.println("message envoye! c'est ok!!");// verifier si
 																// ca a reussi
 
 		} catch (Exception e) {
@@ -166,6 +183,7 @@ public class DossierServiceImpl implements IDossierService {
 
 	// ecrire le pdf (using iText API)
 
+	@SuppressWarnings("unchecked")
 	public void writePdf(ByteArrayOutputStream outputStream, DossierVoyage dv) throws Exception {
 		Document document = new Document();
 		PdfWriter.getInstance(document, outputStream);
@@ -180,15 +198,14 @@ public class DossierServiceImpl implements IDossierService {
 		document.addAuthor("Steven, Amandine, J-D et Claire");
 		document.addCreator("Steven, Amandine, J-D et Claire");
 
-		// r�cup de la liste des lignes commandes associ�es � la commande
-		// List<LigneCommande> listeLc =
-		// lcDao.getListeLigneCommandeByComId(com);
+		// recup de la liste des lignes commandes associees de la commande
+		 List<LigneCommande> listeLc = lcDao.getLigneCommandeByDossier(dv);
 
-		// calcul du prix total =
-		// Double d = 0.0;
-		// for (LigneCommande lc : listeLc) {
-		// d += lc.getPrix();
-		// }
+		 //calcul du prix total =
+		 Double d = 0.0;
+		 for (LigneCommande lc2 : listeLc) {
+		 d += lc2.getPrixPromotion();
+		 }
 
 		// composition du pdf
 
@@ -201,60 +218,57 @@ public class DossierServiceImpl implements IDossierService {
 		document.add(paragraph);
 
 		Paragraph paragraph1 = new Paragraph();
-		paragraph1.add(new Chunk("\n n� de dossier:" + dv.getIdDossier() + "\n Statut de votre dossier: "
+		paragraph1.add(new Chunk("\n numero de dossier:" + dv.getIdDossier() + "\n Statut de votre dossier: "
 				+ dv.getStatut() + "\n\n voici le recapitulatif de votre facture:\n\n"));
 		document.add(paragraph1);
 
-		// // On cr�er un objet table dans lequel on intialise �a taille.
-		// PdfPTable table = new PdfPTable(5);
-		// // ajout des cellules ent�tes
-		// Font f = new Font(FontFamily.HELVETICA, 15, Font.BOLD,
-		// GrayColor.BLACK);
-		// PdfPCell cell = new PdfPCell(new Phrase("Voyage", f));
-		// cell.setBackgroundColor(GrayColor.LIGHT_GRAY);
-		// cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-		// table.addCell(cell);
-		// PdfPCell cell1 = new PdfPCell(new Phrase("Caution", f));
-		// cell1.setBackgroundColor(GrayColor.LIGHT_GRAY);
-		// cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
-		// table.addCell(cell1);
-		// PdfPCell cell2 = new PdfPCell(new Phrase("Options", f));
-		// cell2.setBackgroundColor(GrayColor.LIGHT_GRAY);
-		// cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
-		// table.addCell(cell2);
-		// PdfPCell cell3 = new PdfPCell(new Phrase("Prix initial", f));
-		// cell3.setBackgroundColor(GrayColor.LIGHT_GRAY);
-		// cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
-		// table.addCell(cell3);
-		// PdfPCell cell4 = new PdfPCell(new Phrase("Reduction", f));
-		// cell4.setBackgroundColor(GrayColor.LIGHT_GRAY);
-		// cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
-		// table.addCell(cell4);
+		 // On creer un objet table dans lequel on intialise �a taille.
+		 PdfPTable table = new PdfPTable(4);
+		 // ajout des cellules enttes
+		 Font f = new Font(FontFamily.HELVETICA, 14, Font.BOLD,
+		 GrayColor.BLACK);
+		 PdfPCell cell = new PdfPCell(new Phrase("type de prestation", f));
+		 cell.setBackgroundColor(GrayColor.LIGHT_GRAY);
+		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 table.addCell(cell);
+		 PdfPCell cell1 = new PdfPCell(new Phrase("designation", f));
+		 cell1.setBackgroundColor(GrayColor.LIGHT_GRAY);
+		 cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 table.addCell(cell1);
+		 PdfPCell cell2 = new PdfPCell(new Phrase("quantite", f));
+		 cell2.setBackgroundColor(GrayColor.LIGHT_GRAY);
+		 cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 table.addCell(cell2);
+		 PdfPCell cell3 = new PdfPCell(new Phrase("Prix", f));
+		 cell3.setBackgroundColor(GrayColor.LIGHT_GRAY);
+		 cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
+		 table.addCell(cell3);
+		
 
-		// // Creation du recapitulatif de la commande
-		// for (LigneCommande lc1 : listeLc) {
-		//
-		// // on ajoute les cellules
-		// table.addCell(prDao.rechProduit(lc1.getProduit()).getDesignation());
-		// table.addCell("x " + lc1.getQuantite());
-		// table.addCell(prDao.rechProduit(lc1.getProduit()).getPrix() + "� x "
-		// + lc1.getQuantite());
-		//
-		// }
-		// document.add(table);
+		 // Creation du recapitulatif de la commande
+		 for (LigneCommande lc1 : listeLc) {
+		
+		 // on ajoute les cellules
+		 table.addCell(lc1.getTypePrestation());
+		 table.addCell(lc1.getDesignation());
+		 table.addCell(lc1.getQuantite()+ "");
+		 table.addCell(lc1.getPrixPromotion() +" euros");
+		
+		 }
+		 document.add(table);
 
 		Paragraph paragraph2 = new Paragraph();
 		paragraph2.add(new Chunk("______________________________________________________________________________"));
 		document.add(paragraph2);
 
-		// Paragraph paragraph3 = new Paragraph();
-		// paragraph3.add(new Chunk("Prix total: " + d + " �"));
-		// document.add(paragraph3);
+		 Paragraph paragraph3 = new Paragraph();
+		 paragraph3.add(new Chunk("Prix total: " + d + "euros"));
+		 document.add(paragraph3);
 
 		Paragraph paragraph4 = new Paragraph();
 		paragraph4.add(new Chunk(
-				"\n\n\n l'equipe Amandine, J-D, Steven et Claire esp�re vous revoir bient�t pour de nouvelles aventures avec Marmotte vacances!"
-						+ "\n en cas de reclamation veillez nous contacter � l'adresse suivante:  nomane.boulmerdj@gmail.com"));
+				"\n\n\n l'equipe Amandine, J-D, Steven et Claire espere vous revoir bientot pour de nouvelles aventures avec Marmotte vacances!"
+						+ "\n en cas de reclamation veillez nous contacter a l'adresse suivante:  nomane.boulmerdj@gmail.com"));
 		document.add(paragraph4);
 
 		// fermer le document
