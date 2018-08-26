@@ -25,8 +25,7 @@
 		<th>Type de prestation</th>
 		<th>Designation</th>
 		<th>Nombre</th>
-		<th>Prix normal</th>
-		<th>Prix en promotion</th>
+		<th>Prix</th>
 	</tr>
 	<c:forEach var="lc" items="${allLigneCommande}">
 		<tr>

@@ -19,14 +19,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.adaming.model.Client;
+import fr.adaming.model.DossierVoyage;
 import fr.adaming.model.LigneCommande;
+import fr.adaming.model.Voyage;
 import fr.adaming.service.IClientService;
+import fr.adaming.service.IDossierService;
+import fr.adaming.service.ILigneCommandeService;
 
 
 @Controller
 @RequestMapping("/panier")
 public class PanierController {
 	
+	@Autowired
+	private ILigneCommandeService lcService;
+	public void setLcService(ILigneCommandeService lcService) {
+		this.lcService = lcService;
+	}
+
+	@Autowired
+	private IDossierService dService;
+	public void setdService(IDossierService dService) {
+		this.dService = dService;
+	}
+
 	@Autowired
 	private IClientService clService;
 	public void setClService(IClientService clService) {
@@ -127,6 +143,13 @@ public class PanierController {
 			}
 			modele.addAttribute("allLigneCommande", panier);
 			modele.addAttribute("prixTotalPromo", prixTotalPromo);
+			
+			// faut virer voyage des params
+			//dService.addDossier(new DossierVoyage(),(Voyage)req.getSession().getAttribute("voyage") ,(Client) req.getSession().getAttribute("client"));
+			for(LigneCommande lc : panier){
+				lcService.addLigneCommande(lc);
+			}
+			
 			return "confirmation";
 		}
 		
