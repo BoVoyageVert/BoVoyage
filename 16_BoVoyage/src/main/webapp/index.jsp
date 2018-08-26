@@ -8,5 +8,10 @@
 </head>
 <body>
 
+	<%
+		response.sendRedirect("client/accueilClient");
+	%>
+
+
 </body>
 </html>

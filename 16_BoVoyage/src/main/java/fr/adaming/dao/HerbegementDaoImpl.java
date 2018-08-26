@@ -1,4 +1,4 @@
-	package fr.adaming.dao;
+package fr.adaming.dao;
 
 import java.util.List;
 

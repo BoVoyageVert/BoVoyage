@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -12,47 +12,56 @@
 <!-- Ajouter la lib bootrap.css -->
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bootstrap.css"/>" />
-<title>liste des hebergements</title>
+<title>liste des packs</title>
 </head>
 <body>
+	<!-- Insertion du templateTest (navbar) -->
+	<jsp:include page="${request.contextPath}/template/templateTest"></jsp:include>
 
-
-<table class="table table-bordered">
-		<tr>
-		<th>Nom du pack</th>
-			<th>Description</th>
-			<th>Date d'arrivée</th>
-			<th>Date de départ</th>
-			<th>Prix du pack</th>
-			<th>Prix promo</th>
-			<th>Nombre de places</th>
-			<th>Loisir 1</th>
-			<th>Loisir 2</th>
-			<th>Hebergement</th>
-			<th>Destination</th>
-			<th>Image</th>
-			
-			
-		</tr>
-
+	<div class="container" style="background-color: #F5F5DC;">
 		<c:forEach var="p" items="${allPack}">
-			<tr>
-				<td>${p.nom}</td>
-				<td>${p.description}</td>
-				<td>${p.dateArrivee}</td>
-				<td>${p.dateDepart}</td>
-				<td>${p.prixTotal}</td>
-				<td>${p.prixPromo}</td>
-				<td>${p.nombrePlaces}</td>
-				<td>${p.loisir1}</td>
-				<td>${p.loisir2}</td>
-				<td>${p.hebergement}</td>
-				<td>${p.destination}</td>
-				<td><img src="${pageContext.request.contextPath}/pack/getImage?pId=${p.id}"/></td>
-			</tr>
+			<div class="media">
+				<div class="media-left">
+					<img class="media-object"
+						src="${pageContext.request.contextPath}/pack/getImage?pId=${p.id}"
+						style="width: 450px; height: 250px">
+				</div>
+				<div class="media-body">
+					<h1 class="media-heading">
+						<b>${p.nom}</b> <br />
+					</h1>
+					<p>
+						<b>Description :</b> ${p.description}
+					</p>
+					<p>
+						<b>Les dates : </b>
+						<fmt:formatDate value="${p.dateDepart}" pattern="dd/MM/yyyy" />
+						au
+						<fmt:formatDate value="${p.dateArrivee}" pattern="dd/MM/yyyy" />
+					</p>
+					<p>
+						<b>Destination : </b>${p.destination}
+					</p>
+					<p>
+						<b>Pour ${p.nombrePlaces} personnes.</b>
+					</p>
+					<p>
+						<b>Prestations comprises : </b>${p.loisir1}, ${p.loisir2},
+						${p.hebergement}
+					</p>
+					<h4>
+						Ã€ partir de <s>${p.prixTotal} â‚¬/personne</s>
+					</h4>
+					<h4>
+						<b>Prix : ${p.prixPromo} â‚¬/personne (-<fmt:formatNumber
+								value="${1-(p.prixPromo/p.prixTotal)}" type="PERCENT"
+								minFractionDigits="0" minIntegerDigits="1" />)
+						</b>
+					</h4>
+				</div>
+			</div>
 		</c:forEach>
-	</table>
-
+	</div>
 
 </body>
 </html>

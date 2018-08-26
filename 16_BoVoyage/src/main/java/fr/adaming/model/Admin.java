@@ -39,23 +39,23 @@ public class Admin {
 //	 */
 //	@OneToMany(mappedBy="admin")
 //	Pack pack;
-//	
+	
 ////	@OneToMany(mappedBy="admin")
 ////	Voyage voyage;
-//
-//	@OneToMany(mappedBy="admin")
-//	private List<RoleSecurity> roleSecurity;
-//	
+
+	@OneToMany(mappedBy="admin")
+	private List<RoleSecurity> roleSecurity;
+	
 //	@OneToOne
 //	@JoinColumn(name = "ad_do", referencedColumnName = "do_ad")
 //	DossierVoyage dossierVoyage;
 //	
 //	
-//	/** Constructeurs
-//	 */
-//	public Admin() {
-//		super();
-//	}
+	/** Constructeurs
+	 */
+	public Admin() {
+		super();
+	}
 //
 //
 //
@@ -236,6 +236,99 @@ public class Admin {
 //		this.roleSecurity = roleSecurity;
 //	}
 //
+	
+	
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public Admin(int id, String nom, String prenom, String identifiant, String motDePasse, boolean active) {
+	super();
+	this.id = id;
+	this.nom = nom;
+	this.prenom = prenom;
+	this.identifiant = identifiant;
+	this.motDePasse = motDePasse;
+	this.active = active;
+}
+	
+	
+	
+	public Admin(String nom, String prenom, String identifiant, String motDePasse, boolean active) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.identifiant = identifiant;
+		this.motDePasse = motDePasse;
+		this.active = active;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public String getNom() {
+		return nom;
+	}
+
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+
+	public String getIdentifiant() {
+		return identifiant;
+	}
+
+
+	public void setIdentifiant(String identifiant) {
+		this.identifiant = identifiant;
+	}
+
+
+	public String getMotDePasse() {
+		return motDePasse;
+	}
+
+
+	public void setMotDePasse(String motDePasse) {
+		this.motDePasse = motDePasse;
+	}
+
+
+	public boolean isActive() {
+		return active;
+	}
+
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+
+
+
+	public Admin(String nom, String prenom, String identifiant, String motDePasse) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.identifiant = identifiant;
+		this.motDePasse = motDePasse;
+	}
 
 
 

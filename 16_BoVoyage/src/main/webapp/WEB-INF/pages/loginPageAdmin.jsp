@@ -2,6 +2,9 @@
 	pageEncoding="ISO-8859-1"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +14,9 @@
 <body>
 
 	<form action="j_spring_security_check" method="post">
-		Login: <input type="text" name="j_username" /> <br /> Mot de passe: <input
-			type="text" name="j_password" /> <br /> <input type="submit"
+		Login: <form:input type="text" name="j_username"/> <br />
+		Mot de passe: <form:password
+			type="text" name="j_password"/> <br /> <input type="submit"
 			value="Se connecter" />
 	</form>
 	

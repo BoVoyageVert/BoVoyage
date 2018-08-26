@@ -17,6 +17,12 @@
 <meta name="author" content="">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Roboto:300,400,700'
+	rel='stylesheet' type='text/css'>
+<link href='custom.css' rel='stylesheet' type='text/css'>
 
 <title>Marmotte Vacances</title>
 
@@ -89,19 +95,21 @@
 	</div>
 
 	<!-- Jumbotron for reservation trip -->
-	<div class="jumbotron">
-		<div class="container">
-			<h1 style="font-size: 40px">Votre voyage</h1>
-			<p>...</p>
-			<p>
-				<a class="btn btn-primary btn-lg" href="#" role="button"
-					style="background-color: #90EE90">Rechercher</a>
-			</p>
+	<div class="container" style="background-color: olive; height: 240px">
+		<div>
+			<img src="../resources/img/logo.png"
+				style="margin-top: 15px; margin-left: 75px"> <a
+				href="${pageContext.request.contextPath}/pack/listePack"><img
+				src="../resources/img/promotions-vacances-ete-montagne-30-v1.jpg"
+				style="float: right; margin-right: 30px; margin-top: 15px;"></a>
 		</div>
+		<br /> <a class="btn btn-primary btn-lg"
+			href="${pageContext.request.contextPath}/reservation/reserverVoyage"
+			role="button" style="background-color: #90EE90; margin-left: 115px">Réserver
+			votre voyage</a>
 	</div>
-
-
-
+	<br />
+	<br />
 	<!-- Marketing messaging and featurettes
     ================================================== -->
 	<!-- Wrap the rest of the page in another container to center all the content. -->
@@ -244,6 +252,14 @@
 
 		<!-- /END THE FEATURETTES -->
 
+		<iframe width="560" height="315"
+			src="https://www.youtube.com/embed/iCc5eqqF2mE" frameborder="0"
+			allow="autoplay; encrypted-media" allowfullscreen="true"></iframe>
+		<p style="text-align: inherit;">
+		<h2 style="color: #90EE90">Marre de cette situtation ? Avec
+			Marmotte Vacances, découvrez la montagne l'été !</h2>
+		<br /> <br /> <br />
+
 
 		<!-- FOOTER -->
 		<footer>
@@ -255,7 +271,6 @@
 				<a href="#">Terms</a>
 			</p>
 		</footer>
-
 	</div>
 	<!-- /.container -->
 

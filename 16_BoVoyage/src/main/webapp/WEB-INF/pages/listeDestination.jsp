@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="h" uri="http://java.sun.com/jsp/jstl/xml"%>
@@ -9,43 +9,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; UTF-8">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 <title>Liste des destinations</title>
 </head>
 <body>
-<!-- Insertion du templateTest (navbar) -->
-<jsp:include page="${request.contextPath}/template/templateTest"></jsp:include>
+	<!-- Insertion du templateTest (navbar) -->
+	<jsp:include page="${request.contextPath}/template/templateTest"></jsp:include>
 
-	<table class="table table-striped">
-		<tr>
-			<th style="text-align: center;">Nom</th>
-			<th style="text-align: center;">Photo</th>
-			<th style="text-align: center;">Description</th>
-			<th style="text-align: center;">Prix</th>
-			<th style="text-align: center;">Voyage</th>
-			<th style="text-align: center;">Actions</th>
-		</tr>
-
+	<div class="container" style="background-color: #F5F5DC;">
 		<c:forEach var="d" items="${allDestination}">
-			<tr>
-				<td style="text-align: center;">${d.nomDestination}</td>
-				<td><img
-					src="${pageContext.request.contextPath}/destination/getImage?pId=${d.idDestination}"
-					class="img-rounded"
-					style="width: 200px; height: 200px; margin: auto;"></td>
-				<td style="text-align: center;">${d.descriptionDesti}</td>
-				<td style="text-align: center;">${d.prixDesti}</td>
-				<td style="text-align: center;">${d.voyage.id}</td>
-				<td><a>Modifier</a></td>
-				<td><a>Supprimer</a></td>
-			</tr>
+			<div class="media">
+				<div class="media-left">
+					<img class="media-object"
+						src="${pageContext.request.contextPath}/destination/getImage?pId=${d.idDestination}"
+						style="width: 350px; height: 250px">
+				</div>
+				<div class="media-body">
+					<h1 class="media-heading">
+						<b>${d.nomDestination}</b>
+					</h1>
+					<p>${d.descriptionDesti}</p>
+					<h4>À partir de ${d.prixDesti} €/personne</h4>
+				</div>
+			</div>
 		</c:forEach>
-	</table>
-
-
-
+	</div>
 
 </body>
 </html>
