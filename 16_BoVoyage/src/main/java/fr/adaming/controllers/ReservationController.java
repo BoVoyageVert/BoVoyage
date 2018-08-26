@@ -200,50 +200,7 @@ public class ReservationController {
 	}
 	
 	
-	/** steven : recup du formulaire de la r�servation de la voiture */
-	@RequestMapping(value = "/reserverVoiture", method = RequestMethod.GET)
-	public String afficherFormReserverVoiture(Model modele) {
-		modele.addAttribute("vReserv", new Voiture());
-		modele.addAttribute("allVoiture", vService.getAllVoitures());
-		modele.addAttribute("lcVoiture", new LigneCommande());
-		return "reserverVoiture";
-	}
 	
-	/** steven : soumission de la r�servation de la voiture */
-	@RequestMapping(value = "/soumettreReserverVoiture", method = RequestMethod.POST)
-	public String soumettreReserverVoiture(@ModelAttribute("vReserv") Voiture vIn, @ModelAttribute("lcVoiture") LigneCommande lcIn, RedirectAttributes rda, HttpServletRequest req) {
-		if (vIn != null) { 
-			// petite magouille qui passe inaper�ue
-			lcIn.setQuantite(1);
-			/**
-			 * r�cup�rer le loisir � partir du nom
-			 */
-			vIn = vService.getVoitureById(vIn);
-			
-			/**
-			 * remplir la ligne de commande
-			 */
-			// ######################################################################
-			lcIn.setTypePrestation("Voiture");
-			lcIn.setDesignation(vService.getVoitureById(lIn).getNom());
-			
-			lcIn.setPrixNormal(lService.getLoisirById(lIn).getPrix()*lcIn.getQuantite());
-			lcIn.setPrixPromotion(lService.getLoisirById(lIn).getReduction()*lcIn.getQuantite());
-			
-			/**
-			 * rajouter la ligne de commande au panier
-			 */
-			List<LigneCommande> liste = (List<LigneCommande>) req.getSession().getAttribute("panier");
-			if(liste != null){
-				liste.add(lcIn);
-			}else{
-				liste = new ArrayList<LigneCommande>();
-				liste.add(lcIn);
-			}
-			req.getSession().setAttribute("panier", liste);
-		}
-		return "redirect:reserverLoisir";
-	}
 	
 	
 	
