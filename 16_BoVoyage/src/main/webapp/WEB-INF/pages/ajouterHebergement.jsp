@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -13,21 +13,25 @@
 </head>
 <body>
 
-<form:form cssClass="form-horizontal" method="POST"
-		action="soumettreAjoutHebergement" modelAttribute="hAjout" enctype="multipart/form-data">
+	<!-- Insertion du templateTest (navbar) -->
+	<jsp:include page="${request.contextPath}/template/templateTest"></jsp:include>
+
+	<form:form cssClass="form-horizontal" method="POST"
+		action="soumettreAjoutHebergement" modelAttribute="hAjout"
+		enctype="multipart/form-data">
 
 		<div class="form-group">
-			<form:label cssClass="col-sm-2 control-label" path="Type">Type : </form:label>
+			<form:label cssClass="col-sm-2 control-label" path="type">Type : </form:label>
 			<div class="col-sm-8">
 				<form:select cssClass="form-control" placeholder="Type" path="type">
-				<option>Chalet</option>
- 				 <option>Appartement</option>
-  				<option>Cabane dans les arbres</option>
+					<option>Chalet</option>
+					<option>Appartement</option>
+					<option>Cabane dans les arbres</option>
 				</form:select>
 			</div>
 		</div>
 		<div class="form-group">
-			<form:label cssClass="col-sm-2 control-label" path="Disponibilite">Disponibilite : </form:label>
+			<form:label cssClass="col-sm-2 control-label" path="disponibilite">Disponibilite : </form:label>
 			<div class="col-sm-8">
 				<form:input cssClass="form-control" placeholder="Disponibilite"
 					path="disponibilite" />
@@ -35,74 +39,69 @@
 		</div>
 
 		<div class="form-group">
-			<form:label cssClass="col-sm-2 control-label" path="Prix">Prix : </form:label>
+			<form:label cssClass="col-sm-2 control-label" path="prix">Prix : </form:label>
 			<div class="col-sm-8">
-				<form:input cssClass="form-control"
-					placeholder="Prix en euros" path="prix" />
+				<form:input cssClass="form-control" placeholder="Prix en euros"
+					path="prix" />
 			</div>
 		</div>
-		
+
 		<div class="form-group">
-			<form:label cssClass="col-sm-2 control-label" path="Reduction">Reduction : </form:label>
+			<form:label cssClass="col-sm-2 control-label" path="reduction">Reduction : </form:label>
 			<div class="col-sm-8">
-				<form:input cssClass="form-control"
-					placeholder="Reduction" path="reduction" />
+				<form:input cssClass="form-control" placeholder="Reduction"
+					path="reduction" />
 			</div>
 		</div>
-		
-				<div class="form-group">
+
+		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="lieux">Lieu : </form:label>
 			<div class="col-sm-8">
-				<form:input cssClass="form-control"
-					placeholder="lieux" path="lieux" />
+				<form:input cssClass="form-control" placeholder="lieux" path="lieux" />
 			</div>
 		</div>
-		
+
 		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="ville">Ville : </form:label>
 			<div class="col-sm-8">
-				<form:input cssClass="form-control"
-					placeholder="ville" path="ville" />
+				<form:input cssClass="form-control" placeholder="ville" path="ville" />
 			</div>
 		</div>
-		
+
 		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="codePostal">Code postal : </form:label>
 			<div class="col-sm-8">
-				<form:input cssClass="form-control"
-					placeholder="codePostal" path="codePostal" />
+				<form:input cssClass="form-control" placeholder="codePostal"
+					path="codePostal" />
 			</div>
 		</div>
-		
-				<div class="form-group">
-			<form:label cssClass="col-sm-2 control-label" path="menage">Menage : </form:label>
+
+		<div class="form-group">
+			<form:label cssClass="col-sm-2 control-label" path="menage">Ménage : </form:label>
 			<div class="col-sm-8">
-				<form:select cssClass="form-control"
-					placeholder="menage" path="menage">
-				<option>Oui</option>
- 				 <option>Non</option>
-				</form:select>
+				<form:input cssClass="form-control" placeholder="Ménage"
+					path="menage" />
 			</div>
 		</div>
-		
+
 		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="numHebergement">Numero de l'hebergement : </form:label>
 			<div class="col-sm-8">
-				<form:input cssClass="form-control"
-					placeholder="numHebergement" path="numHebergement" />
+				<form:input cssClass="form-control" placeholder="numHebergement"
+					path="numHebergement" />
 			</div>
 		</div>
-		
+
 		<div class="form-group">
 			<form:label cssClass="col-sm-2 control-label" path="description">Description : </form:label>
 			<div class="col-sm-8">
-				<form:input cssClass="form-control"
-					placeholder="description" path="description" />
+				<form:input cssClass="form-control" placeholder="description"
+					path="description" />
 			</div>
 		</div>
-		
-	<input type="file" name="file"/>
-		
+
+		<input type="file" name="file" />
+
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">

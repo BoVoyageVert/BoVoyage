@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.adaming.model.Client;
 import fr.adaming.service.IClientService;
+import fr.adaming.service.ILigneCommandeService;
 
 @Controller
 @RequestMapping("/client")
@@ -28,8 +29,15 @@ public class ClientController {
 	@Autowired
 	IClientService clService;
 
+	@Autowired
+	ILigneCommandeService ligneService;
+
 	public void setClService(IClientService clService) {
 		this.clService = clService;
+	}
+
+	public void setLigneService(ILigneCommandeService ligneService) {
+		this.ligneService = ligneService;
 	}
 
 	@InitBinder
@@ -167,10 +175,10 @@ public class ClientController {
 			return "redirect:rechercherClientById";
 		}
 	}
-	
-	//methode pour recuperer le template 
-			@RequestMapping(method = RequestMethod.GET, value = "templateTest")
-			public String newItem(Model model) {
-			    return "shared/template/templateTest";
-			}
+
+	// methode pour recuperer le template
+	@RequestMapping(method = RequestMethod.GET, value = "templateTest")
+	public String newItem(Model model) {
+		return "shared/template/templateTest";
+	}
 }

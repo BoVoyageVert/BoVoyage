@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -16,40 +16,41 @@
 </head>
 <body>
 
+	<!-- Insertion du templateTest (navbar) -->
+	<jsp:include page="${request.contextPath}/template/templateTest"></jsp:include>
 
-<table class="table table-bordered">
-		<tr>
-		<th>Numéro de l'hebergement</th>
-			<th>Type</th>
-			<th>Description</th>
-			<th>Prix</th>
-			<th>Réduction</th>
-			<th>Lieu</th>
-			<th>Ville</th>
-			<th>Code Postal</th>
-			<th>Disponibilité</th>
-			<th>image</th>
-			
-			
-		</tr>
-
+	<div class="container" style="background-color: #F5F5DC;">
 		<c:forEach var="h" items="${allHebergement}">
-			<tr>
-				<td>${h.type}</td>
-				<td>${h.description}</td>
-				<td>${h.prix}</td>
-				<td>${h.reduction}</td>
-				<td>${h.lieux}</td>
-				<td>${h.ville}</td>
-				<td>${h.codePostal}</td>
-				<td>${h.disponibilite}</td>
-				<td><img src="${pageContext.request.contextPath}/hebergement/getImage?pId=${h.id}" style="width: 200px; height: 200px"/></td>
-			</tr>
+			<div class="media">
+				<div class="media-left">
+					<img class="media-object"
+						src="${pageContext.request.contextPath}/hebergement/getImage?pId=${h.id}"
+						style="width: 450px; height: 250px">
+				</div>
+				<div class="media-body">
+					<h1 class="media-heading">
+						<b>Type : ${h.type}</b> <br />
+					</h1>
+					<p>
+						<b>NumÃ©ro du logement :</b> ${h.numHebergement}
+					</p>
+					<p>${h.description}</p>
+					<p>
+						<b>Adresse : </b>${h.lieux}</p>
+					${h.codePostal}, ${h.ville}
+					<h4>
+						Ã€ partir de <s>${h.prix} â‚¬/nuit</s>
+					</h4>
+					<h4>
+						<b>Promotion : ${h.reduction} â‚¬/nuit (-<fmt:formatNumber
+								value="${1-(h.reduction/h.prix)}" type="PERCENT"
+								minFractionDigits="0" minIntegerDigits="2" />)
+						</b>
+					</h4>
+				</div>
+			</div>
 		</c:forEach>
-	</table>
-
-
-
+	</div>
 
 
 </body>
