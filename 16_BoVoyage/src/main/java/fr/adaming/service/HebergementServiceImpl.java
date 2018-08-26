@@ -70,4 +70,10 @@ public class HebergementServiceImpl implements IHebergementService{
 		return hebergementDao.deleteHebergement(h);
 	}
 
+	@Override
+	public Hebergement getHebergementByNum(Hebergement h) {
+		// TODO Auto-generated method stub
+		return hebergementDao.getHebergementByNum(h);
+	}
+
 }

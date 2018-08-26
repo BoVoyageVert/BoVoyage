@@ -1,4 +1,4 @@
-package fr.adaming.dao;
+	package fr.adaming.dao;
 
 import java.util.List;
 
@@ -118,6 +118,15 @@ public class HerbegementDaoImpl implements IHerbergementDao {
 
 		return 0;
 		}
+	}
+
+	@Override
+	public Hebergement getHebergementByNum(Hebergement h) {
+		Session s = sf.getCurrentSession();
+		String req = "From Hebergement h where h.numHebergement=:pNum";
+		Query query = s.createQuery(req);
+		query.setParameter("pNum", h.getNumHebergement());
+		return  (Hebergement) query.uniqueResult();
 	}
 
 }

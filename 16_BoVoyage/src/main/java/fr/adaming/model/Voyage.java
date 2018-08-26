@@ -50,6 +50,15 @@ public class Voyage {
 	@OneToOne(mappedBy="voyage")
 	Voiture voiture;
 	
+	
+	
+	
+	public Voyage(Date dateArrivee, Date dateDepart, int nombrePlaces) {
+		super();
+		this.dateArrivee = dateArrivee;
+		this.dateDepart = dateDepart;
+		this.nombrePlaces = nombrePlaces;
+	}
 	public Voyage(Date dateArrivee, Date dateDepart, Double prixTotal, int nombrePlaces, byte[] photo, String image) {
 		super();
 		this.dateArrivee = dateArrivee;

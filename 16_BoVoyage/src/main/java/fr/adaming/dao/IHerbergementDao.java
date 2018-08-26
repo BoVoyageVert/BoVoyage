@@ -19,6 +19,8 @@ public interface IHerbergementDao {
 	public Hebergement getHebergementById(Hebergement h);
 
 	public Hebergement getHebergementByType(Hebergement h);
+	
+	public Hebergement getHebergementByNum(Hebergement h);
 
 	public Hebergement addHebergement(Hebergement h, Voyage v);
 
