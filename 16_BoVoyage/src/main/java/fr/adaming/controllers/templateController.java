@@ -13,5 +13,10 @@ public class templateController {
 	public ModelAndView afficherAccueilClient() {
 		return new ModelAndView("templateTest");
 	}
+	
+	@RequestMapping(value = "/templateAd", method = RequestMethod.GET)
+	public ModelAndView afficherAccueilAdmin() {
+		return new ModelAndView("templateAd");
+	}
 
 }

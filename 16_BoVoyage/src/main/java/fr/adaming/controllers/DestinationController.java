@@ -238,9 +238,5 @@ public class DestinationController {
 
 	}
 	
-	//methode pour recuperer le template 
-		@RequestMapping(method = RequestMethod.GET, value = "templateTest")
-		public String newItem(Model model) {
-		    return "shared/template/templateTest";
-		}
+	
 }
