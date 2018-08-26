@@ -15,23 +15,23 @@ import fr.adaming.model.Voyage;
 @Repository
 public class DossierDaoImpl implements IDossierDao {
 
-	/** Déclaration de l'attribut sessionFactory */
+	/** Dï¿½claration de l'attribut sessionFactory */
 	@Autowired
 	private SessionFactory sf;
 
-	/** Déclaration du setter pour l'injection dépendance */
+	/** Dï¿½claration du setter pour l'injection dï¿½pendance */
 	public void setSf(SessionFactory sf) {
 		this.sf = sf;
 	}
 
-	/** Méthode permettant d'ajouter un dossier à la base */
+	/** Mï¿½thode permettant d'ajouter un dossier ï¿½ la base */
 	@Override
 	public DossierVoyage addDossier(DossierVoyage dv) {
 
-		// récupération de la session
+		// rï¿½cupï¿½ration de la session
 		Session s = sf.getCurrentSession();
 
-		// ajout du dossier à la base
+		// ajout du dossier ï¿½ la base
 		s.save(dv);
 
 		return dv;
@@ -40,7 +40,7 @@ public class DossierDaoImpl implements IDossierDao {
 	@Override
 	public DossierVoyage updateDossier(DossierVoyage dv) {
 
-		// récupérer la session
+		// rï¿½cupï¿½rer la session
 		Session s = sf.getCurrentSession();
 
 		// modifier le dossier
@@ -52,7 +52,7 @@ public class DossierDaoImpl implements IDossierDao {
 	@Override
 	public DossierVoyage deleteDossier(DossierVoyage dv) {
 
-		// récupérer la session
+		// rï¿½cupï¿½rer la session
 		Session s = sf.getCurrentSession();
 
 		// supprimer le dossier
@@ -64,57 +64,52 @@ public class DossierDaoImpl implements IDossierDao {
 	@Override
 	public DossierVoyage getDossierById(DossierVoyage dv) {
 
-		// récupérer la session
+		// rï¿½cupï¿½rer la session
 		Session s = sf.getCurrentSession();
 
-		// création de la requête HQL
+		// crï¿½ation de la requï¿½te HQL
 		String req = "FROM DossierVoyage dv WHERE dv.id=:pId";
 
-		// création du query
+		// crï¿½ation du query
 		Query query = s.createQuery(req);
 
-		// passage des paramètres
+		// passage des paramï¿½tres
 		query.setParameter("pId", dv.getIdDossier());
-
-		return (DossierVoyage) query.uniqueResult();
-	}
-
-	@Override
-	public DossierVoyage getDossierByNum(DossierVoyage dv) {
-
-		// récupérer la session
-		Session s = sf.getCurrentSession();
-
-		// création de la requête HQL
-		String req = "FROM DossierVoyage dv WHERE dv.num=:pNum";
-
-		// création du query
-		Query query = s.createQuery(req);
-
-		// passage des paramètres
-		query.setParameter("pNum", dv.getNumDossier());
 
 		return (DossierVoyage) query.uniqueResult();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<DossierVoyage> getAllDossier(Voyage v, Client cl) {
+	public List<DossierVoyage> getDossierByIdClient( Client cl) {
 
-		// récupérer la session
+		// rï¿½cupï¿½rer la session
 		Session s = sf.getCurrentSession();
 
-		// création de la requête HQL
-		String req = "FROM DossierVoyage dv WHERE dv.client.id=:pIdC AND dv.voyage.id=:pIdV";
+		// crï¿½ation de la requï¿½te HQL
+		String req = "FROM DossierVoyage dv WHERE dv.client.id=:pIdC";
 
-		// création du query
+		// crï¿½ation du query
 		Query query = s.createQuery(req);
 
-		// passage des paramètres
+		// passage des paramï¿½tres
 		query.setParameter("pIdC", cl.getIdClient());
-		query.setParameter("pIdV", v.getId());
 
 		return query.list();
+	}
+
+	@Override
+	public List<DossierVoyage> getAllDossier() {
+		// rï¿½cupï¿½rer la session
+				Session s = sf.getCurrentSession();
+
+				// crï¿½ation de la requï¿½te HQL
+				String req = "FROM DossierVoyage";
+
+				// crï¿½ation du query
+				Query query = s.createQuery(req);
+
+				return query.list();
 	}
 
 }

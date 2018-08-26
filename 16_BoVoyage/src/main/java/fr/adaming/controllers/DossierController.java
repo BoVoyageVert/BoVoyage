@@ -29,7 +29,7 @@ public class DossierController {
 	@Autowired
 	private IDossierService dossierService;
 
-	/** Setter pour l'injection dépendance */
+	/** Setter pour l'injection dï¿½pendance */
 	public void setDossierService(IDossierService dossierService) {
 		this.dossierService = dossierService;
 	}
@@ -46,9 +46,9 @@ public class DossierController {
 		Client cl = new Client();
 		cl.setIdClient(cl.getIdClient());
 
-		// Appel de la méthode service pour récupérer la liste des destinations
+		// Appel de la mï¿½thode service pour rï¿½cupï¿½rer la liste des destinations
 
-		List<DossierVoyage> listeDossier = dossierService.getAllDossier(v, cl);
+		List<DossierVoyage> listeDossier = dossierService.getDossierByIdClient(cl);
 
 		return new ModelAndView("listeDossier", "allDossier", listeDossier);
 
@@ -56,7 +56,7 @@ public class DossierController {
 
 	/** >>>>>>>>>>>> FONCTIONNALITE D'AJOUT D'UN DOSSIER */
 	/**
-	 * 1. Méthode permettant d'afficher le formulaire d'ajout du dossier
+	 * 1. Mï¿½thode permettant d'afficher le formulaire d'ajout du dossier
 	 */
 	@RequestMapping(value = "/ajouterDossier", method = RequestMethod.GET)
 	public String afficherFormAddDossier(Model modele) {
@@ -65,7 +65,7 @@ public class DossierController {
 	}
 
 	/**
-	 * 2. Méthode permettant de soumettre le formulaire d'ajout du dossier
+	 * 2. Mï¿½thode permettant de soumettre le formulaire d'ajout du dossier
 	 */
 	@RequestMapping(value = "/soumettreAjouterDossier", method = RequestMethod.POST)
 	public String soumettreAddDestination(@ModelAttribute("dossAjout") DossierVoyage dv, RedirectAttributes rda) {
@@ -76,13 +76,13 @@ public class DossierController {
 		Client cl = new Client();
 		cl.setIdClient(cl.getIdClient());
 
-		/** Appel de la méthode service pour ajouter une destination */
+		/** Appel de la mï¿½thode service pour ajouter une destination */
 		DossierVoyage dossOut = dossierService.addDossier(dv, v, cl);
 
 		if (dossOut.getIdDossier() != 0) {
 			return "redirect:listeDossier";
 		} else {
-			rda.addAttribute("msg", "Ce dossier n'a pas pu être ajouté, veuillez réessayer !");
+			rda.addAttribute("msg", "Ce dossier n'a pas pu ï¿½tre ajoutï¿½, veuillez rï¿½essayer !");
 			return "redirect:ajouterDossier";
 		}
 
@@ -112,7 +112,7 @@ public class DossierController {
 			modele.addAttribute("dossFind", dossOut);
 			return "rechercherDossierId";
 		} else {
-			rda.addAttribute("msg", "Le dossier recherché n'existe pas encore !");
+			rda.addAttribute("msg", "Le dossier recherchï¿½ n'existe pas encore !");
 			return "rechercherDossierId";
 		}
 	}
@@ -136,13 +136,13 @@ public class DossierController {
 		Client cl = new Client();
 		cl.setIdClient(cl.getIdClient());
 
-		DossierVoyage dossOut = dossierService.getDossierByNum(dossRech, v, cl);
+		DossierVoyage dossOut = dossierService.getDossierById(dossRech, v, cl);
 
 		if (dossOut != null) {
 			modele.addAttribute("dossFind", dossOut);
 			return "rechercherDossierNum";
 		} else {
-			rda.addAttribute("msg", "Le dossier recherché n'existe pas encore !");
+			rda.addAttribute("msg", "Le dossier recherchï¿½ n'existe pas encore !");
 			return "rechercherDossierNum";
 		}
 
@@ -152,7 +152,7 @@ public class DossierController {
 	 * >>>>>>>>>>>>>>>>>>>> FONCTIONNALITE DE MODIFICATION D'UN DOSSIER
 	 */
 	/**
-	 * 1. Méthode permettant d'afficher le formulaire de modification du dossier
+	 * 1. Mï¿½thode permettant d'afficher le formulaire de modification du dossier
 	 */
 	@RequestMapping(value = "/modifierDossier", method = RequestMethod.GET)
 	public String afficherFormUpdateDossier(Model modele) {
@@ -161,7 +161,7 @@ public class DossierController {
 	}
 
 	/**
-	 * 2. Méthode permettant de soumettre le formulaire de modification du
+	 * 2. Mï¿½thode permettant de soumettre le formulaire de modification du
 	 * dossier
 	 * 
 	 * @throws IOException
@@ -176,13 +176,13 @@ public class DossierController {
 		Client cl = new Client();
 		cl.setIdClient(cl.getIdClient());
 
-		/** Appel de la méthode service pour ajouter une destination */
+		/** Appel de la mï¿½thode service pour ajouter une destination */
 		DossierVoyage dossierModif = dossierService.updateDossier(dossModif, v, cl);
 
 		if (dossierModif != null) {
 			return "redirect:listeDossier";
 		} else {
-			rda.addAttribute("msg", "Ce dossier n'a pas pu être modifié, veuillez réessayer !");
+			rda.addAttribute("msg", "Ce dossier n'a pas pu ï¿½tre modifiï¿½, veuillez rï¿½essayer !");
 			return "redirect:modifierDossier";
 		}
 
@@ -198,7 +198,7 @@ public class DossierController {
 	}
 
 	/**
-	 * 2. Méthode permettant de soumettre le formulaire de suppression du
+	 * 2. Mï¿½thode permettant de soumettre le formulaire de suppression du
 	 * dossier
 	 */
 	@RequestMapping(value = "/soumettreDeleteDossier", method = RequestMethod.POST)
@@ -211,13 +211,13 @@ public class DossierController {
 		Client cl = new Client();
 		cl.setIdClient(cl.getIdClient());
 
-		/** Appel de la méthode service pour ajouter une destination */
+		/** Appel de la mï¿½thode service pour ajouter une destination */
 		DossierVoyage dossierSuppr = dossierService.deleteDossier(dossSuppr, v, cl);
 
 		if (dossierSuppr != null) {
 			return "redirect:listeDossier";
 		} else {
-			rda.addAttribute("msg", "Ce dossier n'a pas pu être supprimé, veuillez réessayer !");
+			rda.addAttribute("msg", "Ce dossier n'a pas pu ï¿½tre supprimï¿½, veuillez rï¿½essayer !");
 			return "redirect:supprimerDossier";
 		}
 

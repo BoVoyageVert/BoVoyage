@@ -25,12 +25,19 @@ import fr.adaming.model.Voyage;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.IDossierService;
 import fr.adaming.service.ILigneCommandeService;
+import fr.adaming.service.IVoyageService;
 
 
 @Controller
 @RequestMapping("/panier")
 public class PanierController {
 	
+	@Autowired
+	public IVoyageService vService;
+	public void setvService(IVoyageService vService) {
+		this.vService = vService;
+	}
+
 	@Autowired
 	private ILigneCommandeService lcService;
 	public void setLcService(ILigneCommandeService lcService) {
@@ -144,12 +151,22 @@ public class PanierController {
 			modele.addAttribute("allLigneCommande", panier);
 			modele.addAttribute("prixTotalPromo", prixTotalPromo);
 			
-			// faut virer voyage des params
-			//dService.addDossier(new DossierVoyage(),(Voyage)req.getSession().getAttribute("voyage") ,(Client) req.getSession().getAttribute("client"));
-			for(LigneCommande lc : panier){
+			vService.addVoyage((Voyage) req.getSession().getAttribute("voyage"));
+			
+			
+			Date date = new Date();
+			DossierVoyage dossier = new DossierVoyage(date, "En attente");
+			dService.addDossier(dossier, (Voyage)req.getSession().getAttribute("voyage"), (Client)req.getSession().getAttribute("client"));
+
+			
+			for (LigneCommande lc : panier){
+				lc.setDossier(dossier);
 				lcService.addLigneCommande(lc);
 			}
 			
+			
+			
+			dService.sendMail(dossier, (Voyage) req.getSession().getAttribute("voyage"));
 			return "confirmation";
 		}
 		

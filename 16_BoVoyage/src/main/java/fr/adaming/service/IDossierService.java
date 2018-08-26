@@ -16,10 +16,12 @@ public interface IDossierService {
 
 	public DossierVoyage getDossierById(DossierVoyage dv, Voyage v, Client cl);
 
-	public DossierVoyage getDossierByNum(DossierVoyage dv, Voyage v, Client cl);
-
-	public List<DossierVoyage> getAllDossier(Voyage v, Client cl);
+	public List<DossierVoyage> getDossierByIdClient(Client cl);
+	
+	public List<DossierVoyage> getAllDossier();
 
 	void sendMail(DossierVoyage dv, Voyage v);
+	
+	
 
 }

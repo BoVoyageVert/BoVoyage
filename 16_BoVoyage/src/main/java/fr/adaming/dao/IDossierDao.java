@@ -6,7 +6,7 @@ import fr.adaming.model.Client;
 import fr.adaming.model.DossierVoyage;
 import fr.adaming.model.Voyage;
 
-/** jd: déclaration de l'interface dao pour Dossier */
+/** jd: dï¿½claration de l'interface dao pour Dossier */
 
 public interface IDossierDao {
 
@@ -18,8 +18,8 @@ public interface IDossierDao {
 
 	public DossierVoyage getDossierById(DossierVoyage dv);
 
-	public DossierVoyage getDossierByNum(DossierVoyage dv);
-
-	public List<DossierVoyage> getAllDossier(Voyage v, Client cl);
+	public List<DossierVoyage> getDossierByIdClient(Client cl);
+	
+	public List<DossierVoyage> getAllDossier();
 
 }

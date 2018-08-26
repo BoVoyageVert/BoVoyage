@@ -1,5 +1,7 @@
 package fr.adaming.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,12 +15,12 @@ import javax.persistence.Table;
 @Table(name = "dossiers")
 public class DossierVoyage {
 
-	/** Déclaration des attributs */
+	/** DÃ©claration des attributs */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_do")
 	private int idDossier;
-	private long numDossier;
+	private Date date;
 	private String statut;
 
 	/** Mapping des associations One To One */
@@ -34,44 +36,44 @@ public class DossierVoyage {
 	@JoinColumn(name = "v_id", referencedColumnName = "id_v")
 	private Voyage voyage;
 
-	/** Déclaration des constructeurs */
+	/** DÃ©claration des constructeurs */
 	public DossierVoyage() {
 		super();
 	}
 
-	public DossierVoyage(long numDossier, String statut) {
+	public DossierVoyage(Date date, String statut) {
 		super();
-		this.numDossier = numDossier;
+		this.date = date;
 		this.statut = statut;
 	}
 
-	public DossierVoyage(int idDossier, long numDossier, String statut) {
+	public DossierVoyage(int idDossier, Date date, String statut) {
 		super();
 		this.idDossier = idDossier;
-		this.numDossier = numDossier;
+		this.date = date;
 		this.statut = statut;
 	}
 
-	public DossierVoyage(long numDossier, String statut, Client client, Admin admin, Voyage voyage) {
+	public DossierVoyage(Date date, String statut, Client client, Admin admin, Voyage voyage) {
 		super();
-		this.numDossier = numDossier;
+		this.date = date;
 		this.statut = statut;
 		this.client = client;
 		this.admin = admin;
 		this.voyage = voyage;
 	}
 
-	public DossierVoyage(int idDossier, long numDossier, String statut, Client client, Admin admin, Voyage voyage) {
+	public DossierVoyage(int idDossier, Date date, String statut, Client client, Admin admin, Voyage voyage) {
 		super();
 		this.idDossier = idDossier;
-		this.numDossier = numDossier;
+		this.date = date;
 		this.statut = statut;
 		this.client = client;
 		this.admin = admin;
 		this.voyage = voyage;
 	}
 
-	/** Déclaration des getters et setters */
+	/** DÃ©claration des getters et setters */
 	public int getIdDossier() {
 		return idDossier;
 	}
@@ -80,12 +82,12 @@ public class DossierVoyage {
 		this.idDossier = idDossier;
 	}
 
-	public long getNumDossier() {
-		return numDossier;
+	public Date getDate() {
+		return date;
 	}
 
-	public void setNumDossier(long numDossier) {
-		this.numDossier = numDossier;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public String getStatut() {

@@ -29,9 +29,7 @@ public class LigneCommande {
 	@JoinColumn(name="do_id", referencedColumnName="id_do")
 	private DossierVoyage dossier;
 	
-	@ManyToOne
-	@JoinColumn(name="v_id", referencedColumnName="id_v")
-	private Voyage voyage;
+
 
 	/**
 	 * Contructeurs
@@ -104,16 +102,11 @@ public class LigneCommande {
 	public void setDossier(DossierVoyage dossier) {
 		this.dossier = dossier;
 	}
-	public Voyage getVoyage() {
-		return voyage;
-	}
-	public void setVoyage(Voyage voyage) {
-		this.voyage = voyage;
-	}
+
 	@Override
 	public String toString() {
 		return "LigneCommande [id=" + id + ", typePrestation=" + typePrestation + ", Designation=" + Designation
 				+ ", quantite=" + quantite + ", prixNormal=" + prixNormal + ", prixPromotion=" + prixPromotion
-				+ ", dossier=" + dossier + ", voyage=" + voyage + "]";
+				+ ", dossier=" + dossier + "]";
 	}
 }

@@ -21,25 +21,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.Font.FontFamily;
-import com.itextpdf.text.pdf.GrayColor;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.adaming.dao.IDossierDao;
-import fr.adaming.dao.ILigneCommandeDao;
 import fr.adaming.model.Client;
 import fr.adaming.model.DossierVoyage;
-import fr.adaming.model.LigneCommande;
 import fr.adaming.model.Voyage;
 
 @Service
@@ -49,18 +40,10 @@ public class DossierServiceImpl implements IDossierService {
 	/** Transformation de l'association UML en Java */
 	private IDossierDao dossierDao;
 
-	/** Setter pour l'injection dépendance */
+	/** Setter pour l'injection dï¿½pendance */
 	@Autowired
 	public void setDossierDao(IDossierDao dossierDao) {
 		this.dossierDao = dossierDao;
-	}
-	
-	//association avec ligne de commande + setter
-	@Autowired
-	private ILigneCommandeDao lcDao;
-	
-	public void setLcDao(ILigneCommandeDao lcDao) {
-		this.lcDao = lcDao;
 	}
 
 	@Override
@@ -98,15 +81,14 @@ public class DossierServiceImpl implements IDossierService {
 	}
 
 	@Override
-	public DossierVoyage getDossierByNum(DossierVoyage dv, Voyage v, Client cl) {
-		dv.setVoyage(v);
-		dv.setClient(cl);
-		return dossierDao.getDossierByNum(dv);
+	public List<DossierVoyage> getDossierByIdClient(Client cl) {
+		// TODO Auto-generated method stub
+		return dossierDao.getDossierByIdClient(cl);
 	}
 
 	@Override
-	public List<DossierVoyage> getAllDossier(Voyage v, Client cl) {
-		return dossierDao.getAllDossier(v, cl);
+	public List<DossierVoyage> getAllDossier() {
+		return dossierDao.getAllDossier();
 	}
 
 	@Override
@@ -115,7 +97,7 @@ public class DossierServiceImpl implements IDossierService {
 		final String username = "bauchemin.c@gmail.com";
 		final String password = "geol220891";
 
-		// les propriétées
+		// les propriï¿½tï¿½es
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
@@ -148,15 +130,14 @@ public class DossierServiceImpl implements IDossierService {
 			// Partie 1: Le texte
 			MimeBodyPart mbp1 = new MimeBodyPart();
 			mbp1.setText("Cher(e) Client(e)" + dv.getClient().getNom() + " " + dv.getClient().getPrenom() + ";"
-					+ "\n\n Merci de votre confiance!" + "\n Vous trouverez ci-joint la facture de votre séjour"
-					+ "\n n° de dossier:" + dv.getNumDossier() + "\n Dates du sejour:" + "\n Date d'arrivée: "
-					+ v.getDateArrivee() + "\n Date de départ: " + v.getDateDepart()
-					+ "\n\n\n Tout l'équipe d'Amandine, J-D, Steven et Claire espère vous revoir bientôt sur leur site!");
+					+ "\n\n Merci de votre confiance!" + "\n Vous trouverez ci-joint la facture de votre sï¿½jour"
+					+ "\n nï¿½ de dossier:" + dv.getIdDossier() + "\n Dates du sejour:" + "\n Date d'arrivï¿½e: "
+					+ v.getDateArrivee() + "\n Date de dï¿½part: " + v.getDateDepart()
+					+ "\n\n\n Tout l'ï¿½quipe d'Amandine, J-D, Steven et Claire espï¿½re vous revoir bientï¿½t sur leur site!");
 
 			// ecrire le pdf dans outputStream
 			outputStream = new ByteArrayOutputStream();
-			LigneCommande lc = new LigneCommande();
-			writePdf(outputStream, dv, lc);
+			writePdf(outputStream, dv);
 			byte[] bytes = outputStream.toByteArray();
 
 			// construire le pdf
@@ -174,7 +155,7 @@ public class DossierServiceImpl implements IDossierService {
 			// on envoie le message
 			Transport.send(message);
 
-			System.out.println("message envoyé! c'est ok!!");// verifier si
+			System.out.println("message envoyï¿½! c'est ok!!");// verifier si
 																// ca a reussi
 
 		} catch (Exception e) {
@@ -185,29 +166,29 @@ public class DossierServiceImpl implements IDossierService {
 
 	// ecrire le pdf (using iText API)
 
-	@SuppressWarnings("unchecked")
-	public void writePdf(ByteArrayOutputStream outputStream, DossierVoyage dv, LigneCommande lc) throws Exception {
+	public void writePdf(ByteArrayOutputStream outputStream, DossierVoyage dv) throws Exception {
 		Document document = new Document();
 		PdfWriter.getInstance(document, outputStream);
 
 		// ouvrir le document
 		document.open();
 
-		// données du document
+		// donnï¿½es du document
 		document.addTitle("Facture PDF");
 		document.addSubject("Testing email PDF");
 		document.addKeywords("iText, email");
 		document.addAuthor("Steven, Amandine, J-D et Claire");
 		document.addCreator("Steven, Amandine, J-D et Claire");
 
-		// récup de la liste des lignes commandes associées à la reservation
-		 List<LigneCommande> liste = (List<LigneCommande>) lcDao.getLigneCommandeById(lc);
+		// rï¿½cup de la liste des lignes commandes associï¿½es ï¿½ la commande
+		// List<LigneCommande> listeLc =
+		// lcDao.getListeLigneCommandeByComId(com);
 
 		// calcul du prix total =
-		 Double d = 0.0;
-		 for (LigneCommande lc1 : liste) {
-		 d += lc1.getPrixNormal();
-		 }
+		// Double d = 0.0;
+		// for (LigneCommande lc : listeLc) {
+		// d += lc.getPrix();
+		// }
 
 		// composition du pdf
 
@@ -220,64 +201,68 @@ public class DossierServiceImpl implements IDossierService {
 		document.add(paragraph);
 
 		Paragraph paragraph1 = new Paragraph();
-		paragraph1.add(new Chunk("\n n° de dossier:" + dv.getNumDossier() + "\n Statut de votre dossier: "
+		paragraph1.add(new Chunk("\n nï¿½ de dossier:" + dv.getIdDossier() + "\n Statut de votre dossier: "
 				+ dv.getStatut() + "\n\n voici le recapitulatif de votre facture:\n\n"));
 		document.add(paragraph1);
 
-		 // On créer un objet table dans lequel on intialise ça taille.
-		 PdfPTable table = new PdfPTable(5);
-		 // ajout des cellules entêtes
-		 Font f = new Font(FontFamily.HELVETICA, 15, Font.BOLD,
-		 GrayColor.BLACK);
-		 PdfPCell cell = new PdfPCell(new Phrase("type de prestation", f));
-		 cell.setBackgroundColor(GrayColor.LIGHT_GRAY);
-		 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-		 table.addCell(cell);
-		 PdfPCell cell1 = new PdfPCell(new Phrase("Designation", f));
-		 cell1.setBackgroundColor(GrayColor.LIGHT_GRAY);
-		 cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
-		 table.addCell(cell1);
-		 PdfPCell cell2 = new PdfPCell(new Phrase("Prix normal", f));
-		 cell2.setBackgroundColor(GrayColor.LIGHT_GRAY);
-		 cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
-		 table.addCell(cell2);
-		 PdfPCell cell3 = new PdfPCell(new Phrase("Promotion", f));
-		 cell3.setBackgroundColor(GrayColor.LIGHT_GRAY);
-		 cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
-		 table.addCell(cell3);
-		 PdfPCell cell4 = new PdfPCell(new Phrase("Quantité", f));
-		 cell4.setBackgroundColor(GrayColor.LIGHT_GRAY);
-		 cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
-		 table.addCell(cell4);
+		// // On crï¿½er un objet table dans lequel on intialise ï¿½a taille.
+		// PdfPTable table = new PdfPTable(5);
+		// // ajout des cellules entï¿½tes
+		// Font f = new Font(FontFamily.HELVETICA, 15, Font.BOLD,
+		// GrayColor.BLACK);
+		// PdfPCell cell = new PdfPCell(new Phrase("Voyage", f));
+		// cell.setBackgroundColor(GrayColor.LIGHT_GRAY);
+		// cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		// table.addCell(cell);
+		// PdfPCell cell1 = new PdfPCell(new Phrase("Caution", f));
+		// cell1.setBackgroundColor(GrayColor.LIGHT_GRAY);
+		// cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		// table.addCell(cell1);
+		// PdfPCell cell2 = new PdfPCell(new Phrase("Options", f));
+		// cell2.setBackgroundColor(GrayColor.LIGHT_GRAY);
+		// cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+		// table.addCell(cell2);
+		// PdfPCell cell3 = new PdfPCell(new Phrase("Prix initial", f));
+		// cell3.setBackgroundColor(GrayColor.LIGHT_GRAY);
+		// cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
+		// table.addCell(cell3);
+		// PdfPCell cell4 = new PdfPCell(new Phrase("Reduction", f));
+		// cell4.setBackgroundColor(GrayColor.LIGHT_GRAY);
+		// cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
+		// table.addCell(cell4);
 
-		 //Creation du recapitulatif de la commande
-		 for (LigneCommande lc1 : liste ) {
-		
-		 // on ajoute les cellules
-		 table.addCell(lc1.getTypePrestation());
-		 table.addCell(lc1.getDesignation());
-		 table.addCell(lc1.getPrixNormal()+" € ");
-		 table.addCell(lc1.getPrixPromotion() +"€ ");
-		 table.addCell(lc1.getQuantite()+"");
-		
-		 }
-		 document.add(table);
+		// // Creation du recapitulatif de la commande
+		// for (LigneCommande lc1 : listeLc) {
+		//
+		// // on ajoute les cellules
+		// table.addCell(prDao.rechProduit(lc1.getProduit()).getDesignation());
+		// table.addCell("x " + lc1.getQuantite());
+		// table.addCell(prDao.rechProduit(lc1.getProduit()).getPrix() + "ï¿½ x "
+		// + lc1.getQuantite());
+		//
+		// }
+		// document.add(table);
 
 		Paragraph paragraph2 = new Paragraph();
 		paragraph2.add(new Chunk("______________________________________________________________________________"));
 		document.add(paragraph2);
 
-		Paragraph paragraph3 = new Paragraph();
-		 paragraph3.add(new Chunk("Prix total: " + d + " €"));
-		 document.add(paragraph3);
+		// Paragraph paragraph3 = new Paragraph();
+		// paragraph3.add(new Chunk("Prix total: " + d + " ï¿½"));
+		// document.add(paragraph3);
 
 		Paragraph paragraph4 = new Paragraph();
 		paragraph4.add(new Chunk(
-				"\n\n\n l'equipe Amandine, J-D, Steven et Claire espère vous revoir bientôt pour de nouvelles aventures avec Marmotte vacances!"
-						+ "\n en cas de reclamation veillez nous contacter à l'adresse suivante:  nomane.boulmerdj@gmail.com"));
+				"\n\n\n l'equipe Amandine, J-D, Steven et Claire espï¿½re vous revoir bientï¿½t pour de nouvelles aventures avec Marmotte vacances!"
+						+ "\n en cas de reclamation veillez nous contacter ï¿½ l'adresse suivante:  nomane.boulmerdj@gmail.com"));
 		document.add(paragraph4);
 
 		// fermer le document
 		document.close();
 	}
+
+
+	
+
+	
 }
