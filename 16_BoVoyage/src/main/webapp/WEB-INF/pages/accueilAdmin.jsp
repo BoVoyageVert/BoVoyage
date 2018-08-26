@@ -27,10 +27,6 @@
 <jsp:include page="${request.contextPath}/template/templateAd"></jsp:include>
 
 
-<a style="color: red; text-align: center;" href="${pageContext.request.contextPath}/admin/seDeconnecter">Se Deconnecter</a>
-
-
-
 
 <div class="container" style="background-color: #F5F5DC;">
 			<div class="media">
