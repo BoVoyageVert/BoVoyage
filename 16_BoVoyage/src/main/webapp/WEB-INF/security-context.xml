@@ -24,11 +24,11 @@
 	<security:http>
 		<!-- Specifier les URL à proteger grace à l'attribut pattern de intercept-url 
 			et les autorisations suprotées grace à l'attribut access -->
-		<security:intercept-url pattern="/client/**"
+		<security:intercept-url pattern="/admin/**"
 			access="ROLE_ADMIN" />
 
 		<!-- Utiliser d'un formulaire pour la connexion -->
-		<security:form-login login-page="/loginAdmin"
+		<security:form-login login-page="/admin/loginPageAdmin"
 			authentication-failure-url="/echec" default-target-url="/pack/listePack"/>
 
 		<!-- Specifier la page de l'access refusé -->
