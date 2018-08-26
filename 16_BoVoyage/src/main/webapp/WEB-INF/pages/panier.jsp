@@ -18,9 +18,9 @@
 	<div class="container" style="background-color: #F5F5DC;">
 		<h3 style="color: green">
 			Votre sélection de voyage du
-			<fmt:formatDate value="${voyage.dateDepart}" pattern="dd/MM/yyyy" />
-			au
 			<fmt:formatDate value="${voyage.dateArrivee}" pattern="dd/MM/yyyy" />
+			au
+			<fmt:formatDate value="${voyage.dateDepart}" pattern="dd/MM/yyyy" />
 			pour ${voyage.nombrePlaces} personnes.
 		</h3>
 		<br />

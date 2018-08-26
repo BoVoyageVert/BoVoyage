@@ -27,47 +27,54 @@ import fr.adaming.service.IDossierService;
 import fr.adaming.service.ILigneCommandeService;
 import fr.adaming.service.IVoyageService;
 
-
 @Controller
 @RequestMapping("/panier")
 public class PanierController {
-	
+
 	@Autowired
 	public IVoyageService vService;
+
 	public void setvService(IVoyageService vService) {
 		this.vService = vService;
 	}
 
 	@Autowired
 	private ILigneCommandeService lcService;
+
 	public void setLcService(ILigneCommandeService lcService) {
 		this.lcService = lcService;
 	}
 
 	@Autowired
 	private IDossierService dService;
+
 	public void setdService(IDossierService dService) {
 		this.dService = dService;
 	}
 
 	@Autowired
 	private IClientService clService;
+
 	public void setClService(IClientService clService) {
 		this.clService = clService;
 	}
 
 	int prixTotalNormal = 0;
+
 	public int getPrixTotalNormal() {
 		return prixTotalNormal;
 	}
+
 	public void setPrixTotalNormal(int prixTotalNormal) {
 		this.prixTotalNormal = prixTotalNormal;
 	}
-	
+
 	int prixTotalPromo = 0;
+
 	public int getPrixTotalPromo() {
 		return prixTotalPromo;
 	}
+
 	public void setPrixTotalPromo(int prixTotalPromo) {
 		this.prixTotalPromo = prixTotalPromo;
 	}
@@ -76,100 +83,96 @@ public class PanierController {
 	 * le panier
 	 */
 	private List<LigneCommande> panier;
+
 	public List<LigneCommande> getPanier() {
 		return panier;
 	}
+
 	public void setPanier(List<LigneCommande> panier) {
 		this.panier = panier;
 	}
-	
+
 	@InitBinder
-	public void initBinder(WebDataBinder binder){
+	public void initBinder(WebDataBinder binder) {
 		// web databinder sert � lier les params de la req aux objets java
 		DateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
 		formatDate.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(formatDate, false));
 	}
-	
-	 
-	/** steven : recup de la liste des lignes de commande */
-		@RequestMapping(value="/panier", method=RequestMethod.GET)
-		public String afficherPanier(HttpServletRequest req, Model modele){
-			panier = (List<LigneCommande>) req.getSession().getAttribute("panier");
-			prixTotalNormal = 0;
-			for (LigneCommande lc : panier){
-				prixTotalNormal += lc.getPrixNormal();
-			}
-			prixTotalPromo = 0;
-			for (LigneCommande lc : panier){
-				prixTotalPromo += lc.getPrixPromotion();
-			}
-			modele.addAttribute("allLigneCommande", panier);
-			modele.addAttribute("prixTotalNormal", prixTotalNormal);
-			modele.addAttribute("prixTotalPromo", prixTotalPromo);
-			return "panier";
-		}
-		
-		/** steven : demande de commande */
-		@RequestMapping(value = "/soumettrePanier", method = RequestMethod.POST)
-		public String soumettrePanier() {
-		
-				return "redirect:inscription";
-			
-		}
-		
-		
-		/** steven : recup du formulaire de l'inscription */
-		@RequestMapping(value = "/inscription", method = RequestMethod.GET)
-		public String afficherFormInscription(Model modele) {
-			modele.addAttribute("clInscrip", new Client());
-			return "inscription";
-		}
-		
-		/** steven : soumission de l'inscription */
-		@RequestMapping(value = "/soumettreInscription", method = RequestMethod.POST)
-		public String soumettreInscription(@ModelAttribute("clInscrip") Client clIn, RedirectAttributes rda, HttpServletRequest req) {
-		/** enregistrer le client inscrit dans la base de données */
-			if (clIn != null) {
-				req.getSession().setAttribute("client", clIn);
-				clService.addClient(clIn);
-				return "redirect:confirmation";
-			} else {
-				rda.addAttribute("msg", "Vous devez vous inscrire !");
-				return "redirect:inscription";
-			}
-		}
-		
-		/** steven : recup du formulaire de la page de confirmation */
-		@RequestMapping(value = "/confirmation", method = RequestMethod.GET)
-		public String afficherFormConfirmation(Model modele, HttpServletRequest req) {
-			panier = (List<LigneCommande>) req.getSession().getAttribute("panier");
-			prixTotalPromo = 0;
-			for (LigneCommande lc : panier){
-				prixTotalPromo += lc.getPrixPromotion();
-			}
-			modele.addAttribute("allLigneCommande", panier);
-			modele.addAttribute("prixTotalPromo", prixTotalPromo);
-			
-			vService.addVoyage((Voyage) req.getSession().getAttribute("voyage"));
-			
-			
-			Date date = new Date();
-			DossierVoyage dossier = new DossierVoyage(date, "En attente");
-			dService.addDossier(dossier, (Voyage)req.getSession().getAttribute("voyage"), (Client)req.getSession().getAttribute("client"));
 
-			
-			for (LigneCommande lc : panier){
-				lc.setDossier(dossier);
-				lcService.addLigneCommande(lc);
-			}
-			
-			
-			
-			dService.sendMail(dossier, (Voyage) req.getSession().getAttribute("voyage"));
-			return "confirmation";
+	/** steven : recup de la liste des lignes de commande */
+	@RequestMapping(value = "/panier", method = RequestMethod.GET)
+	public String afficherPanier(HttpServletRequest req, Model modele) {
+		panier = (List<LigneCommande>) req.getSession().getAttribute("panier");
+		prixTotalNormal = 0;
+		for (LigneCommande lc : panier) {
+			prixTotalNormal += lc.getPrixNormal();
 		}
-		
-		
-		
+		prixTotalPromo = 0;
+		for (LigneCommande lc : panier) {
+			prixTotalPromo += lc.getPrixPromotion();
+		}
+		modele.addAttribute("allLigneCommande", panier);
+		modele.addAttribute("prixTotalNormal", prixTotalNormal);
+		modele.addAttribute("prixTotalPromo", prixTotalPromo);
+		return "panier";
+	}
+
+	/** steven : demande de commande */
+	@RequestMapping(value = "/soumettrePanier", method = RequestMethod.POST)
+	public String soumettrePanier() {
+
+		return "redirect:inscription";
+
+	}
+
+	/** steven : recup du formulaire de l'inscription */
+	@RequestMapping(value = "/inscription", method = RequestMethod.GET)
+	public String afficherFormInscription(Model modele) {
+		modele.addAttribute("clInscrip", new Client());
+		return "inscription";
+	}
+
+	/** steven : soumission de l'inscription */
+	@RequestMapping(value = "/soumettreInscription", method = RequestMethod.POST)
+	public String soumettreInscription(@ModelAttribute("clInscrip") Client clIn, RedirectAttributes rda,
+			HttpServletRequest req) {
+		/** enregistrer le client inscrit dans la base de données */
+		if (clIn != null) {
+			req.getSession().setAttribute("client", clIn);
+			clService.addClient(clIn);
+			return "redirect:confirmation";
+		} else {
+			rda.addAttribute("msg", "Vous devez vous inscrire !");
+			return "redirect:inscription";
+		}
+	}
+
+	/** steven : recup du formulaire de la page de confirmation */
+	@RequestMapping(value = "/confirmation", method = RequestMethod.GET)
+	public String afficherFormConfirmation(Model modele, HttpServletRequest req) {
+		panier = (List<LigneCommande>) req.getSession().getAttribute("panier");
+		prixTotalPromo = 0;
+		for (LigneCommande lc : panier) {
+			prixTotalPromo += lc.getPrixPromotion();
+		}
+		modele.addAttribute("allLigneCommande", panier);
+		modele.addAttribute("prixTotalPromo", prixTotalPromo);
+
+		vService.addVoyage((Voyage) req.getSession().getAttribute("voyage"));
+
+		Date date = new Date();
+		DossierVoyage dossier = new DossierVoyage(date, "En attente");
+		dService.addDossier(dossier, (Voyage) req.getSession().getAttribute("voyage"),
+				(Client) req.getSession().getAttribute("client"));
+
+		for (LigneCommande lc : panier) {
+			lc.setDossier(dossier);
+			lcService.addLigneCommande(lc);
+		}
+
+		dService.sendMail(dossier, (Voyage) req.getSession().getAttribute("voyage"));
+		return "confirmation";
+	}
+
 }
