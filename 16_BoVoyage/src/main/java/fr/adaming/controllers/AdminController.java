@@ -2,6 +2,8 @@ package fr.adaming.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -96,7 +98,9 @@ public class AdminController {
 
 	// methode appelée dans lors de la deconnexion
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String afficheLogout(Model model) {
+	public String afficheLogout(Model model, HttpServletRequest req) {
+		
+		req.getSession().invalidate();
 		model.addAttribute("msg", true);
 		return "accueilClient";
 	}

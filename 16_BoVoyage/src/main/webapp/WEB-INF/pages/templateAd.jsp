@@ -66,7 +66,7 @@
 								href="${pageContext.request.contextPath}/admin/accueilAdmin"><i
 									class="fa fa-home" aria-hidden="true"></i> Accueil admin</a></li>
 							<li><a style="margin-left:750px"
-								href="${pageContext.request.contextPath}/admin/seDeconnecter"><i
+								href="${pageContext.request.contextPath}/admin/logout"><i
 									class="fa fa-times" aria-hidden="true" ></i> Se deconnecter</a></li>
 							
 						</ul>

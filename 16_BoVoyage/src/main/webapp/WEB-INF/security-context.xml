@@ -78,7 +78,7 @@
 
 		<!-- La balise qui sert pour la deconnexion -->
 		<security:logout logout-success-url="/admin/logout"
-			logout-url="/seDeconnecter" />
+			logout-url="/logout" />
 
 
 
