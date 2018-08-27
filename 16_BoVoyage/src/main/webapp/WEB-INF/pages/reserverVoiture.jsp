@@ -13,63 +13,51 @@
 <!-- Ajouter la lib bootrap.css -->
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bootstrap.css"/>" />
-<title>Réserver un loisir</title>
+<title>Réserver une voiture</title>
 </head>
 <body>
 	<!-- Insertion du templateTest (navbar) -->
 	<jsp:include page="${request.contextPath}/template/templateTest"></jsp:include>
-	<h1 style="color: green; text-align: center">Réservation des
-		loisirs</h1>
+	<h1 style="color: green; text-align: center">Réservation d'une voiture de location</h1>
 
 	<table class="table table-bordered">
 		<tr>
-			<th>Categorie</th>
-			<th>Nom</th>
-			<th>Description</th>
-			<th>Prix</th>
-			<th>Réduction</th>
 			<th>Photo</th>
+			<th>Modèle</th>
+			<th>Nombre de places</th>
+			<th>Prix</th>
 		</tr>
 
-		<c:forEach var="l" items="${allLoisir}">
+		<c:forEach var="voit" items="${allVoiture}">
 			<tr>
-				<td>${l.categorie}</td>
-				<td>${l.nom}</td>
-				<td>${l.description}</td>
-				<td>${l.prix}</td>
-				<td>${l.reduction}</td>
 				<td><img
-					src="${pageContext.request.contextPath}/loisir/getImage?pIdLoisir=${l.idLoisir}"
+					src="${pageContext.request.contextPath}/voiture/getImage?pIdVoiture=${voit.idVoiture}"
 					style="width: 150px; height: 120px" /></td>
+				<td>${voit.modele}</td>
+				<td>${voit.nbPlaces}</td>
+				<td>${voit.prix}</td>
 			</tr>
 		</c:forEach>
 	</table>
 
-	<h1>Veuillez selectionner le loisir de votre choix</h1>
+	<h1>Veuillez selectionner la voiture de votre choix</h1>
 
 	<form:form cssClass="form-horizontal" method="POST"
-		action="soumettreReserverLoisir" modelAttribute="lReserv"
+		action="soumettreReserverVoiture" modelAttribute="voitReserv"
 		enctype="multipart/form-data">
 
 		<div class="form-group">
-			<form:label cssClass="col-sm-2 control-label" path="nom">Nom du loisir : </form:label>
+			<form:label cssClass="col-sm-2 control-label" path="modele">Modèle de la voiture : </form:label>
 			<div class="col-sm-8">
-				<form:select cssClass="form-control" path="nom">
-					<c:forEach var="l" items="${allLoisir}">
-						<option>${l.nom}</option>
+				<form:select cssClass="form-control" path="modele">
+					<c:forEach var="voit" items="${allVoiture}">
+						<option>${voit.modele}</option>
 					</c:forEach>
 				</form:select>
 			</div>
 		</div>
 
-		<div class="form-group">
-			<!-- petite magouille qui passe inaperçue -->
-			<form:label cssClass="col-sm-2 control-label" path="idLoisir">Quantité</form:label>
-			<div class="col-sm-10">
-				<form:input type="number" cssClass="form-control"
-					placeholder="Quantité" path="idLoisir" />
-			</div>
-		</div>
+		
 
 
 		<div class="form-group">
@@ -80,8 +68,10 @@
 		</div>
 	</form:form>
 	
+	
+	
 	<form:form cssClass="form-horizontal"
-			method="POST" action="soumettrePasserLoisir">
+			method="POST" action="soumettrePasserVoiture">
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" class="btn btn-default"

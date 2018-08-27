@@ -39,6 +39,7 @@ import fr.adaming.dao.IDossierDao;
 import fr.adaming.dao.ILigneCommandeDao;
 import fr.adaming.model.Client;
 import fr.adaming.model.DossierVoyage;
+import fr.adaming.model.Hebergement;
 import fr.adaming.model.LigneCommande;
 import fr.adaming.model.Voyage;
 
@@ -109,7 +110,7 @@ public class DossierServiceImpl implements IDossierService {
 	}
 
 	@Override
-	public void sendMail(DossierVoyage dv, Voyage v) {
+	public void sendMail(DossierVoyage dv, Voyage v, Hebergement h) {
 		// mon compte gmail (pour recevoir les messages)
 		final String username = "bauchemin.c@gmail.com";
 		final String password = "geol220891";
@@ -150,6 +151,7 @@ public class DossierServiceImpl implements IDossierService {
 					+ "\n\n Merci de votre confiance!" + "\n Vous trouverez ci-joint la facture de votre sejour"
 					+ "\n numero de dossier:" + dv.getIdDossier() + "\n Dates du sejour:" + "\n Date d'arrivee: "
 					+ v.getDateArrivee() + "\n Date de depart: " + v.getDateDepart()
+					+ "\n\n Nous aurons le plaisir de vous accueillir dans votre "+h.getType()+" situé en "+h.getLieux()+" à "+h.getVille()+"."
 					+ "\n\n\n Tout l'equipe d'Amandine, J-D, Steven et Claire espere vous revoir bientot sur leur site!");
 
 			// ecrire le pdf dans outputStream

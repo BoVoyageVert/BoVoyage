@@ -90,4 +90,21 @@ public class VoitureDaoImpl implements IVoitureDao {
 		return voit;
 	}
 
+	@Override
+	public Voiture getVoitureByModele(Voiture voit) {
+		// recuperer la session
+				Session s = sf.getCurrentSession();
+
+				// req HQL
+				String req = "FROM Voiture voit WHERE voit.modele=:pModele";
+
+				// Query
+				Query query = s.createQuery(req);
+
+				// recuperer les parametres
+				query.setParameter("pModele", voit.getModele());
+
+				return (Voiture) query.uniqueResult();
+	}
+
 }

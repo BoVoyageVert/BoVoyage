@@ -49,4 +49,10 @@ public class VoitureServiceImpl implements IVoitureService{
 		return voitDao.deleteVoiture(voit);
 	}
 
+
+	@Override
+	public Voiture getVoitureByModele(Voiture voit) {
+		return voitDao.getVoitureByModele(voit);
+	}
+
 }

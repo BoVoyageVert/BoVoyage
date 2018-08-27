@@ -4,6 +4,7 @@ import java.util.List;
 
 import fr.adaming.model.Client;
 import fr.adaming.model.DossierVoyage;
+import fr.adaming.model.Hebergement;
 import fr.adaming.model.Voyage;
 
 public interface IDossierService {
@@ -20,7 +21,7 @@ public interface IDossierService {
 	
 	public List<DossierVoyage> getAllDossier();
 
-	void sendMail(DossierVoyage dv, Voyage v);
+	void sendMail(DossierVoyage dv, Voyage v, Hebergement h);
 	
 	
 

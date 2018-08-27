@@ -20,5 +20,7 @@ public interface IVoitureDao {
 	/**claire: Methode pour supprimer une voiture*/
 	public Voiture deleteVoiture(Voiture voit);
 	
+	public Voiture getVoitureByModele(Voiture voit);
+	
 
 }

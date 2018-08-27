@@ -57,6 +57,14 @@
 			sur notre site.</h4>
 
 	</div>
+	<form:form cssClass="form-horizontal" method="POST" action="soumettreTerminer">
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-sucess"
+					style="background-color: #90EE90;">Terminer</button>
+			</div>
+		</div>
+	</form:form>
 
 
 

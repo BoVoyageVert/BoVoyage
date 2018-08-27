@@ -66,6 +66,16 @@
 				</div>
 			</div>
 		</form:form>
+		
+		<form:form  cssClass="form-horizontal"
+			method="POST" action="terminer">
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-default"
+						style="background-color: #90EE90;">Recommencer une réservation</button>
+				</div>
+			</div>
+		</form:form>
 	</div>
 
 </body>
